@@ -1,0 +1,225 @@
+{
+  "topicId": 29,
+  "topicTitle": "Маршрутизация",
+  "promptVersion": "1.0",
+  "conceptsIdentified": [
+    "SPA и клиентская маршрутизация",
+    "механизм BrowserRouter (History API)",
+    "серверный fallback для глубоких путей",
+    "BrowserRouter vs HashRouter",
+    "компоненты React Router (Route, Link, NavLink)",
+    "программная навигация (useNavigate)",
+    "вложенные маршруты и Outlet"
+  ],
+  "questions": [
+    {
+      "id": "t029-mcq-01",
+      "type": "mcq",
+      "concept": "SPA и клиентская маршрутизация",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Что такое SPA (Single Page Application) применительно к React?",
+      "options": [
+        "Весь контент на одной HTML-странице, а переход между «страницами» происходит без полной перезагрузки",
+        "Многостраничное приложение с запросом нового HTML на каждый переход",
+        "Приложение, рендерящее каждую страницу на сервере",
+        "Приложение, работающее без JavaScript"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: в SPA весь контент загружается на одной странице, а переходы происходят динамически без полной перезагрузки.",
+        "Неверно: запрос нового HTML на каждый переход — это классическое многостраничное приложение.",
+        "Неверно: серверный рендеринг каждой страницы не является определением SPA.",
+        "Неверно: SPA как раз опирается на JavaScript."
+      ],
+      "explanation": "React-приложения обычно являются одностраничными приложениями (SPA): весь контент загружается на одной HTML-странице, а переход между «страницами» происходит динамически, без полной перезагрузки.",
+      "sourceQuote": "React-приложения обычно являются одностраничными приложениями (Single Page Applications, SPA)."
+    },
+    {
+      "id": "t029-mcq-02",
+      "type": "mcq",
+      "concept": "SPA и клиентская маршрутизация",
+      "difficulty": "medium",
+      "questionType": "scenario",
+      "question": "Что происходит при клиентской маршрутизации во время перехода по Link с / на /about?",
+      "options": [
+        "Браузер запрашивает новый HTML с сервера",
+        "Страница полностью перезагружается",
+        "Сервер рендерит /about заново и присылает разметку",
+        "HTTP-запрос нового HTML не выполняется — изменяются location (URL) и дерево React-компонентов в уже загруженном документе"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: запрос нового HTML как раз не выполняется.",
+        "Неверно: полной перезагрузки при клиентской маршрутизации нет.",
+        "Неверно: сервер не участвует в переходе Link.",
+        "Верно: HTTP-запрос нового HTML не выполняется — меняются location и дерево React-компонентов в уже загруженном документе."
+      ],
+      "explanation": "При клиентской маршрутизации HTTP-запрос нового HTML на каждый переход не выполняется; изменяются location (URL) и дерево React-компонентов в уже загруженном документе.",
+      "sourceQuote": "HTTP-запрос нового HTML на каждый переход не выполняется. Изменяются location (URL) и дерево React-компонентов в уже загруженном документе."
+    },
+    {
+      "id": "t029-mcq-03",
+      "type": "mcq",
+      "concept": "механизм BrowserRouter (History API)",
+      "difficulty": "medium",
+      "questionType": "definition",
+      "question": "Какой механизм браузера использует BrowserRouter?",
+      "options": [
+        "Только hash-часть URL",
+        "HTML5 History API (history.pushState, history.replaceState, событие popstate)",
+        "Полную перезагрузку через location.href",
+        "WebSocket-соединение с сервером"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: hash-часть использует HashRouter, а не BrowserRouter.",
+        "Верно: BrowserRouter использует HTML5 History API — pushState, replaceState и событие popstate.",
+        "Неверно: полная перезагрузка противоречит клиентской маршрутизации.",
+        "Неверно: маршрутизация не использует WebSocket."
+      ],
+      "explanation": "BrowserRouter использует HTML5 History API: history.pushState, history.replaceState и событие popstate; при переходе через Link новый URL записывается в историю через pushState без перезагрузки.",
+      "sourceQuote": "BrowserRouter использует HTML5 History API: history.pushState, history.replaceState и событие popstate."
+    },
+    {
+      "id": "t029-mcq-04",
+      "type": "mcq",
+      "concept": "серверный fallback для глубоких путей",
+      "difficulty": "hard",
+      "questionType": "scenario",
+      "question": "Пользователь открывает URL https://example.com/about напрямую (или обновляет страницу). Что нужно на сервере, чтобы SPA работало?",
+      "options": [
+        "Отдельный ресурс /about, реализованный на сервере",
+        "Серверный рендеринг всего React-приложения",
+        "Fallback: на неизвестные пути отдавать тот же index.html, что и на корень (иначе вернётся 404)",
+        "Переключиться на WebSocket-транспорт"
+      ],
+      "correctIndex": 2,
+      "rationales": [
+        "Неверно: /about — клиентский маршрут, отдельного серверного ресурса обычно нет.",
+        "Неверно: SSR — отдельная техника, не обязательная для работы клиентской маршрутизации.",
+        "Верно: для SPA задают fallback — на неизвестные пути отдаётся тот же index.html, что и на корень, иначе вернётся 404.",
+        "Неверно: транспорт здесь ни при чём."
+      ],
+      "explanation": "При прямом открытии /about браузер шлёт HTTP-запрос на сервер, где отдельного ресурса обычно нет, и без настройки вернётся 404. Для SPA задаётся fallback: на неизвестные пути отдаётся тот же index.html, что и на корень; после загрузки JS React Router читает pathname и монтирует нужный экран.",
+      "sourceQuote": "Для SPA задаётся fallback - на неизвестные пути отдаётся тот же index.html, что и на корень."
+    },
+    {
+      "id": "t029-mcq-05",
+      "type": "mcq",
+      "concept": "компоненты React Router (Route, Link, NavLink)",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Какие основные props у компонента Route?",
+      "options": [
+        "path (шаблон пути) и element (React-элемент для рендера при совпадении)",
+        "href и target",
+        "to и active",
+        "action и method"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: у Route основные props — path (шаблон пути) и element (React-элемент для рендера при совпадении).",
+        "Неверно: href/target — атрибуты обычной ссылки <a>.",
+        "Неверно: to — это prop у Link/NavLink, а не основные props Route.",
+        "Неверно: action/method — атрибуты HTML-формы."
+      ],
+      "explanation": "Route — описание отдельного маршрута; его основные props — path (шаблон пути) и element (React-элемент для рендера при совпадении).",
+      "sourceQuote": "Основные props: path (шаблон пути) и element (React-элемент для рендера при совпадении)."
+    },
+    {
+      "id": "t029-mcq-06",
+      "type": "mcq",
+      "concept": "программная навигация (useNavigate)",
+      "difficulty": "medium",
+      "questionType": "scenario",
+      "question": "Как выполнить программную навигацию (например, после submit формы или аутентификации)?",
+      "options": [
+        "Перезагрузить страницу через location.reload()",
+        "Напрямую присвоить window.location.href",
+        "Через хук useParams",
+        "Хуком useNavigate — возвращаемая функция меняет location без Link, через тот же History API"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: перезагрузка ломает SPA-навигацию.",
+        "Неверно: прямое присвоение href вызовет полную перезагрузку.",
+        "Неверно: useParams читает параметры маршрута, а не навигирует.",
+        "Верно: программную навигацию выполняют хуком useNavigate, чья функция меняет location без Link, используя тот же History API."
+      ],
+      "explanation": "Программная навигация (после аутентификации, submit формы, проверки прав) выполняется хуком useNavigate; возвращаемая функция изменяет location без участия Link, внутренне применяя тот же History API.",
+      "sourceQuote": "Программная навигация (после аутентификации, submit формы, проверки прав) выполняется хуком useNavigate."
+    },
+    {
+      "id": "t029-mcq-07",
+      "type": "mcq",
+      "concept": "BrowserRouter vs HashRouter",
+      "difficulty": "hard",
+      "questionType": "comparison",
+      "question": "Чем HashRouter отличается от BrowserRouter?",
+      "options": [
+        "HashRouter использует History API, а BrowserRouter — hash-часть URL",
+        "HashRouter размещает маршрут в hash-части URL (#/about): на сервер уходит запрос только к /, fallback не нужен, но форма URL менее удобна",
+        "Оба роутера работают совершенно одинаково",
+        "HashRouter обязательно требует серверный fallback под History API"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: History API использует BrowserRouter, а не HashRouter.",
+        "Верно: HashRouter держит маршрут в hash-части URL, поэтому на сервер уходит запрос только к /, fallback не нужен, но URL менее удобен.",
+        "Неверно: механизмы различаются.",
+        "Неверно: серверный fallback нужен как раз BrowserRouter, а не HashRouter."
+      ],
+      "explanation": "HashRouter размещает маршрут в hash-части URL (например, https://example.com/#/about): на сервер уходит запрос только к /, фрагмент обрабатывается в браузере, поэтому fallback на index.html не требуется, но форма URL менее удобна. В production обычно применяют BrowserRouter при настроенном серверном fallback.",
+      "sourceQuote": "Альтернатива - HashRouter. Маршрут размещается в hash-части URL"
+    },
+    {
+      "id": "t029-open-01",
+      "type": "open",
+      "concept": "механизм BrowserRouter (History API)",
+      "difficulty": "medium",
+      "questionType": "explain",
+      "question": "Опишите механизм работы клиентской маршрутизации в React Router (BrowserRouter, Link, History API, popstate).",
+      "keyPoints": [
+        "при клиентской маршрутизации HTTP-запрос нового HTML не выполняется; меняются location и дерево React-компонентов",
+        "BrowserRouter использует HTML5 History API: pushState, replaceState и событие popstate",
+        "Link предотвращает действие браузера по умолчанию (preventDefault) и записывает новый URL через pushState; документ не перезагружается",
+        "роутер обновляет location в React Context, Routes пересопоставляют pathname; кнопки назад/вперёд генерируют popstate и вызывают повторный рендер"
+      ],
+      "modelAnswer": "При клиентской маршрутизации HTTP-запрос нового HTML на каждый переход не выполняется — изменяются location (URL) и дерево React-компонентов в уже загруженном документе. BrowserRouter использует HTML5 History API: history.pushState, history.replaceState и событие popstate. При переходе через Link обработчик предотвращает действие браузера по умолчанию (preventDefault у <a>) и записывает новый URL в историю через pushState, документ не перезагружается. Роутер обновляет объект location, хранимый в React Context, после чего Routes выполняют повторное сопоставление pathname с конфигурацией маршрутов и монтируют соответствующий element. При нажатии кнопок «назад»/«вперёд» браузер генерирует popstate, и BrowserRouter синхронизирует location, инициируя повторный рендер.",
+      "sourceQuote": "BrowserRouter использует HTML5 History API: history.pushState, history.replaceState и событие popstate."
+    },
+    {
+      "id": "t029-open-02",
+      "type": "open",
+      "concept": "компоненты React Router (Route, Link, NavLink)",
+      "difficulty": "medium",
+      "questionType": "explain",
+      "question": "Опишите основные компоненты React Router: BrowserRouter, Routes, Route, Link, NavLink.",
+      "keyPoints": [
+        "BrowserRouter — корневой провайдер: инициализирует history на базе History API и передаёт location через Context",
+        "Routes — контейнер набора Route: выполняет matching текущего URL и рендерит подходящий маршрут (в v6 заменяет Switch)",
+        "Route — описание маршрута с основными props path и element",
+        "Link — навигационная ссылка без полной перезагрузки (не инициирует document request); NavLink — расширение Link с индикацией активного состояния"
+      ],
+      "modelAnswer": "BrowserRouter — корневой провайдер для веб-приложений: инициализирует history на базе HTML5 History API и передаёт location через Context дочерним компонентам. Routes — контейнер набора Route: выполняет matching текущего URL и рендерит подходящий маршрут (в v6 заменяет Switch). Route — описание отдельного маршрута с основными props path (шаблон пути) и element (React-элемент для рендера при совпадении). Link — навигационная ссылка внутри SPA, которая изменяет URL через History API без полной перезагрузки и, в отличие от нативного <a href>, не инициирует новый document request. NavLink — расширение Link с индикацией активного состояния при совпадении to с текущим location. Маршрут path=\"*\" используют как fallback при отсутствии совпадений (обработка 404).",
+      "sourceQuote": "Route – описание отдельного маршрута. Основные props: path (шаблон пути) и element (React-элемент для рендера при совпадении)."
+    },
+    {
+      "id": "t029-open-03",
+      "type": "open",
+      "concept": "вложенные маршруты и Outlet",
+      "difficulty": "hard",
+      "questionType": "explain",
+      "question": "Опишите динамические параметры маршрута, программную навигацию и вложенные маршруты в React Router.",
+      "keyPoints": [
+        "динамический сегмент задаётся префиксом : в path (например /products/:productId); значения извлекаются хуком useParams (объект пар «имя — значение»)",
+        "программная навигация выполняется хуком useNavigate — функция меняет location без Link через тот же History API",
+        "вложенные маршруты: родительский Route рендерит layout-компонент, а дочерние отображаются в позиции Outlet",
+        "это устраняет дублирование общего каркаса (меню, sidebar); URL отражает вложенность, представление по умолчанию задаётся index-маршрутом"
+      ],
+      "modelAnswer": "Динамический сегмент пути задаётся префиксом : в path, например /products/:productId, а значения параметров извлекаются хуком useParams, возвращающим объект пар «имя параметра — значение». Программная навигация (после аутентификации, submit формы, проверки прав) выполняется хуком useNavigate: возвращаемая функция изменяет location без участия Link, внутренне применяя тот же History API. Вложенные маршруты описывают иерархию URL и UI: родительский Route рендерит layout-компонент, а дочерние маршруты отображаются в позиции Outlet — это устраняет дублирование общего каркаса (меню, sidebar) при смене подразделов. URL отражает вложенность (/dashboard/settings, /dashboard/profile), а представление по умолчанию на уровне родителя задаётся через index-маршрут.",
+      "sourceQuote": "Родительский Route рендерит layout-компонент; дочерние маршруты отображаются в позиции Outlet."
+    }
+  ]
+}
