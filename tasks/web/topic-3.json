@@ -1,0 +1,226 @@
+{
+  "topicId": 3,
+  "topicTitle": "Spring MVC: обработка запросов, контроллеры, модели и представления",
+  "promptVersion": "1.0",
+  "conceptsIdentified": [
+    "DispatcherServlet как Front Controller",
+    "HandlerMapping и контроллеры",
+    "HandlerAdapter и резолверы аргументов",
+    "Model — данные отдельно от отображения",
+    "ModelAndView, ViewResolver и View",
+    "REST: @ResponseBody, HttpMessageConverter, @RestController",
+    "обработка исключений",
+    "заменяемые стратегии диспетчера"
+  ],
+  "questions": [
+    {
+      "id": "t003-mcq-01",
+      "type": "mcq",
+      "concept": "DispatcherServlet как Front Controller",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Какой компонент Spring MVC играет роль Front Controller — единой точки входа, через которую проходят все запросы?",
+      "options": [
+        "HandlerMapping",
+        "DispatcherServlet",
+        "ViewResolver",
+        "HandlerAdapter"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: HandlerMapping лишь находит обработчик, но не является единой точкой входа.",
+        "Верно: роль Front Controller играет DispatcherServlet — через него проходят все запросы.",
+        "Неверно: ViewResolver переводит имя представления в шаблон, а не принимает запросы.",
+        "Неверно: HandlerAdapter вызывает найденный обработчик, но не является точкой входа."
+      ],
+      "explanation": "Spring MVC построен на паттерне Front Controller: все запросы проходят через одну точку — DispatcherServlet, который затем делегирует работу помощникам.",
+      "sourceQuote": "Роль этого Front Controller играет DispatcherServlet."
+    },
+    {
+      "id": "t003-mcq-02",
+      "type": "mcq",
+      "concept": "HandlerMapping и контроллеры",
+      "difficulty": "medium",
+      "questionType": "scenario",
+      "question": "Какой компонент по данным запроса (путь, HTTP-метод) находит подходящий обработчик?",
+      "options": [
+        "HandlerMapping",
+        "HandlerAdapter",
+        "ViewResolver",
+        "HttpMessageConverter"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: именно HandlerMapping по данным запроса (путь, HTTP-метод) находит исполнителя.",
+        "Неверно: HandlerAdapter вызывает уже найденный обработчик, а не ищет его.",
+        "Неверно: ViewResolver переводит имя представления в View.",
+        "Неверно: HttpMessageConverter сериализует/десериализует тело, но не маршрутизирует запрос."
+      ],
+      "explanation": "HandlerMapping — механизм, который по данным запроса (путь, HTTP-метод) находит исполнителя; аннотации маршрутов при старте собираются в реестр.",
+      "sourceQuote": "по данным запроса (путь, HTTP-метод) найдёт исполнителя"
+    },
+    {
+      "id": "t003-mcq-03",
+      "type": "mcq",
+      "concept": "HandlerAdapter и резолверы аргументов",
+      "difficulty": "medium",
+      "questionType": "comparison",
+      "question": "Зачем нужен HandlerAdapter, если обработчик уже найден через HandlerMapping?",
+      "options": [
+        "Он переводит логическое имя представления в конкретный шаблон",
+        "Он ищет обработчик по URL и HTTP-методу",
+        "Он сериализует возвращаемый объект в JSON",
+        "Сигнатуры аннотированных методов свободные и общего интерфейса нет, поэтому адаптер готовит аргументы и вызывает метод любой сигнатуры"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: перевод имени в шаблон — задача ViewResolver.",
+        "Неверно: поиск обработчика — задача HandlerMapping.",
+        "Неверно: сериализация в JSON — задача HttpMessageConverter.",
+        "Верно: сигнатуры аннотированных методов свободные, общего интерфейса нет, поэтому HandlerAdapter через резолверы готовит аргументы и вызывает метод."
+      ],
+      "explanation": "Spring не диктует вид обработчика: сигнатуры методов свободные. HandlerAdapter через цепочку HandlerMethodArgumentResolver готовит аргументы и вызывает метод любой сигнатуры.",
+      "sourceQuote": "сигнатуры аннотированных методов свободные"
+    },
+    {
+      "id": "t003-mcq-04",
+      "type": "mcq",
+      "concept": "Model — данные отдельно от отображения",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Что такое Model в Spring MVC?",
+      "options": [
+        "Класс-сущность JPA, отображаемый на строку таблицы",
+        "Стратегия перевода логического имени представления в шаблон",
+        "Именованный контейнер данных, который контроллер наполняет, а представление читает",
+        "HTTP-ответ, уже сериализованный в JSON"
+      ],
+      "correctIndex": 2,
+      "rationales": [
+        "Неверно: это сущность persistence-слоя, а не Model контроллера.",
+        "Неверно: это описание ViewResolver.",
+        "Верно: Model — именованный контейнер данных: контроллер его наполняет, а представление читает.",
+        "Неверно: Model — это данные, а не готовый сериализованный ответ."
+      ],
+      "explanation": "Model — именованный контейнер данных: контроллер наполняет его атрибутами, а представление их читает; контроллер и шаблон связаны только именами атрибутов.",
+      "sourceQuote": "Model - именованный контейнер данных, который контроллер наполняет, а представление читает."
+    },
+    {
+      "id": "t003-mcq-05",
+      "type": "mcq",
+      "concept": "REST: @ResponseBody, HttpMessageConverter, @RestController",
+      "difficulty": "medium",
+      "questionType": "comparison",
+      "question": "Что означает аннотация @ResponseBody на методе контроллера?",
+      "options": [
+        "Возвращаемое значение — не имя представления, а само содержимое ответа, которое нужно сериализовать",
+        "Аргумент метода нужно десериализовать из тела запроса",
+        "Метод обрабатывает исключения, брошенные другими контроллерами",
+        "Возвращаемое значение — логическое имя представления для ViewResolver"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: @ResponseBody говорит, что возвращаемое значение — само содержимое ответа для сериализации, а не имя представления.",
+        "Неверно: десериализацию тела запроса выполняет симметричная аннотация @RequestBody.",
+        "Неверно: обработку исключений задаёт @ExceptionHandler.",
+        "Неверно: как раз наоборот — без @ResponseBody значение трактуется как имя представления."
+      ],
+      "explanation": "@ResponseBody сообщает адаптеру, что возвращаемое значение — не имя представления, а содержимое ответа, которое сериализует HttpMessageConverter (для JSON — Jackson).",
+      "sourceQuote": "возвращаемое значение - не имя представления, а само содержимое ответа"
+    },
+    {
+      "id": "t003-mcq-06",
+      "type": "mcq",
+      "concept": "обработка исключений",
+      "difficulty": "medium",
+      "questionType": "scenario",
+      "question": "Метод контроллера бросил исключение. Что произойдёт в Spring MVC?",
+      "options": [
+        "Исключение сразу уходит в контейнер (Tomcat) и прерывает поток без обработки",
+        "Диспетчер передаёт исключение цепочке HandlerExceptionResolver-ов (инструмент — @ExceptionHandler)",
+        "ViewResolver самостоятельно рендерит стандартную HTML-страницу вместо ответа",
+        "HandlerMapping повторно ищет другой обработчик для того же запроса"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: диспетчер как раз не даёт исключению улететь в контейнер.",
+        "Верно: диспетчер передаёт исключение цепочке HandlerExceptionResolver-ов; инструмент разработчика — @ExceptionHandler.",
+        "Неверно: ViewResolver отвечает за представления, а не за перехват исключений.",
+        "Неверно: повторного поиска обработчика не происходит."
+      ],
+      "explanation": "Если метод бросил исключение, диспетчер не даёт ему улететь в контейнер, а передаёт цепочке HandlerExceptionResolver-ов; для обработки используют @ExceptionHandler.",
+      "sourceQuote": "передаёт цепочке HandlerExceptionResolver-ов"
+    },
+    {
+      "id": "t003-mcq-07",
+      "type": "mcq",
+      "concept": "REST: @ResponseBody, HttpMessageConverter, @RestController",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Чему эквивалентна аннотация @RestController?",
+      "options": [
+        "@Controller + @RequestBody на всех методах",
+        "@Service + @ResponseBody",
+        "@Controller + @Configuration",
+        "@Controller + @ResponseBody на всех методах"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: @RequestBody относится к аргументам, а не к возвращаемому значению всех методов.",
+        "Неверно: @RestController основан на @Controller, а не на @Service.",
+        "Неверно: @Configuration не входит в состав @RestController.",
+        "Верно: @RestController = @Controller + @ResponseBody на всех методах."
+      ],
+      "explanation": "@RestController — это сокращение для @Controller + @ResponseBody на всех методах, поэтому возвращаемые значения сериализуются в тело ответа.",
+      "sourceQuote": "@RestController = @Controller + @ResponseBody на всех методах"
+    },
+    {
+      "id": "t003-open-01",
+      "type": "open",
+      "concept": "заменяемые стратегии диспетчера",
+      "difficulty": "hard",
+      "questionType": "explain",
+      "question": "Почему DispatcherServlet не сделан монолитным «умным» сервлетом? Объясните идею заменяемых стратегий и её выгоду.",
+      "keyPoints": [
+        "DispatcherServlet — диспетчер: реализует лишь алгоритм обработки, а сам почти ничего не умеет",
+        "каждый шаг вынесен в заменяемую стратегию: HandlerMapping, HandlerAdapter, ViewResolver, ExceptionResolver",
+        "у каждой задачи есть несколько разумных реализаций (маршрутизация по аннотациям/конфигурации; представления JSP/Thymeleaf/JSON)",
+        "благодаря этому фреймворк пережил переход от HTML-эпохи к REST без переписывания диспетчера"
+      ],
+      "modelAnswer": "DispatcherServlet сам почти ничего не умеет — он диспетчер, который реализует лишь общий алгоритм обработки запроса, а каждый конкретный шаг выносится в заменяемую стратегию: поиск обработчика (HandlerMapping), его вызов (HandlerAdapter), перевод имени представления в шаблон (ViewResolver), обработку исключений (HandlerExceptionResolver). Так сделано потому, что у каждой задачи есть несколько разумных реализаций (маршрутизация по аннотациям или конфигурации; представления на JSP, Thymeleaf или JSON). Именно поэтому фреймворк спокойно пережил переход от HTML-эпохи к REST: менялись стратегии, а не ядро.",
+      "sourceQuote": "каждый шаг - заменяемая стратегия"
+    },
+    {
+      "id": "t003-open-02",
+      "type": "open",
+      "concept": "ModelAndView, ViewResolver и View",
+      "difficulty": "medium",
+      "questionType": "explain",
+      "question": "Опишите роль Model, ModelAndView, ViewResolver и View в классическом (не REST) сценарии формирования ответа.",
+      "keyPoints": [
+        "Model отделяет данные (что показывать) от оформления (как показывать)",
+        "после вызова метода адаптер упаковывает результат в ModelAndView — пару «данные + имя представления»",
+        "представление задано логическим именем, а не путём к файлу — чтобы контроллер не был привязан к технологии шаблонов",
+        "ViewResolver переводит имя в объект View, а View берёт модель и пишет готовый ответ в HttpServletResponse"
+      ],
+      "modelAnswer": "Model — именованный контейнер данных, отделяющий то, что показывать, от того, как показывать: контроллер его наполняет и на этом его ответственность заканчивается. После вызова метода адаптер упаковывает результат в ModelAndView — пару «данные + имя представления». Представление задано логическим именем (например \"order-details\"), а не путём к файлу, чтобы контроллер не был привязан к конкретной технологии шаблонов. ViewResolver по этому имени возвращает объект View, единственная обязанность которого — взять модель и записать готовый ответ в HttpServletResponse.",
+      "sourceQuote": "ModelAndView - пару «данные + имя представления»"
+    },
+    {
+      "id": "t003-open-03",
+      "type": "open",
+      "concept": "REST: @ResponseBody, HttpMessageConverter, @RestController",
+      "difficulty": "medium",
+      "questionType": "compare",
+      "question": "Сравните классический сценарий (Model/View) и REST-сценарий (@ResponseBody) на этапе формирования ответа. Что меняется?",
+      "keyPoints": [
+        "классика: ModelAndView → ViewResolver → View.render() → HTML",
+        "REST: при @ResponseBody объект уходит в HttpMessageConverter, и Jackson пишет JSON",
+        "на входе симметрично работает @RequestBody — десериализация тела запроса",
+        "@RestController = @Controller + @ResponseBody, поэтому все методы отдают тело ответа, а не имена представлений"
+      ],
+      "modelAnswer": "В классическом сценарии метод возвращает данные и имя представления: диспетчер идёт по пути ModelAndView → ViewResolver → View.render() → HTML. В REST-сценарии на методе стоит @ResponseBody, и вместо имени представления возвращаемый объект уходит в цепочку HttpMessageConverter, где Jackson пишет JSON; на входе симметрично работает @RequestBody, десериализуя тело запроса. Класс с @RestController (= @Controller + @ResponseBody) отдаёт телом ответа результаты всех методов, поэтому ViewResolver в этом пути не участвует.",
+      "sourceQuote": "при @ResponseBody объект уходит в HttpMessageConverter, и Jackson пишет JSON"
+    }
+  ]
+}

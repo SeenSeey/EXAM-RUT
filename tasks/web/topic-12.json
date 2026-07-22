@@ -1,0 +1,162 @@
+{
+  "topicId": 12,
+  "topicTitle": "Обработка ошибок",
+  "promptVersion": "1.0",
+  "conceptsIdentified": [
+    "цель обработки ошибок (стандартизированный JSON + HTTP-статус)",
+    "проброс исключения выше по стеку",
+    "глобальная обработка через @ControllerAdvice/@ExceptionHandler",
+    "цепочка HandlerExceptionResolver",
+    "BasicErrorController и Whitelabel",
+    "ProblemDetail как стандарт"
+  ],
+  "questions": [
+    {
+      "id": "t012-mcq-01",
+      "type": "mcq",
+      "concept": "цель обработки ошибок (стандартизированный JSON + HTTP-статус)",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Какова цель обработки ошибок в REST-приложении на Spring?",
+      "options": [
+        "Любое исключение должно превратиться в понятный, стандартизированный JSON-ответ с правильным HTTP-статусом",
+        "Всегда возвращать 200 OK с текстом ошибки в теле",
+        "Показывать пользователю полный stack trace",
+        "Игнорировать исключения на уровне контроллера"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: цель — превратить любое исключение в понятный стандартизированный JSON-ответ с правильным HTTP-статусом.",
+        "Неверно: постоянный 200 с текстом ошибки — это антипаттерн.",
+        "Неверно: показ stack trace наружу раскрывает внутренности системы.",
+        "Неверно: исключения нужно обрабатывать, а не игнорировать."
+      ],
+      "explanation": "Цель обработки ошибок — чтобы любое исключение превратилось в понятный, стандартизированный JSON-ответ с правильным HTTP-статусом, а не в Whitelabel Error Page или наружный stack trace.",
+      "sourceQuote": "стандартизированный JSON-ответ с правильным HTTP-статусом."
+    },
+    {
+      "id": "t012-mcq-02",
+      "type": "mcq",
+      "concept": "глобальная обработка через @ControllerAdvice/@ExceptionHandler",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Как в Spring организуют глобальную обработку исключений всех контроллеров?",
+      "options": [
+        "Оборачивают каждый метод контроллера в try/catch",
+        "Через настройки в application.yml",
+        "С помощью аннотации @Transactional",
+        "Через @ControllerAdvice / @RestControllerAdvice с методами @ExceptionHandler"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: ручной try/catch в каждом методе нарушает разделение ответственности.",
+        "Неверно: обработка исключений не задаётся в application.yml.",
+        "Неверно: @Transactional управляет транзакциями, а не обработкой ошибок.",
+        "Верно: глобальную обработку строят через @ControllerAdvice/@RestControllerAdvice с методами @ExceptionHandler."
+      ],
+      "explanation": "Глобальную обработку исключений в Spring делают через @ControllerAdvice (или @RestControllerAdvice для REST API): методы с @ExceptionHandler перехватывают исключения из любого контроллера.",
+      "sourceQuote": "Для этого используется @ControllerAdvice (или @RestControllerAdvice для REST API)."
+    },
+    {
+      "id": "t012-mcq-03",
+      "type": "mcq",
+      "concept": "цепочка HandlerExceptionResolver",
+      "difficulty": "hard",
+      "questionType": "scenario",
+      "question": "Какой резолвер ищет аннотации @ExceptionHandler внутри контроллера и в глобальных @ControllerAdvice?",
+      "options": [
+        "DefaultHandlerExceptionResolver",
+        "ExceptionHandlerExceptionResolver",
+        "ResponseStatusExceptionResolver",
+        "BasicErrorController"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: DefaultHandlerExceptionResolver переводит стандартные ошибки Spring в HTTP-статусы.",
+        "Верно: именно ExceptionHandlerExceptionResolver ищет @ExceptionHandler в контроллере или в глобальных @ControllerAdvice.",
+        "Неверно: ResponseStatusExceptionResolver обрабатывает @ResponseStatus и ResponseStatusException.",
+        "Неверно: BasicErrorController — это контроллер /error, а не резолвер."
+      ],
+      "explanation": "ExceptionHandlerExceptionResolver — резолвер, который ищет аннотации @ExceptionHandler внутри текущего контроллера или в глобальных @ControllerAdvice.",
+      "sourceQuote": "Именно он ищет аннотации @ExceptionHandler внутри текущего контроллера или в глобальных @ControllerAdvice."
+    },
+    {
+      "id": "t012-mcq-04",
+      "type": "mcq",
+      "concept": "BasicErrorController и Whitelabel",
+      "difficulty": "medium",
+      "questionType": "scenario",
+      "question": "Что произойдёт, если ни один HandlerExceptionResolver не обработал исключение?",
+      "options": [
+        "Приложение аварийно завершится",
+        "Клиент всегда получит 200 OK",
+        "Исключение дойдёт до контейнера, Tomcat сделает forward на /error, и BasicErrorController вернёт стандартный Whitelabel-ответ",
+        "Исключение молча проглотится без ответа"
+      ],
+      "correctIndex": 2,
+      "rationales": [
+        "Неверно: приложение не завершается — ошибка уходит на уровень контейнера.",
+        "Неверно: при необработанной ошибке 200 OK не возвращается.",
+        "Верно: исключение пробрасывается в контейнер, Tomcat делает forward на /error, и BasicErrorController возвращает Whitelabel JSON/HTML.",
+        "Неверно: ответ формируется через /error, а не проглатывается."
+      ],
+      "explanation": "Если ни один резолвер не взял ошибку, она пробрасывается на уровень контейнера; в Spring Boot по умолчанию настроен BasicErrorController на /error, куда Tomcat делает внутренний forward и возвращает Whitelabel-ответ.",
+      "sourceQuote": "В Spring Boot по умолчанию настроен BasicErrorController (веб-интерфейс, маппится на путь /error)."
+    },
+    {
+      "id": "t012-mcq-05",
+      "type": "mcq",
+      "concept": "ProblemDetail как стандарт",
+      "difficulty": "medium",
+      "questionType": "definition",
+      "question": "Что рекомендуется использовать в Spring 6 / Boot 3 вместо своих кастомных классов ErrorMessage для описания ошибок?",
+      "options": [
+        "ProblemDetail — единый отраслевой стандарт описания ошибок в REST API",
+        "ResponseEntity<Void> без тела",
+        "Whitelabel Error Page",
+        "@ResponseStatus на классе контроллера"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: начиная со Spring 6 / Boot 3 рекомендуется ProblemDetail — единый отраслевой стандарт описания ошибок.",
+        "Неверно: ResponseEntity<Void> не описывает структуру ошибки.",
+        "Неверно: Whitelabel — это то, чего как раз стараются избежать.",
+        "Неверно: @ResponseStatus задаёт статус, но не является стандартом описания тела ошибки."
+      ],
+      "explanation": "ProblemDetail (начиная со Spring 6 / Boot 3) рекомендуется вместо кастомных ErrorMessage, так как задаёт единый отраслевой стандарт для описания ошибок в REST API.",
+      "sourceQuote": "он задает единый отраслевой стандарт для описания ошибок в REST API."
+    },
+    {
+      "id": "t012-open-01",
+      "type": "open",
+      "concept": "проброс исключения выше по стеку",
+      "difficulty": "medium",
+      "questionType": "explain",
+      "question": "Почему исключение обычно не обрабатывают сразу на месте, а поднимают выше по стеку? Опишите роли слоёв.",
+      "keyPoints": [
+        "исключение поднимается выше по стеку, пока не достигнет слоя, который действительно знает, как реагировать",
+        "репозиторий сообщает о проблеме (например, запись не найдена) через исключение",
+        "сервис либо преобразует его в более понятную бизнес-ошибку, либо пробрасывает выше",
+        "контроллер не должен разбирать каждую ошибку вручную — это нарушает разделение ответственности, отсюда глобальная обработка"
+      ],
+      "modelAnswer": "Обрабатывать исключение сразу в месте возникновения обычно не стоит: его поднимают выше по стеку вызовов, пока оно не достигнет слоя, который действительно знает, как на него реагировать. Например, если база не нашла запись, репозиторий сообщает об этом через исключение; сервис либо преобразует его в более понятную бизнес-ошибку, либо пробрасывает выше. Контроллер не должен разбирать каждую ошибку вручную, потому что это нарушает принцип разделения ответственности. Именно поэтому существует глобальная обработка исключений через @ControllerAdvice/@RestControllerAdvice.",
+      "sourceQuote": "пока не достигнет слоя, который действительно знает, как на него реагировать."
+    },
+    {
+      "id": "t012-open-02",
+      "type": "open",
+      "concept": "цепочка HandlerExceptionResolver",
+      "difficulty": "hard",
+      "questionType": "explain",
+      "question": "Опишите, как под капотом DispatcherServlet обрабатывает вылетевшее исключение (цепочка HandlerExceptionResolver).",
+      "keyPoints": [
+        "DispatcherServlet опрашивает по очереди список бинов HandlerExceptionResolver",
+        "ExceptionHandlerExceptionResolver ищет @ExceptionHandler в контроллере или в глобальных @ControllerAdvice",
+        "ResponseStatusExceptionResolver обрабатывает @ResponseStatus/ResponseStatusException; DefaultHandlerExceptionResolver переводит стандартные ошибки Spring в HTTP-статусы",
+        "если никто не взял ошибку — она уходит в контейнер, который делает forward на /error (BasicErrorController)"
+      ],
+      "modelAnswer": "Когда вылетает исключение, DispatcherServlet не даёт ему разрушить поток, а запускает цепочку поиска обработчиков: по очереди опрашивает список бинов HandlerExceptionResolver. Среди стандартных: ExceptionHandlerExceptionResolver ищет @ExceptionHandler внутри текущего контроллера или в глобальных @ControllerAdvice; ResponseStatusExceptionResolver обрабатывает @ResponseStatus на классе исключения и ResponseStatusException; DefaultHandlerExceptionResolver переводит внутренние ошибки Spring в HTTP-статусы (например, 405 Method Not Allowed). Если ни один резолвер не взял ошибку, она пробрасывается на уровень контейнера, который делает внутренний forward на /error, и BasicErrorController возвращает стандартный Whitelabel-ответ.",
+      "sourceQuote": "ExceptionHandlerExceptionResolver. Именно он ищет аннотации @ExceptionHandler внутри текущего контроллера или в глобальных @ControllerAdvice."
+    }
+  ]
+}
