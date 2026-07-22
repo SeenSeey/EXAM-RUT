@@ -1,0 +1,227 @@
+{
+  "topicId": 4,
+  "topicTitle": "Работа с базами данных: Spring Data JPA, Hibernate",
+  "promptVersion": "1.0",
+  "conceptsIdentified": [
+    "три слоя: ORM, JPA, Hibernate, Spring Data JPA",
+    "стратегия загрузки LAZY/EAGER",
+    "контекст персистентности (кэш L1), write-behind, dirty checking",
+    "состояния сущности",
+    "readOnly как оптимизация чтения",
+    "генерация идентификаторов IDENTITY vs SEQUENCE",
+    "N+1 и способы лечения",
+    "LazyInitializationException",
+    "save() = merge для не-нового объекта"
+  ],
+  "questions": [
+    {
+      "id": "t004-mcq-01",
+      "type": "mcq",
+      "concept": "три слоя: ORM, JPA, Hibernate, Spring Data JPA",
+      "difficulty": "easy",
+      "questionType": "comparison",
+      "question": "Как соотносятся JPA и Hibernate?",
+      "options": [
+        "JPA — стандарт (спецификация, сама ничего не выполняет), а Hibernate — его самая распространённая реализация",
+        "Hibernate — стандарт, а JPA — его реализация от Spring",
+        "JPA и Hibernate — два названия одного и того же продукта",
+        "JPA — распределённый кэш, а Hibernate — язык запросов"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: JPA — стандарт ORM (спецификация, сама ничего не выполняет), Hibernate — его самая распространённая реализация.",
+        "Неверно: роли перепутаны — стандартом является JPA, а Hibernate его реализует.",
+        "Неверно: это разные вещи — спецификация и её реализация.",
+        "Неверно: ни то, ни другое не описано так в источнике."
+      ],
+      "explanation": "JPA — стандарт ORM для Java (спецификация, сама ничего не выполняет), а Hibernate — самая распространённая реализация JPA, которая генерирует SQL, ведёт кэш и отслеживает изменения.",
+      "sourceQuote": "Это спецификация - сама она ничего не выполняет."
+    },
+    {
+      "id": "t004-mcq-02",
+      "type": "mcq",
+      "concept": "три слоя: ORM, JPA, Hibernate, Spring Data JPA",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Какую задачу решает Spring Data JPA?",
+      "options": [
+        "Реализует JPA: генерирует SQL и отслеживает изменения сущностей",
+        "Задаёт стандарт ORM с аннотациями @Entity, @Id",
+        "Предоставляет встроенную базу данных для тестов",
+        "Надстройка над JPA: убирает шаблонный код, превращая интерфейс-репозиторий в готовую реализацию"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: генерация SQL и отслеживание изменений — работа Hibernate, а не Spring Data JPA.",
+        "Неверно: стандарт задаёт JPA, а не Spring Data JPA.",
+        "Неверно: это описание встроенной БД (например H2), а не Spring Data JPA.",
+        "Верно: Spring Data JPA убирает шаблонный код доступа к данным, превращая интерфейс-репозиторий в готовую реализацию."
+      ],
+      "explanation": "Spring Data JPA — надстройка Spring над JPA: она убирает шаблонный код доступа к данным, превращая интерфейс-репозиторий в готовую реализацию.",
+      "sourceQuote": "убирает шаблонный код доступа к данным, превращая интерфейс-репозиторий в готовую реализацию"
+    },
+    {
+      "id": "t004-mcq-03",
+      "type": "mcq",
+      "concept": "стратегия загрузки LAZY/EAGER",
+      "difficulty": "medium",
+      "questionType": "definition",
+      "question": "Каковы стратегии загрузки связей по умолчанию в JPA/Hibernate?",
+      "options": [
+        "Все связи по умолчанию жадные (EAGER)",
+        "Коллекции ленивы (LAZY), а @ManyToOne — жадный (EAGER)",
+        "Все связи по умолчанию ленивые (LAZY)",
+        "@ManyToOne ленивый, а коллекции жадные"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: по умолчанию не все связи жадные.",
+        "Верно: по умолчанию коллекции ленивы, а @ManyToOne — жадный.",
+        "Неверно: @ManyToOne по умолчанию жадный, а не ленивый.",
+        "Неверно: значения по умолчанию перепутаны местами."
+      ],
+      "explanation": "По умолчанию коллекции ленивы (LAZY), а @ManyToOne — жадный (EAGER); FetchType.LAZY откладывает загрузку до обращения, EAGER грузит сразу.",
+      "sourceQuote": "По умолчанию коллекции ленивы, а @ManyToOne - жадный."
+    },
+    {
+      "id": "t004-mcq-04",
+      "type": "mcq",
+      "concept": "LazyInitializationException",
+      "difficulty": "hard",
+      "questionType": "scenario",
+      "question": "При рендеринге ответа обращаются к ленивой коллекции сущности уже после закрытия контекста персистентности (вне транзакции). Какая ошибка возникнет?",
+      "options": [
+        "MultipleBagFetchException",
+        "OptimisticLockException",
+        "LazyInitializationException",
+        "UnexpectedRollbackException"
+      ],
+      "correctIndex": 2,
+      "rationales": [
+        "Неверно: MultipleBagFetchException возникает при JOIN FETCH двух коллекций-списков, а не при доступе вне контекста.",
+        "Неверно: OptimisticLockException связан с @Version и конкурентным обновлением.",
+        "Верно: обращение к ленивой связи после закрытия контекста даёт LazyInitializationException.",
+        "Неверно: UnexpectedRollbackException связан с rollback-only во вложенной транзакции."
+      ],
+      "explanation": "LazyInitializationException возникает при обращении к ленивой связи после закрытия контекста персистентности (вне транзакции); нужные данные загружают внутри транзакции.",
+      "sourceQuote": "LazyInitializationException - обращение к ленивой связи после закрытия контекста"
+    },
+    {
+      "id": "t004-mcq-05",
+      "type": "mcq",
+      "concept": "readOnly как оптимизация чтения",
+      "difficulty": "medium",
+      "questionType": "tradeoff",
+      "question": "Что даёт readOnly = true для транзакции, выполняющей только чтение?",
+      "options": [
+        "Переводит Hibernate в FlushMode.MANUAL: снимки и dirty checking пропускаются, лишних UPDATE нет",
+        "Запрещает любые SELECT, кроме выборки по первичному ключу",
+        "Автоматически включает кэш второго уровня (L2)",
+        "Повышает уровень изоляции до SERIALIZABLE"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: readOnly = true переводит в FlushMode.MANUAL, снимки и dirty checking пропускаются, лишних UPDATE нет.",
+        "Неверно: readOnly не ограничивает SELECT-ы одним ключом.",
+        "Неверно: readOnly не включает L2-кэш.",
+        "Неверно: readOnly не задаёт уровень изоляции SERIALIZABLE."
+      ],
+      "explanation": "readOnly = true переводит Hibernate в FlushMode.MANUAL: снимки и dirty checking пропускаются, лишних UPDATE нет — это заметная оптимизация для чтения.",
+      "sourceQuote": "снимки и dirty checking пропускаются, лишних UPDATE нет"
+    },
+    {
+      "id": "t004-mcq-06",
+      "type": "mcq",
+      "concept": "генерация идентификаторов IDENTITY vs SEQUENCE",
+      "difficulty": "hard",
+      "questionType": "comparison",
+      "question": "Как выбор стратегии генерации id (IDENTITY vs SEQUENCE) влияет на пакетную вставку?",
+      "options": [
+        "IDENTITY и SEQUENCE одинаково поддерживают батчинг вставок",
+        "SEQUENCE отключает батчинг, а IDENTITY его включает",
+        "SEQUENCE работает только в MySQL и батчинг не поддерживает",
+        "IDENTITY отключает пакетную вставку (id нужен сразу после каждого INSERT), а SEQUENCE с оптимизаторами позволяет батчить"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: с IDENTITY батчинг вставок недоступен.",
+        "Неверно: роли перепутаны — батчинг отключает именно IDENTITY.",
+        "Неверно: это про Netty/БД неверное утверждение; SEQUENCE как раз позволяет батчить.",
+        "Верно: IDENTITY отключает пакетную вставку (Hibernate обязан получить id сразу после каждого INSERT), а SEQUENCE с оптимизаторами (pooled/pooled-lo) позволяет батчить."
+      ],
+      "explanation": "IDENTITY отключает пакетную вставку — Hibernate обязан получить сгенерированный id сразу после каждого INSERT; SEQUENCE с оптимизаторами (pooled/pooled-lo) позволяет батчить и экономит обращения.",
+      "sourceQuote": "IDENTITY отключает пакетную вставку"
+    },
+    {
+      "id": "t004-mcq-07",
+      "type": "mcq",
+      "concept": "save() = merge для не-нового объекта",
+      "difficulty": "medium",
+      "questionType": "antipattern",
+      "question": "Почему вызов save() в Spring Data для существующего (не нового) объекта может породить лишний SELECT?",
+      "options": [
+        "save() всегда выполняет прямой INSERT без чтения",
+        "Для не-нового объекта save() делает merge, а merge при отсутствии сущности в контексте выполняет лишний SELECT",
+        "save() блокирует строку через PESSIMISTIC_WRITE и читает её заново",
+        "save() сбрасывает кэш второго уровня и перечитывает данные"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: для не-нового объекта save() выполняет не INSERT, а merge.",
+        "Верно: save() для не-нового объекта делает merge, а тот при отсутствии сущности в контексте выполняет лишний SELECT.",
+        "Неверно: save() не связан с пессимистичной блокировкой.",
+        "Неверно: лишний SELECT вызван merge, а не сбросом L2."
+      ],
+      "explanation": "save() в Spring Data для не-нового объекта делает merge, а merge при отсутствии сущности в контексте выполняет лишний SELECT; для новых объектов используют persist-семантику.",
+      "sourceQuote": "save() в Spring Data для не-нового объекта делает merge"
+    },
+    {
+      "id": "t004-open-01",
+      "type": "open",
+      "concept": "три слоя: ORM, JPA, Hibernate, Spring Data JPA",
+      "difficulty": "medium",
+      "questionType": "explain",
+      "question": "Опишите три слоя доступа к БД (ORM, JPA, Hibernate, Spring Data JPA) и как они делят ответственность.",
+      "keyPoints": [
+        "ORM — подход: объекты предметной области отображаются на строки таблиц, чтобы не писать SQL вручную",
+        "JPA — стандарт ORM для Java (интерфейсы и аннотации @Entity, @Id, EntityManager); спецификация, сама ничего не выполняет",
+        "Hibernate — самая распространённая реализация JPA: генерирует SQL, ведёт кэш, отслеживает изменения сущностей",
+        "Spring Data JPA — надстройка над JPA, убирающая шаблонный код и превращающая интерфейс-репозиторий в готовую реализацию"
+      ],
+      "modelAnswer": "ORM — это подход, при котором объекты предметной области отображаются на строки таблиц, чтобы работать с данными как с объектами, а не писать SQL вручную. JPA — стандарт ORM для Java: набор интерфейсов и аннотаций (@Entity, @Id, EntityManager); это спецификация, которая сама ничего не выполняет. Hibernate — самая распространённая реализация JPA: генерирует SQL, ведёт кэш и отслеживает изменения сущностей. Spring Data JPA — надстройка Spring над JPA: убирает шаблонный код доступа к данным, превращая интерфейс-репозиторий в готовую реализацию. Итог: JPA задаёт стандарт, Hibernate его исполняет, Spring Data убирает шаблон.",
+      "sourceQuote": "Hibernate - самая распространённая реализация JPA"
+    },
+    {
+      "id": "t004-open-02",
+      "type": "open",
+      "concept": "контекст персистентности (кэш L1), write-behind, dirty checking",
+      "difficulty": "medium",
+      "questionType": "explain",
+      "question": "Что такое контекст персистентности (кэш первого уровня) и как связаны write-behind и dirty checking?",
+      "keyPoints": [
+        "между вызовом репозитория и коммитом managed-сущности живут в контексте персистентности (кэш L1)",
+        "Hibernate не пишет в БД на каждое изменение: накапливает правки и синхронизирует их при flush (write-behind)",
+        "dirty checking: контекст сравнивает сущности с исходным снимком, изменённые синхронизируются без явного save",
+        "flush происходит перед запросами (режим AUTO) и на коммите, а не в момент изменения"
+      ],
+      "modelAnswer": "Контекст персистентности (он же кэш первого уровня, L1) хранит managed-сущности между вызовом репозитория и коммитом. Hibernate работает по принципу write-behind: он не пишет в БД на каждое изменение, а накапливает правки и синхронизирует их при flush. Dirty checking означает, что контекст сравнивает managed-сущности с исходным снимком и синхронизирует изменённые без явного вызова save. Flush происходит перед запросами (режим AUTO) и на коммите, а не в момент изменения — из этой механики растут и удобство, и типичные проблемы вроде N+1 и LazyInitializationException.",
+      "sourceQuote": "Flush происходит перед запросами (режим AUTO) и на коммите"
+    },
+    {
+      "id": "t004-open-03",
+      "type": "open",
+      "concept": "N+1 и способы лечения",
+      "difficulty": "hard",
+      "questionType": "design",
+      "question": "Как предотвратить проблему N+1 при чтении связанных данных и почему для чтения часто предпочитают DTO-проекции?",
+      "keyPoints": [
+        "N+1 лечат через JOIN FETCH, @EntityGraph, @BatchSize, subselect",
+        "при JOIN FETCH двух коллекций-списков возникает MultipleBagFetchException (лечится Set или раздельными запросами)",
+        "DTO-проекции (конструкторные выражения в JPQL или интерфейсные проекции) дешевле для чтения и не тянут связи",
+        "держать транзакции короткими и заранее закрывать N+1, чтобы ORM не прятал дорогие запросы"
+      ],
+      "modelAnswer": "Проблему N+1 закрывают заранее: связанные данные подгружают через JOIN FETCH, @EntityGraph, @BatchSize или subselect. При этом JOIN FETCH сразу двух коллекций-списков даёт MultipleBagFetchException — это лечится использованием Set или раздельными запросами. Для чтения часто предпочитают DTO-проекции (конструкторные выражения в JPQL или интерфейсные проекции): они дешевле, отдают только нужные поля и не тянут за собой ленивые связи. Общая дисциплина — короткие транзакции, readOnly для чтения и заранее закрытый N+1, чтобы ORM экономил код, не пряча дорогие запросы.",
+      "sourceQuote": "N+1 и его лечение: JOIN FETCH, @EntityGraph, @BatchSize, subselect."
+    }
+  ]
+}

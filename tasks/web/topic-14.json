@@ -1,0 +1,225 @@
+{
+  "topicId": 14,
+  "topicTitle": "WebSockets",
+  "promptVersion": "1.0",
+  "conceptsIdentified": [
+    "WebSocket: постоянное двустороннее соединение vs HTTP",
+    "handshake и код 101 Switching Protocols",
+    "вычисление Sec-WebSocket-Accept",
+    "цена WebSocket: удержание TCP-соединений",
+    "уровни абстракции в Spring: WebSocketHandler vs STOMP",
+    "simple broker и кластер",
+    "безопасность origin и handshake"
+  ],
+  "questions": [
+    {
+      "id": "t014-mcq-01",
+      "type": "mcq",
+      "concept": "WebSocket: постоянное двустороннее соединение vs HTTP",
+      "difficulty": "easy",
+      "questionType": "comparison",
+      "question": "Чем WebSocket отличается от обычного HTTP?",
+      "options": [
+        "WebSocket — постоянное двустороннее соединение поверх TCP: обе стороны могут сами отправить сообщение в любой момент, тогда как в HTTP сервер только отвечает на запрос",
+        "WebSocket работает поверх UDP без установления соединения",
+        "WebSocket — это то же самое, что HTTP-polling",
+        "В WebSocket только сервер может инициировать сообщение"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: WebSocket — постоянное двустороннее соединение поверх TCP, где обе стороны могут инициировать сообщение, в отличие от HTTP.",
+        "Неверно: WebSocket работает поверх TCP, а не UDP.",
+        "Неверно: WebSocket не эквивалентен polling — он держит одно постоянное соединение.",
+        "Неверно: инициировать сообщение могут обе стороны, а не только сервер."
+      ],
+      "explanation": "WebSocket — протокол постоянного двустороннего соединения поверх TCP: в отличие от HTTP, где сервер только отвечает на запрос клиента, здесь обе стороны могут в любой момент сами отправить сообщение.",
+      "sourceQuote": "протокол постоянного двустороннего соединения между клиентом и сервером поверх TCP."
+    },
+    {
+      "id": "t014-mcq-02",
+      "type": "mcq",
+      "concept": "handshake и код 101 Switching Protocols",
+      "difficulty": "easy",
+      "questionType": "definition",
+      "question": "Каким кодом ответа сервер подтверждает успешный WebSocket-handshake?",
+      "options": [
+        "200 OK",
+        "101 Switching Protocols",
+        "426 Upgrade Required",
+        "301 Moved Permanently"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: 200 OK — обычный успешный HTTP-ответ, а не подтверждение перехода на WebSocket.",
+        "Верно: при успешном handshake сервер отвечает кодом 101 Switching Protocols.",
+        "Неверно: 426 сигнализирует о необходимости апгрейда, но не подтверждает handshake.",
+        "Неверно: 301 — это редирект."
+      ],
+      "explanation": "При успешном handshake сервер отвечает кодом 101 Switching Protocols и набором заголовков, подтверждая переход на протокол WebSocket.",
+      "sourceQuote": "сервер отвечает кодом 101 Switching Protocols"
+    },
+    {
+      "id": "t014-mcq-03",
+      "type": "mcq",
+      "concept": "вычисление Sec-WebSocket-Accept",
+      "difficulty": "hard",
+      "questionType": "scenario",
+      "question": "Как сервер вычисляет значение заголовка Sec-WebSocket-Accept?",
+      "options": [
+        "Шифрует Sec-WebSocket-Key приватным ключом RSA",
+        "Берёт MD5-хеш от заголовка Origin",
+        "К Sec-WebSocket-Key дописывают фиксированный GUID, применяют SHA-1 и кодируют результат в Base64",
+        "Копирует Sec-WebSocket-Key в ответ без изменений"
+      ],
+      "correctIndex": 2,
+      "rationales": [
+        "Неверно: RSA-шифрование Key не используется.",
+        "Неверно: Accept вычисляется из Key, а не из Origin по MD5.",
+        "Верно: к Sec-WebSocket-Key дописывают фиксированный GUID, применяют SHA-1 и кодируют в Base64.",
+        "Неверно: Key не копируется как есть — над ним выполняют преобразование."
+      ],
+      "explanation": "Sec-WebSocket-Accept вычисляется по правилу стандарта: к значению Sec-WebSocket-Key дописывают фиксированный GUID, применяют SHA-1 и кодируют результат в Base64; клиент сверяет Accept с ожидаемым значением.",
+      "sourceQuote": "К значению Sec-WebSocket-Key дописывают фиксированный GUID, применяют SHA-1 и кодируют результат в Base64."
+    },
+    {
+      "id": "t014-mcq-04",
+      "type": "mcq",
+      "concept": "цена WebSocket: удержание TCP-соединений",
+      "difficulty": "medium",
+      "questionType": "tradeoff",
+      "question": "В чём обратная сторона (цена) использования WebSocket по сравнению с polling?",
+      "options": [
+        "Каждое сообщение несёт полные HTTP-заголовки",
+        "По WebSocket нельзя передавать бинарные данные",
+        "Соединение приходится устанавливать заново на каждое сообщение",
+        "Сервер удерживает открытые TCP-соединения — это нагрузка на ресурсы, ограничения прокси и задача горизонтального масштабирования"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: полные заголовки ресурсозатратны в основном на handshake, дальнейший обмен легче.",
+        "Неверно: WebSocket поддерживает бинарные фреймы (opcode 0x2).",
+        "Неверно: постоянное соединение как раз не переустанавливают на каждое сообщение.",
+        "Верно: обратная сторона — сервер удерживает открытые TCP-соединения, что даёт нагрузку на ресурсы, ограничения прокси и задачу масштабирования."
+      ],
+      "explanation": "Выигрыш относительно polling в том, что тяжёлые HTTP-заголовки нужны в основном на handshake; обратная сторона — сервер удерживает открытые TCP-соединения, что при большой аудитории нагружает ресурсы и усложняет масштабирование.",
+      "sourceQuote": "сервер удерживает открытые TCP-соединения."
+    },
+    {
+      "id": "t014-mcq-05",
+      "type": "mcq",
+      "concept": "уровни абстракции в Spring: WebSocketHandler vs STOMP",
+      "difficulty": "medium",
+      "questionType": "comparison",
+      "question": "Чем низкоуровневый WebSocketHandler отличается от высокоуровневого STOMP в Spring?",
+      "options": [
+        "WebSocketHandler — сырой канал без топиков и автоматической маршрутизации; STOMP добавляет подписки на топики и рассылку многим клиентам",
+        "STOMP — сырой канал, а WebSocketHandler даёт топики и подписки",
+        "Оба уровня идентичны по возможностям",
+        "STOMP не использует WebSocket как транспорт"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: на низком уровне нет топиков и автомаршрутизации, а STOMP добавляет подписки на топики и рассылку многим клиентам.",
+        "Неверно: роли перепутаны — сырой канал это WebSocketHandler.",
+        "Неверно: возможности различаются.",
+        "Неверно: STOMP работает поверх WebSocket, который остаётся транспортом."
+      ],
+      "explanation": "На низком уровне (WebSocketHandler) нет топиков и автоматической маршрутизации — есть эндпоинт, сессия и колбэки. STOMP over WebSocket добавляет подписки на топики и рассылку многим клиентам, оставляя WebSocket транспортом.",
+      "sourceQuote": "Нет топиков и автоматической маршрутизации сообщений."
+    },
+    {
+      "id": "t014-mcq-06",
+      "type": "mcq",
+      "concept": "simple broker и кластер",
+      "difficulty": "hard",
+      "questionType": "antipattern",
+      "question": "Приложение со STOMP развёрнуто на нескольких инстансах со встроенным simple broker. Какая проблема возникает?",
+      "options": [
+        "handshake будет падать на всех узлах кластера",
+        "Встроенный simple broker живёт в памяти одного процесса, поэтому сообщение доходит только до клиентов того же узла; нужен внешний брокер или sticky sessions",
+        "Origin автоматически откроется для всех сайтов",
+        "Каждое сообщение будет продублировано на всех узлах"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: проблема не в handshake.",
+        "Верно: simple broker живёт в памяти одного процесса, поэтому сообщение доходит только до клиентов того же узла; для кластера нужен внешний брокер или sticky sessions.",
+        "Неверно: поведение origin не связано с числом инстансов.",
+        "Неверно: проблема в недоставке на другие узлы, а не в дублировании."
+      ],
+      "explanation": "Встроенный simple broker живёт в памяти одного процесса, поэтому сообщение доходит только до клиентов того же узла; для кластера нужен внешний брокер (RabbitMQ, ActiveMQ) или sticky sessions.",
+      "sourceQuote": "сообщение доходит только до клиентов того же узла."
+    },
+    {
+      "id": "t014-mcq-07",
+      "type": "mcq",
+      "concept": "безопасность origin и handshake",
+      "difficulty": "medium",
+      "questionType": "antipattern",
+      "question": "Что означает разрешение allowedOrigins(\"*\") для WebSocket-эндпоинта в проде?",
+      "options": [
+        "Ограничивает подключения одним доверенным доменом",
+        "Полностью отключает WebSocket-эндпоинт",
+        "Позволяет открывать соединение к API со страницы любого сайта — это небезопасно в проде",
+        "Автоматически включает шифрование wss"
+      ],
+      "correctIndex": 2,
+      "rationales": [
+        "Неверно: наоборот — «*» не ограничивает домены.",
+        "Неверно: разрешение origin не отключает эндпоинт.",
+        "Верно: allowedOrigins(\"*\") позволяет открывать соединение к API со страницы любого сайта, что небезопасно.",
+        "Неверно: настройка origin не связана с включением wss."
+      ],
+      "explanation": "Открытый origin в проде опасен: разрешение allowedOrigins(\"*\") позволяет открывать соединение к API со страницы любого сайта; origin следует ограничивать доверенными источниками.",
+      "sourceQuote": "позволяет открывать соединение к API со страницы любого сайта."
+    },
+    {
+      "id": "t014-open-01",
+      "type": "open",
+      "concept": "handshake и код 101 Switching Protocols",
+      "difficulty": "medium",
+      "questionType": "explain",
+      "question": "Опишите процесс установления WebSocket-соединения (handshake): ключевые заголовки запроса и ответ сервера.",
+      "keyPoints": [
+        "начинается с TCP-соединения (для wss — сразу с TLS), затем клиент шлёт HTTP/1.1 GET на endpoint",
+        "ключевые заголовки запроса: Upgrade: websocket, Connection: Upgrade, Sec-WebSocket-Key, Sec-WebSocket-Version: 13, Origin",
+        "сервер отвечает 101 Switching Protocols и заголовком Sec-WebSocket-Accept (Key + GUID → SHA-1 → Base64)",
+        "после handshake TCP-сокет перестаёт обслуживать HTTP, обмен идёт фреймами с opcode (текст 0x1, бинарные 0x2, ping/pong, close)"
+      ],
+      "modelAnswer": "Установка начинается с TCP-соединения (для wss — сразу с TLS), по которому клиент отправляет HTTP/1.1 GET на endpoint WebSocket. В запросе ключевые заголовки: Upgrade: websocket и Connection: Upgrade (перевод на другой протокол), Sec-WebSocket-Key (случайная строка Base64), Sec-WebSocket-Version: 13, Origin (для проверки доверенного источника). При успехе сервер отвечает кодом 101 Switching Protocols и заголовком Sec-WebSocket-Accept, который вычисляет по стандарту: к Sec-WebSocket-Key дописывает фиксированный GUID, применяет SHA-1 и кодирует в Base64. После handshake TCP-сокет перестаёт обслуживать HTTP, и обмен идёт фреймами с opcode: текст (0x1), бинарные данные (0x2), ping/pong и close.",
+      "sourceQuote": "сервер отвечает кодом 101 Switching Protocols"
+    },
+    {
+      "id": "t014-open-02",
+      "type": "open",
+      "concept": "уровни абстракции в Spring: WebSocketHandler vs STOMP",
+      "difficulty": "medium",
+      "questionType": "compare",
+      "question": "Сравните два уровня абстракции WebSocket в Spring — WebSocketHandler и STOMP. Когда какой выбирать?",
+      "keyPoints": [
+        "низкий уровень: @EnableWebSocket, конфигурация реализует WebSocketConfigurer, обработчик — WebSocketHandler/TextWebSocketHandler; есть эндпоинт, сессия и колбэки, но нет топиков",
+        "рассылку нескольким клиентам на низком уровне делают вручную через потокобезопасную коллекцию активных сессий",
+        "высокий уровень STOMP: @EnableWebSocketMessageBroker, методы @MessageMapping/@SendTo, рассылка через SimpMessagingTemplate; есть подписки на топики",
+        "встроенный simple broker работает в памяти одного приложения; для нескольких инстансов нужен внешний брокер (RabbitMQ, ActiveMQ)"
+      ],
+      "modelAnswer": "На низком уровне Spring работает близко к протоколу: подключают @EnableWebSocket, конфигурация реализует WebSocketConfigurer, регистрируют путь и обработчик (WebSocketHandler, обычно TextWebSocketHandler для JSON или BinaryWebSocketHandler). Есть эндпоинт, сессия и колбэки жизненного цикла (afterConnectionEstablished, handleTextMessage, afterConnectionClosed), но нет топиков и автомаршрутизации, а рассылку нескольким клиентам делают вручную по коллекции активных сессий. Высокий уровень — STOMP over WebSocket — выбирают, когда нужны подписки на топики и рассылка многим клиентам: применяют @EnableWebSocketMessageBroker, обработчики пишут через @MessageMapping/@SendTo, а исходящую рассылку — через SimpMessagingTemplate. Встроенный simple broker работает в памяти одного приложения; для нескольких инстансов нужен внешний брокер (RabbitMQ, ActiveMQ).",
+      "sourceQuote": "применяется @EnableWebSocketMessageBroker, обработчики пишут через методы с @MessageMapping / @SendTo"
+    },
+    {
+      "id": "t014-open-03",
+      "type": "open",
+      "concept": "безопасность origin и handshake",
+      "difficulty": "hard",
+      "questionType": "explain",
+      "question": "Перечислите типичные ошибки при использовании WebSocket и поясните их последствия.",
+      "keyPoints": [
+        "открытый origin в проде (allowedOrigins(\"*\")) — соединение можно открыть со страницы любого сайта",
+        "отсутствие проверки на handshake (нет токена, cookie-сессии или HandshakeInterceptor) — канал доступен анонимно",
+        "утечка сессий: если в afterConnectionClosed сессия не удаляется, накапливаются «мёртвые» соединения и растёт память",
+        "несколько инстансов на simple broker, неверная настройка прокси/балансировщика (без HTTP Upgrade), слишком крупные payload, WebSocket без реальной необходимости (хватило бы SSE или запроса)"
+      ],
+      "modelAnswer": "Типичные ошибки: открытый origin в проде — allowedOrigins(\"*\") позволяет открывать соединение к API со страницы любого сайта; отсутствие проверки на handshake — без токена, cookie-сессии или HandshakeInterceptor канал доступен анонимно; утечка сессий — если в afterConnectionClosed сессия не удаляется из списка клиентов, на сервере накапливаются «мёртвые» соединения и растёт память; несколько инстансов на встроенном simple broker — сообщение доходит только до клиентов своего узла; неверная настройка прокси и балансировщика — без поддержки HTTP Upgrade и долгих соединений handshake падает или сессии обрываются по таймауту; слишком крупные полезные нагрузки перегружают канал; и, наконец, использование WebSocket без реальной необходимости, когда хватило бы обычного запроса или SSE.",
+      "sourceQuote": "на сервере накапливаются «мёртвые» соединения"
+    }
+  ]
+}
