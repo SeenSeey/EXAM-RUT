@@ -1,0 +1,80 @@
+{
+  "topicId": 8,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Рекурсия раскрыта полно: определение, два компонента, стек и кадр, переполнение, хвостовая рекурсия/TCO, мемоизация, сравнение с итерацией. Ключи совпали с независимым ответом, sourceQuote дословны. Единственное замечание — косметический перекос длины варианта в mcq-05 (вопрос двухчастный, что отчасти его оправдывает). Дефектов уровня выше minor не найдено.",
+  "reviews": [
+    {
+      "id": "t008-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант заметно длиннее и детальнее трёх коротких дистракторов. Частично оправдано тем, что вопрос двухчастный (определение + преимущество), поэтому дефект косметический; ключ и содержание корректны.",
+          "evidence": "рекурсивный вызов является последней операцией; тогда компилятор может переиспользовать текущий кадр"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

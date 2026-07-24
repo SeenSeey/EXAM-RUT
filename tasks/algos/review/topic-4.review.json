@@ -1,0 +1,73 @@
+{
+  "topicId": 4,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Свойства сортировок (устойчивость, in-place, адаптивность, сравнительность, внутренняя/внешняя) и нижняя граница Ω(n log n) покрыты корректно. Два открытых задания различимы: одно перечисляет свойства, другое обосновывает нижнюю границу через дерево решений. Ключи верны, sourceQuote дословны. Дефектов не найдено.",
+  "reviews": [
+    {
+      "id": "t004-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

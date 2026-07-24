@@ -1,0 +1,156 @@
+{
+  "topicId": 12,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 5, "fix": 2, "discard": 0 },
+  "topicNotes": "Все пять ключей верны, фактических ошибок нет. mcq-03 — лучший вопрос темы и один из лучших во всём блоке 9-20: варианты представляют собой имена классов (DefaultHandlerExceptionResolver / ExceptionHandlerExceptionResolver / ResponseStatusExceptionResolver / BasicErrorController), угадывать по длине нечего, а BasicErrorController как дистрактор — грамотная ловушка «похоже по контексту, но это не резолвер». Проблемы: mcq-01 и mcq-04 построены так, что верный ответ виден без знания предмета — все дистракторы в них заведомо абсурдны («всегда возвращать 200 OK», «показывать stack trace», «приложение аварийно завершится», «исключение молча проглотится»), а верный вариант в mcq-04 в 3,21 раза длиннее второго по длине. Оба помечены fix. Последовательность correctIndex — [0,3,1,2,0], точный цикл с периодом 4 (см. общее замечание к теме 9). Главная проблема темы — не качество, а объём: 5 MCQ и 2 открытых против 7+3 в соседних темах, при том что материала хватает. Не проверены: различие @ControllerAdvice и @RestControllerAdvice (последний = @ControllerAdvice + @ResponseBody), выбор между @ResponseStatus на методе и возвратом ResponseEntity (источник прямо says, что ResponseEntity гибче), ResponseStatusExceptionResolver и @ResponseStatus на классе исключения. Рекомендую добавить 2 MCQ и 1 открытое задание на этот материал.",
+  "reviews": [
+    {
+      "id": "t012-mcq-01",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "major",
+          "explanation": "Все три дистрактора — заведомые антипаттерны, которые студент отбросит, ничего не зная про обработку ошибок в Spring: «Всегда возвращать 200 OK с текстом ошибки», «Показывать пользователю полный stack trace», «Игнорировать исключения на уровне контроллера». Вопрос проверяет здравый смысл, а не материал темы. В fixedQuestion дистракторы переписаны так, чтобы каждый звучал как осмысленная (хоть и неверная) цель обработки ошибок.",
+          "evidence": null
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант 106 знаков против 48/45/42 — в 2,21 раза длиннее второго по длине. После правки длины 74-80.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t012-mcq-01",
+        "type": "mcq",
+        "concept": "цель обработки ошибок (стандартизированный JSON + HTTP-статус)",
+        "difficulty": "easy",
+        "questionType": "definition",
+        "question": "Какова цель обработки ошибок в REST-приложении на Spring?",
+        "options": [
+          "Превратить любое исключение в стандартизированный JSON с правильным HTTP-статусом",
+          "Отдавать 200 OK с описанием ошибки в теле, чтобы клиент всегда получал ответ",
+          "Показывать клиенту полный stack trace, чтобы упростить диагностику на месте",
+          "Гасить исключение в контроллере, чтобы запрос всегда завершался без ошибки"
+        ],
+        "correctIndex": 0,
+        "rationales": [
+          "Верно: цель — чтобы любое исключение превратилось в понятный, стандартизированный JSON-ответ с правильным HTTP-статусом, а не в Whitelabel Error Page или наружный stack trace.",
+          "Неверно: постоянный 200 с текстом ошибки скрывает исход от клиента и ломает семантику HTTP-статусов.",
+          "Неверно: stack trace наружу раскрывает внутренности системы — этого как раз избегают.",
+          "Неверно: исключения не гасят, а превращают в осмысленный ответ с нужным статусом."
+        ],
+        "explanation": "Цель обработки ошибок — чтобы любое исключение превратилось в понятный, стандартизированный JSON-ответ с правильным HTTP-статусом, а не в Whitelabel Error Page или наружный stack trace.",
+        "sourceQuote": "стандартизированный JSON-ответ с правильным HTTP-статусом."
+      }
+    },
+    {
+      "id": "t012-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос 1,58 — в пределах допустимого. Дистрактор «Оборачивают каждый метод контроллера в try/catch» хорош: это ровно тот подход, от которого уводит @ControllerAdvice, и он выглядит правдоподобно для новичка.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t012-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t012-mcq-04",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Самый грубый перекос темы: 125 знаков против 39/30/28, то есть в 3,21 раза длиннее второго по длине. Верный вариант — единственный, где вообще описан механизм; остальные три — обрывочные утверждения в 1-2 слова о результате.",
+          "evidence": null
+        },
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "major",
+          "explanation": "«Приложение аварийно завершится», «Клиент всегда получит 200 OK», «Исключение молча проглотится без ответа» — ни один из вариантов не отражает реального заблуждения о работе DispatcherServlet. В fixedQuestion они заменены на правдоподобные ложные механизмы (повторный проход запроса, обрыв соединения без ответа), длины выровнены до 71-86.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t012-mcq-04",
+        "type": "mcq",
+        "concept": "BasicErrorController и Whitelabel",
+        "difficulty": "medium",
+        "questionType": "scenario",
+        "question": "Что произойдёт, если ни один HandlerExceptionResolver не обработал исключение?",
+        "options": [
+          "DispatcherServlet повторит запрос ещё раз, уже без обработчиков исключений",
+          "Приложение аварийно завершится, и контейнер сервлетов будет перезапущен",
+          "Ошибка уйдёт в контейнер, Tomcat сделает forward на /error, и вернётся Whitelabel-ответ",
+          "Ответ не будет сформирован: соединение закроется без тела и без HTTP-статуса"
+        ],
+        "correctIndex": 2,
+        "rationales": [
+          "Неверно: повторного прохода запроса через цепочку не происходит.",
+          "Неверно: необработанное исключение одного запроса не роняет приложение.",
+          "Верно: исключение пробрасывается на уровень контейнера сервлетов, Tomcat делает внутренний forward на /error, и BasicErrorController возвращает стандартный Whitelabel JSON или HTML.",
+          "Неверно: ответ всё-таки формируется — через /error, а не обрывом соединения."
+        ],
+        "explanation": "Если ни один резолвер не взял ошибку, она пробрасывается на уровень контейнера; в Spring Boot по умолчанию настроен BasicErrorController на /error, куда Tomcat делает внутренний forward и возвращает Whitelabel-ответ.",
+        "sourceQuote": "В Spring Boot по умолчанию настроен BasicErrorController (веб-интерфейс, маппится на путь /error)."
+      }
+    },
+    {
+      "id": "t012-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос 1,86 — на границе; длину даёт пояснительная приставка «— единый отраслевой стандарт описания ошибок в REST API», которой нет у дистракторов. Содержание верное, дистракторы (ResponseEntity<Void>, Whitelabel, @ResponseStatus) правдоподобны и относятся к теме. Оставляю; при выравнивании достаточно убрать приставку из ключа.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t012-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t012-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "minor",
+          "explanation": "Второй keyPoint полностью повторяет mcq-03, четвёртый — mcq-04. Задание при этом требует связного описания всей цепочки, чего ни один MCQ не даёт, поэтому оставляю как есть.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    }
+  ]
+}

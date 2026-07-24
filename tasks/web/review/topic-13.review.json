@@ -1,0 +1,242 @@
+{
+  "topicId": 13,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 6, "fix": 4, "discard": 0 },
+  "topicNotes": "Все семь ключей верны, фактических ошибок нет — включая тонкие места (различие @NotBlank/@NotEmpty, MethodArgumentNotValidException против ConstraintViolationException, каскад только при @Valid на поле). mcq-02 — образцовый вопрос: варианты @NotBlank/@NotNull/@NotEmpty/@Size, все по 5-9 знаков, выбор возможен только по знанию. Формально 7/7 MCQ имеют верный вариант самым длинным, но в трёх случаях (mcq-03, mcq-04, mcq-05) перекос мал (1,35-1,79) и дистракторы правдоподобны, поэтому они оставлены. Помечены fix: mcq-01 (перекос 3,53 и абсурдные дистракторы), mcq-06 (2,48), mcq-07 (3,78 плюс единственный вариант с пояснительной скобкой «не путать с Hibernate ORM» — она превращает вопрос в подсказку) и там же questionType «negative», хотя вопрос не отрицательный. correctIndex идёт как [1,0,2,3,1,0,2] — точный цикл с периодом 4 (см. общее замечание к теме 9). Главная содержательная проблема темы — избыточность: три факта проверяются по два раза каждый. mcq-04 (какое исключение при @RequestBody) целиком поглощён mcq-05 (какие исключения в обеих точках), а тот, в свою очередь, повторён в open-02; mcq-03 (@Valid vs @Validated) повторён в open-03; mcq-06 (каскад) тоже повторён в open-03; open-01 пересказывает механику, уже разобранную в mcq-04. При этом полностью не проверены: кастомный валидатор (@interface + ConstraintValidator.isValid) и случай, когда правило зависит от нескольких полей и аннотацию вешают на класс; антипаттерн «валидация только на входе в контроллер» при создании объекта из батч-джобы; рассинхрон правил между DTO и сущностью. Рекомендую убрать mcq-04 как поглощённый и заменить open-01 на задание про кастомный валидатор.",
+  "reviews": [
+    {
+      "id": "t013-mcq-01",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Самый грубый перекос темы: 127 знаков против 36/33/32 — в 3,53 раза длиннее второго по длине. Верный вариант к тому же единственный отвечает на обе части вопроса («что такое» и «какой стандарт»), три дистрактора вторую часть игнорируют. В fixedQuestion все варианты приведены к двухчастной форме «что это; стандарт — …» и выровнены до 78-90 знаков.",
+          "evidence": null
+        },
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "«Шифрование данных перед записью в БД» и «Кэширование результатов запросов» — обрывки из чужих тем, отбрасываются без знания предмета. Заменены на смежные с валидацией задачи (десериализация, авторизация), которые действительно путают.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t013-mcq-01",
+        "type": "mcq",
+        "concept": "валидация и Bean Validation (Hibernate Validator)",
+        "difficulty": "easy",
+        "questionType": "definition",
+        "question": "Что такое валидация данных и какой стандарт задаёт её в экосистеме Java?",
+        "options": [
+          "Приведение данных к нужным типам при разборе JSON; стандарт — Jackson Databind",
+          "Проверка данных на соответствие бизнес-правилам до логики и БД; стандарт — Bean Validation",
+          "Шифрование чувствительных полей перед записью в БД; стандарт — Jakarta Security",
+          "Проверка прав пользователя на выполнение операции; стандарт — Jakarta Authorization"
+        ],
+        "correctIndex": 1,
+        "rationales": [
+          "Неверно: преобразование JSON в Java-объект — это десериализация, она предшествует валидации, но ею не является.",
+          "Верно: валидация — проверка, что данные соответствуют бизнес-правилам, до того как они попадут в основную логику или в БД; в Java это стандартизировано спецификацией Bean Validation (JSR 380 / Jakarta Bean Validation).",
+          "Неверно: валидация не шифрует данные.",
+          "Неверно: проверка прав — это авторизация, отдельная от валидации задача."
+        ],
+        "explanation": "Валидация — проверка, что данные соответствуют бизнес-правилам, до того как они попадут в основную логику или в БД; в Java это стандартизировано спецификацией Bean Validation (JSR 380 / Jakarta Bean Validation).",
+        "sourceQuote": "проверка, что данные соответствуют бизнес-правилам"
+      }
+    },
+    {
+      "id": "t013-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t013-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос всего 1,35 (113 против 84) — тема выдержана. Дистрактор 0 с перепутанными ролями сделан правильно: чтобы его отбросить, нужно помнить, какая из аннотаций умеет группы.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t013-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос 1,79 — на границе, но дистрактор «ConstraintViolationException → 500» отличная ловушка: это именно то, что происходит в соседней точке валидации, и отбросить его можно только зная разницу.",
+          "evidence": null
+        },
+        {
+          "code": "DUPLICATE",
+          "severity": "major",
+          "explanation": "Вопрос целиком поглощён mcq-05: там спрашивают про исключения в обеих точках сразу, включая эту. Кто ответит на mcq-05, ответит и на mcq-04 автоматически — вторая позиция в тесте расходуется впустую. Сам по себе вопрос корректен, поэтому не fix, но при следующей ревизии его стоит удалить и освободить место под кастомный валидатор.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t013-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос 1,54, причём длинные здесь оба содержательных варианта (0 и 1) — именно та пара, между которой и нужно выбирать, — а короткие варианты 2 и 3 это «оба случая кидают одно и то же». Структура вопроса корректная.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t013-mcq-06",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант 119 знаков против 48/38/32 — в 2,48 раза длиннее второго по длине, и он единственный содержит объяснение («без него Bean Validation не спускается во вложенные объекты»), тогда как дистракторы — короткие утверждения. В fixedQuestion все варианты выровнены до 67-76 и оформлены как равноправные диагнозы проблемы.",
+          "evidence": null
+        },
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "«Вложенные объекты валидировать нельзя в принципе» отбрасывается сразу — правдоподобных причин остаётся две из четырёх. Заменён на версию с моментом десериализации.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t013-mcq-06",
+        "type": "mcq",
+        "concept": "каскадная валидация вложенных объектов",
+        "difficulty": "medium",
+        "questionType": "antipattern",
+        "question": "Ограничения вложенного объекта DTO не проверяются валидатором. В чём причина?",
+        "options": [
+          "На поле с вложенным объектом не поставили @Valid — каскад без него не работает",
+          "На классе вложенного DTO не объявлена аннотация @Validated с нужной группой",
+          "Вложенный объект десериализуется позже, чем успевает отработать Validator",
+          "Hibernate Validator проверяет вложенность только на уровне @Entity при flush"
+        ],
+        "correctIndex": 0,
+        "rationales": [
+          "Верно: вложенный объект проверяется, только если на поле, которое его содержит, стоит @Valid — без этой аннотации Bean Validation не спускается во вложенные объекты.",
+          "Неверно: @Validated на классе включает method validation и группы, но каскад по полю не заменяет.",
+          "Неверно: валидатор вызывается уже после десериализации всего тела запроса, вложенный объект к этому моменту собран.",
+          "Неверно: валидация сущности при flush — отдельная точка; каскад по DTO включается именно @Valid на поле."
+        ],
+        "explanation": "Каскадная валидация работает только если на поле с вложенным объектом стоит @Valid — без этой аннотации Bean Validation не спускается во вложенные объекты, и их ограничения не проверяются.",
+        "sourceQuote": "Вложенный объект проверяется, только если на поле, которое его содержит, стоит @Valid"
+      }
+    },
+    {
+      "id": "t013-mcq-07",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "68 знаков против 18/15/13 — в 3,78 раза длиннее второго по длине, худший показатель темы. Причина в том, что верный вариант — единственный с пояснительной скобкой «(не путать с Hibernate ORM — это разные проекты)». Эта скобка не только выдаёт ответ длиной, она ещё и подсказывает содержательно: студенту прямо говорят, чем ответ отличается от главного дистрактора. В fixedQuestion скобка убрана, остались четыре коротких названия проектов.",
+          "evidence": null
+        },
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType указан «negative», хотя вопрос сформулирован утвердительно («Что является эталонной реализацией Bean Validation?») и ничего не отрицает. Исправлено на «definition».",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t013-mcq-07",
+        "type": "mcq",
+        "concept": "эталонная реализация Hibernate Validator",
+        "difficulty": "easy",
+        "questionType": "definition",
+        "question": "Что является эталонной реализацией Bean Validation?",
+        "options": [
+          "Hibernate ORM",
+          "Jackson Databind",
+          "Hibernate Validator",
+          "Spring Data JPA"
+        ],
+        "correctIndex": 2,
+        "rationales": [
+          "Неверно: Hibernate ORM — реализация JPA; с Hibernate Validator это разные проекты одной экосистемы.",
+          "Неверно: Jackson — библиотека сериализации JSON.",
+          "Верно: эталонная реализация Bean Validation — Hibernate Validator.",
+          "Неверно: Spring Data JPA — надстройка над JPA, а не реализация валидации."
+        ],
+        "explanation": "Эталонная реализация Bean Validation — Hibernate Validator; его не следует путать с Hibernate ORM: это разные проекты одной экосистемы.",
+        "sourceQuote": "Эталонная реализация - Hibernate Validator (не путать с Hibernate ORM, это разные проекты одной экосистемы)."
+      }
+    },
+    {
+      "id": "t013-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "major",
+          "explanation": "Третий и четвёртый keyPoints (MethodArgumentNotValidException, 400 Bad Request, ProblemDetail) полностью совпадают с mcq-04, а первый частично — с open-02. Уникальны здесь только FieldError и BindingResult. Задание корректно и соответствует источнику, поэтому не fix, но при ревизии его стоит заменить на кастомный валидатор (@interface + ConstraintValidator с isValid, случай правила по нескольким полям) — этот материал в теме не проверяется вообще.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t013-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "minor",
+          "explanation": "Первые два keyPoints повторяют mcq-05. Но третья точка (валидация @Entity при flush) и вывод про 500 вместо 400 в MCQ не проверяются нигде, и связного описания всех трёх точек ни один MCQ не требует — задание оставляю.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t013-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "minor",
+          "explanation": "Третий keyPoint повторяет mcq-03, четвёртый — mcq-06. Уникальны интерфейсы-маркеры и синтаксис @NotNull(groups = OnUpdate.class) / @Validated(OnUpdate.class), ради которых задание и стоит держать.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    }
+  ]
+}

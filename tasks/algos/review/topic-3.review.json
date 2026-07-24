@@ -1,0 +1,73 @@
+{
+  "topicId": 3,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Классы сложности разобраны от O(1) до O(n!). Задание mcq-06 опирается на прямое утверждение источника, что O(n!) — самая высокая степень роста, и это согласуется с асимптотикой (n! растёт быстрее 2^n), так что WRONG_KEY нет. Все ключи совпали с независимым ответом, sourceQuote дословны. Дефектов не найдено.",
+  "reviews": [
+    {
+      "id": "t003-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

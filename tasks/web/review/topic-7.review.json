@@ -1,0 +1,226 @@
+{
+  "topicId": 7,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 6, "fix": 4, "discard": 0 },
+  "topicNotes": "Тема содержательно сильная: ключи все верны (семь из семи совпали с моими независимыми ответами), включая тонкие места — самовызов мимо прокси, откат только на unchecked, ThreadLocal и @Async. Но форма подводит: в четырёх заданиях из семи верный вариант в 1,8-2,2 раза длиннее дистракторов, то есть половину темы можно пройти, выбирая самый длинный вариант. Все четыре исправлены выравниванием длин без изменения ключей и смысла. По покрытию не проверены: уровни изоляции и аномалии (грязное чтение, неповторяемое чтение, фантомы), propagation кроме REQUIRED/REQUIRES_NEW (NESTED, MANDATORY, NEVER), таблица менеджеров транзакций (DataSourceTransactionManager vs JpaTransactionManager vs JTA), UnexpectedRollbackException при rollback-only, поведение @Transactional в тестах.",
+  "reviews": [
+    {
+      "id": "t007-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант самый длинный (68 против 27-43); перекос небольшой, но в теме он систематический.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-03",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 114 знаков против 39-53 (в 2,15 раза длиннее второго по длине) и вдобавок повторяет мысль дважды («идёт мимо прокси» и «не проходит через прокси»). В fixedQuestion формулировка сжата до одного утверждения, дистракторы дополнены до сопоставимой длины.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t007-mcq-03",
+        "type": "mcq",
+        "concept": "типичные ошибки (самовызов, non-public, проглоченное исключение)",
+        "difficulty": "hard",
+        "questionType": "antipattern",
+        "question": "Метод с @Transactional вызывается из другого метода того же класса через this. Почему транзакция не открывается?",
+        "options": [
+          "@Transactional перехватывает только методы, объявленные с checked-исключениями",
+          "Транзакция открывается, но сразу помечается rollback-only и откатывается",
+          "Самовызов идёт мимо прокси, а транзакционный advice работает только на прокси",
+          "Для вложенных вызовов внутри класса требуется уровень изоляции SERIALIZABLE"
+        ],
+        "correctIndex": 2,
+        "rationales": [
+          "Неверно: тип объявленных исключений не влияет на то, будет ли вызов перехвачен; от типа исключения зависит только правило отката.",
+          "Неверно: транзакция вообще не открывается — откатываться нечему.",
+          "Верно: вызов @Transactional-метода из того же класса идёт мимо прокси, а advice навешан именно на прокси, поэтому транзакции нет.",
+          "Неверно: уровень изоляции здесь ни при чём — он влияет на видимость данных параллельных транзакций, а не на перехват вызова."
+        ],
+        "explanation": "Самовызов — вызов @Transactional-метода из того же класса — идёт мимо прокси, а advice работает только на прокси, поэтому транзакция не открывается.",
+        "sourceQuote": "вызов @Transactional-метода из того же класса идёт мимо прокси, транзакции нет."
+      }
+    },
+    {
+      "id": "t007-mcq-04",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 87 знаков против 40-49 (в 1,78 раза длиннее второго по длине) и единственный содержит уточнение после двоеточия. Кроме того, два варианта начинаются с «Да», два с «Нет», и более длинный из «Нет» очевидно предпочтительнее. В fixedQuestion длины выровнены.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t007-mcq-04",
+        "type": "mcq",
+        "concept": "правила отката (checked vs unchecked, rollbackFor)",
+        "difficulty": "hard",
+        "questionType": "scenario",
+        "question": "Метод в транзакции бросает checked-исключение. Откатится ли транзакция по умолчанию?",
+        "options": [
+          "Да, по умолчанию откатывается любое исключение, включая checked",
+          "Да, но только если метод объявлен public и вызван через прокси",
+          "Нет, и включить откат для checked-исключений средствами Spring нельзя",
+          "Нет: по умолчанию откат только на unchecked, для checked нужен rollbackFor"
+        ],
+        "correctIndex": 3,
+        "rationales": [
+          "Неверно: по умолчанию откатываются только RuntimeException и Error, checked-исключения отката не вызывают.",
+          "Неверно: модификатор доступа и способ вызова определяют, будет ли транзакция вообще, но не правило отката по типу исключения.",
+          "Неверно: откат для checked-исключений включается параметром rollbackFor.",
+          "Верно: по умолчанию откат только на RuntimeException/Error, а для checked-исключений нужен rollbackFor."
+        ],
+        "explanation": "По умолчанию откат происходит только на RuntimeException/Error; на checked-исключения отката нет — его включают параметром rollbackFor.",
+        "sourceQuote": "на checked-исключения отката нет (нужен rollbackFor)."
+      }
+    },
+    {
+      "id": "t007-mcq-05",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 148 знаков против 51-71 (в 2,08 раза длиннее второго по длине): он единственный описывает оба propagation и содержит скобочное уточнение про два соединения. В fixedQuestion деталь про два соединения перенесена в explanation, длины вариантов выровнены.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t007-mcq-05",
+        "type": "mcq",
+        "concept": "propagation (REQUIRED, REQUIRES_NEW)",
+        "difficulty": "medium",
+        "questionType": "comparison",
+        "question": "Чем REQUIRES_NEW отличается от REQUIRED?",
+        "options": [
+          "REQUIRED присоединяется к активной или создаёт новую, REQUIRES_NEW приостанавливает текущую",
+          "REQUIRES_NEW присоединяется к активной, а REQUIRED всегда создаёт отдельную транзакцию",
+          "Оба ведут себя одинаково: присоединяются к активной транзакции, если она уже открыта",
+          "REQUIRES_NEW запрещает выполнять метод в транзакции и бросает ошибку при активной"
+        ],
+        "correctIndex": 0,
+        "rationales": [
+          "Верно: REQUIRED присоединяется к активной или создаёт новую, а REQUIRES_NEW приостанавливает текущую и создаёт отдельную, удерживая два соединения.",
+          "Неверно: роли перепутаны — к активной транзакции присоединяется именно REQUIRED.",
+          "Неверно: их поведение различается: только REQUIRED присоединяется, REQUIRES_NEW всегда стартует отдельную транзакцию.",
+          "Неверно: запрет выполнения в транзакции — это NEVER; MANDATORY, наоборот, требует уже открытой."
+        ],
+        "explanation": "REQUIRED (по умолчанию) присоединяется к активной транзакции или создаёт новую; REQUIRES_NEW приостанавливает текущую и создаёт отдельную, из-за чего есть риск исчерпания пула — держатся два соединения.",
+        "sourceQuote": "приостановить текущую, создать отдельную (риск исчерпания пула - держатся два соединения)"
+      }
+    },
+    {
+      "id": "t007-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант самый длинный (98 против 49-58).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-07",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 117 знаков против 34-58 (в 2,02 раза длиннее второго по длине), причём он единственный называет сразу два механизма. В fixedQuestion оставлена одна аннотация (второй механизм остался в explanation), дистракторы дополнены.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t007-mcq-07",
+        "type": "mcq",
+        "concept": "пост-коммит хуки (AFTER_COMMIT)",
+        "difficulty": "medium",
+        "questionType": "design",
+        "question": "Как отправить побочный эффект (например письмо) только после успешного коммита транзакции?",
+        "options": [
+          "Вызвать отправку внутри @Transactional-метода перед самым return",
+          "Отправлять событие из отдельного метода с propagation = REQUIRES_NEW",
+          "Повесить обработчик на @TransactionalEventListener(phase = AFTER_COMMIT)",
+          "Пометить метод readOnly = true, тогда отправка выполнится после коммита"
+        ],
+        "correctIndex": 2,
+        "rationales": [
+          "Неверно: вызов внутри метода произойдёт до коммита, и при откате письмо уже будет отправлено.",
+          "Неверно: REQUIRES_NEW создаёт отдельную транзакцию, но она завершается раньше внешней и ничего не знает о её исходе.",
+          "Верно: для действий после успешного коммита используют @TransactionalEventListener(phase = AFTER_COMMIT) или TransactionSynchronization.afterCommit.",
+          "Неверно: readOnly — оптимизация чтения (FlushMode.MANUAL), к моменту отправки события отношения не имеет."
+        ],
+        "explanation": "Пост-коммит хуки TransactionSynchronization (afterCommit) и @TransactionalEventListener(phase = AFTER_COMMIT) позволяют отправлять событие только после успешного коммита, а не внутри транзакции.",
+        "sourceQuote": "отправлять событие только после успешного коммита"
+      }
+    },
+    {
+      "id": "t007-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "minor",
+          "explanation": "Первый пункт рубрики дословно повторяет содержание t007-mcq-03 (самовызов мимо прокси). Как открытое задание оно шире и оправданно, но пересечение стоит учесть при сборке билета — не давать оба вместе.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    }
+  ]
+}

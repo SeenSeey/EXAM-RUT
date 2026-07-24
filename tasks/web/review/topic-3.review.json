@@ -1,0 +1,145 @@
+{
+  "topicId": 3,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 9, "fix": 1, "discard": 0 },
+  "topicNotes": "Фактически тема изложена верно: все семь ключей совпали с моими независимыми ответами, цитаты дословны, открытые задания с адекватными рубриками. Замечания по форме. Во-первых, mcq-01, mcq-02 и частично mcq-06 построены на одном и том же наборе имён (DispatcherServlet / HandlerMapping / HandlerAdapter / ViewResolver) — задания решаются одним и тем же приёмом «вспомнить, кто за что отвечает», и три слота из десяти уходят на один навык. Во-вторых, в mcq-03 верный вариант вдвое длиннее прочих — исправлено. Не проверены: HandlerMethodArgumentResolver и работа с @PathVariable/@RequestParam в тестовой форме, @RequestBody на входе, роль WebApplicationContext.",
+  "reviews": [
+    {
+      "id": "t003-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType «scenario» не соответствует содержанию: ситуации нет, это прямой вопрос на определение роли компонента (definition).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-03",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 134 знака против 39-61 у дистракторов (в 2,2 раза длиннее второго по длине). Кроме того, только он отвечает на вопрос «зачем нужен», а три остальных — короткие определения чужих компонентов. Студент выбирает ключ по форме, не читая содержания. В fixedQuestion верный вариант сокращён, а дистракторы дополнены до сопоставимой длины и все приведены к одной грамматической форме.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t003-mcq-03",
+        "type": "mcq",
+        "concept": "HandlerAdapter и резолверы аргументов",
+        "difficulty": "medium",
+        "questionType": "comparison",
+        "question": "Зачем нужен HandlerAdapter, если обработчик уже найден через HandlerMapping?",
+        "options": [
+          "Он переводит логическое имя представления в конкретный шаблон и пишет ответ",
+          "Он ищет обработчик по пути и HTTP-методу, собирая реестр маршрутов при старте",
+          "Он сериализует возвращаемый объект в JSON и подбирает Content-Type ответа",
+          "Общего интерфейса у обработчиков нет: адаптер готовит аргументы и вызывает метод"
+        ],
+        "correctIndex": 3,
+        "rationales": [
+          "Неверно: перевод имени в шаблон и запись ответа — задача ViewResolver и View.",
+          "Неверно: поиск обработчика и реестр маршрутов — задача HandlerMapping.",
+          "Неверно: сериализация в JSON — задача HttpMessageConverter.",
+          "Верно: сигнатуры аннотированных методов свободные, общего интерфейса нет, поэтому HandlerAdapter через резолверы готовит аргументы и вызывает метод."
+        ],
+        "explanation": "Spring не диктует вид обработчика: сигнатуры методов свободные. HandlerAdapter через цепочку HandlerMethodArgumentResolver готовит аргументы и вызывает метод любой сигнатуры.",
+        "sourceQuote": "сигнатуры аннотированных методов свободные"
+      }
+    },
+    {
+      "id": "t003-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант — самый длинный (82 против 38-59) и единственный содержит развёрнутую формулировку из источника.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType «comparison» не соответствует содержанию: сравнения нет, задание проверяет определение @ResponseBody (definition).",
+          "evidence": null
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант заметно длиннее (99 против 53/62/69).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t003-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "topicId": 1,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Тема раскрыта ровно и полностью: каждое из пяти ключевых свойств алгоритма проверено отдельным заданием, плюс конструкции и открытый вопрос-перечисление. Ключи верны, sourceQuote дословны, дистракторы правдоподобны. Дефектов не найдено.",
+  "reviews": [
+    {
+      "id": "t001-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

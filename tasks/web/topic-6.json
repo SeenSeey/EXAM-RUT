@@ -1,10 +1,13 @@
 {
   "topicId": 6,
   "topicTitle": "Spring Security: аутентификация и авторизация",
-  "promptVersion": "1.0",
+  "promptVersion": "1.1",
   "conceptsIdentified": [
     "аутентификация vs авторизация",
     "ключевые элементы архитектуры (DelegatingFilterProxy, AuthenticationManager, UserDetailsService, PasswordEncoder, SecurityContext)",
+    "цепочка фильтров и SecurityFilterChain",
+    "сценарий form login по шагам",
+    "жизненный цикл запроса в Spring Security",
     "Servlet vs Reactive: хранение контекста безопасности",
     "структура JWT",
     "Stateful (сессии) vs Stateless (JWT)",
@@ -20,18 +23,18 @@
       "question": "В чём разница между аутентификацией и авторизацией в Spring Security?",
       "options": [
         "Аутентификация — проверка прав доступа, а авторизация — проверка личности",
-        "Это два названия одного и того же процесса проверки пользователя",
-        "Аутентификация — проверка личности (кто выполняет запрос), авторизация — проверка прав доступа (какие действия разрешены)",
-        "Аутентификация — хэширование паролей, а авторизация — их шифрование"
+        "Это два названия одного процесса проверки пользователя при входе в систему",
+        "Аутентификация отвечает «кто выполняет запрос», авторизация — «что разрешено»",
+        "Аутентификация — хэширование пароля, авторизация — его сверка при входе"
       ],
       "correctIndex": 2,
       "rationales": [
-        "Неверно: роли перепутаны — проверка прав доступа это авторизация.",
-        "Неверно: это два разных процесса.",
-        "Верно: аутентификация отвечает «кто выполняет запрос», авторизация — «какие действия разрешены».",
-        "Неверно: это не про хэширование и шифрование паролей."
+        "Неверно: роли перепутаны — проверка прав доступа и есть авторизация.",
+        "Неверно: это два разных процесса: сначала подтверждается личность, затем проверяется, что этой личности разрешено.",
+        "Верно: аутентификация — проверка личности пользователя (кто выполняет запрос), авторизация — проверка прав доступа (какие действия разрешены).",
+        "Неверно: хэшированием и сверкой паролей занимается PasswordEncoder, и это лишь часть аутентификации."
       ],
-      "explanation": "Аутентификация — проверка личности пользователя (кто выполняет запрос), авторизация — проверка прав доступа: что конкретный пользователь может делать в системе.",
+      "explanation": "Аутентификация — проверка личности пользователя: Spring Security отвечает на вопрос «кто выполняет запрос». Авторизация — проверка прав доступа: что конкретный пользователь может делать в системе.",
       "sourceQuote": "проверку прав доступа: что конкретный пользователь может делать в системе."
     },
     {
@@ -42,19 +45,19 @@
       "questionType": "definition",
       "question": "Какой компонент загружает информацию о пользователе (логин, пароль, роли) из БД?",
       "options": [
-        "UserDetailsService",
-        "PasswordEncoder",
-        "AuthenticationManager",
-        "SecurityContext"
+        "PasswordEncoder — он же сверяет пароль при входе пользователя",
+        "AuthenticationManager — он отвечает за процесс аутентификации",
+        "UserDetailsService — интерфейс загрузки пользователя из базы",
+        "SecurityContext — он хранит данные текущего пользователя"
       ],
-      "correctIndex": 0,
+      "correctIndex": 2,
       "rationales": [
-        "Верно: UserDetailsService — интерфейс, который загружает информацию о пользователе из БД.",
-        "Неверно: PasswordEncoder только хэширует и проверяет пароли.",
-        "Неверно: AuthenticationManager управляет аутентификацией, делегируя провайдерам, но не загружает пользователя из БД.",
-        "Неверно: SecurityContext хранит данные текущего пользователя, а не загружает их из БД."
+        "Неверно: PasswordEncoder только хэширует и проверяет пароли, а пользователя ему передают уже загруженным.",
+        "Неверно: AuthenticationManager управляет процессом и делегирует проверку провайдерам, но сам в БД не ходит.",
+        "Верно: UserDetailsService — интерфейс, который загружает информацию о пользователе из БД (логин, пароль, роли).",
+        "Неверно: SecurityContext хранит уже созданный объект Authentication, а не загружает данные из БД."
       ],
-      "explanation": "UserDetailsService — интерфейс, который загружает информацию о пользователе из БД (логин, пароль, роли).",
+      "explanation": "UserDetailsService — интерфейс, который загружает информацию о пользователе из БД (логин, пароль, роли). В сценарии form login его вызывает DaoAuthenticationProvider, а сверку пароля делает PasswordEncoder.",
       "sourceQuote": "UserDetailsService - интерфейс, который загружает информацию о пользователе из БД"
     },
     {
@@ -68,16 +71,16 @@
         "DispatcherServlet",
         "DelegatingFilterProxy",
         "FilterSecurityInterceptor",
-        "SecurityContext"
+        "SecurityContextPersistenceFilter"
       ],
       "correctIndex": 1,
       "rationales": [
-        "Неверно: DispatcherServlet — точка входа Spring MVC, а не Spring Security.",
-        "Верно: DelegatingFilterProxy — точка входа в Spring Security из контейнера сервлетов.",
-        "Неверно: FilterSecurityInterceptor — финальная проверка прав доступа, а не точка входа.",
-        "Неверно: SecurityContext хранит Authentication, но не является точкой входа."
+        "Неверно: DispatcherServlet — точка входа Spring MVC; к моменту его вызова фильтры безопасности уже отработали.",
+        "Верно: DelegatingFilterProxy — точка входа в Spring Security из контейнера сервлетов, он передаёт управление в фильтры фреймворка.",
+        "Неверно: FilterSecurityInterceptor выполняет финальную проверку прав доступа в конце цепочки.",
+        "Неверно: SecurityContextPersistenceFilter загружает данные о пользователе из сессии, но он уже внутри цепочки Spring Security."
       ],
-      "explanation": "DelegatingFilterProxy — точка входа в Spring Security из контейнера сервлетов (Tomcat, Jetty и т. д.); он передаёт управление в фильтры Spring Security.",
+      "explanation": "Запрос попадает в контейнер, тот запускает цепочку фильтров, и среди них есть DelegatingFilterProxy — он передаёт управление в Spring Security, где работает FilterChainProxy со своим списком фильтров.",
       "sourceQuote": "DelegatingFilterProxy - точка входа в Spring Security из контейнера сервлетов"
     },
     {
@@ -88,19 +91,19 @@
       "questionType": "comparison",
       "question": "Чем отличается хранение контекста безопасности в Servlet-стеке и в Reactive-стеке (WebFlux)?",
       "options": [
-        "В обоих стеках контекст хранится в ThreadLocal",
-        "В Reactive контекст хранится в HttpSession",
-        "В Servlet-стеке контекст хранится в reactive context",
-        "В Reactive-стеке контекст безопасности хранится в reactive context, а не в ThreadLocal"
+        "В обоих стеках контекст безопасности хранится в ThreadLocal потока запроса",
+        "В реактивном стеке контекст безопасности хранится в HttpSession сервера",
+        "В servlet-стеке контекст хранится в reactive context, а не в ThreadLocal",
+        "В реактивном стеке контекст живёт в reactive context, а не в ThreadLocal"
       ],
       "correctIndex": 3,
       "rationales": [
-        "Неверно: в Reactive используется не ThreadLocal, а reactive context.",
-        "Неверно: reactive-контекст безопасности не хранится в HttpSession.",
-        "Неверно: reactive context используется в Reactive-стеке, а не в Servlet.",
-        "Верно: в реактивном стеке контекст безопасности хранится в reactive context, а не в ThreadLocal."
+        "Неверно: ThreadLocal работает в servlet-стеке; в реактивном обработка не привязана к одному потоку, поэтому такой механизм не подходит.",
+        "Неверно: HttpSession относится к stateful-модели servlet-стека и реактивным контекстом безопасности не является.",
+        "Неверно: стеки перепутаны — reactive context используется именно в WebFlux.",
+        "Верно: в реактивном стеке применяются WebFilter, SecurityWebFilterChain и ReactiveAuthenticationManager, а контекст безопасности хранится в reactive context, а не в ThreadLocal."
       ],
-      "explanation": "В Servlet-стеке применяется классическая цепочка фильтров и ThreadLocal; в реактивном (WebFlux/Netty) контекст безопасности хранится в reactive context, а не в ThreadLocal.",
+      "explanation": "В servlet-стеке (Tomcat/Jetty/Undertow) используется классическая цепочка Filter и ThreadLocal; в реактивном (WebFlux/Netty) — WebFilter, SecurityWebFilterChain и реактивный ReactiveAuthenticationManager, а контекст безопасности хранится в reactive context.",
       "sourceQuote": "контекст безопасности хранится в reactive context, а не в ThreadLocal"
     },
     {
@@ -111,19 +114,19 @@
       "questionType": "definition",
       "question": "Из каких трёх частей (разделённых точками) состоит JWT?",
       "options": [
-        "header.payload.signature",
-        "login.password.role",
-        "iss.aud.exp",
-        "cookie.session.token"
+        "iss.aud.exp — издатель токена, его получатель и срок действия",
+        "header.payload.signature — заголовок, полезная нагрузка и подпись",
+        "username.roles.expiration — имя пользователя, роли и срок жизни",
+        "token.session.cookie — сам токен, ссылка на сессию и cookie клиента"
       ],
-      "correctIndex": 0,
+      "correctIndex": 1,
       "rationales": [
-        "Верно: JWT состоит из header.payload.signature.",
-        "Неверно: это не части JWT, а условные учётные данные.",
-        "Неверно: iss/aud/exp — это отдельные claim'ы внутри payload, а не три части токена.",
-        "Неверно: это элементы сессионной модели, а не части JWT."
+        "Неверно: iss, aud и exp — это claim'ы внутри payload, которые проверяют вместе с подписью, а не части токена.",
+        "Верно: JWT состоит из трёх частей, разделённых точками: header (алгоритм подписи), payload (данные: sub, roles, exp) и signature (проверка подлинности).",
+        "Неверно: имя пользователя, роли и срок жизни лежат внутри payload, отдельными частями токена они не являются.",
+        "Неверно: это элементы сессионной (stateful) модели; JWT как раз позволяет обойтись без серверной сессии."
       ],
-      "explanation": "JWT состоит из трёх частей, разделённых точками: header (алгоритм подписи), payload (данные: sub, roles, exp), signature (проверка подлинности).",
+      "explanation": "JWT состоит из трёх частей: header (алгоритм подписи, например HS256), payload (данные — sub, roles, exp) и signature (HMAC или RSA для проверки подлинности). При проверке смотрят exp, iss, aud и подпись.",
       "sourceQuote": "header.payload.signature"
     },
     {
@@ -134,19 +137,19 @@
       "questionType": "tradeoff",
       "question": "Какой недостаток характерен именно для stateless-подхода (JWT)?",
       "options": [
-        "Нужен Redis/DB и обращение к хранилищу на каждый запрос",
-        "Сложнее горизонтально масштабировать сервис",
-        "logout не мгновенный и сложно отзывать токены — нужны Refresh Token Rotation или Blacklist",
-        "Совсем невозможно масштабировать на несколько серверов"
+        "Нужен Redis или БД, и каждый запрос обращается к хранилищу сессий",
+        "Сложнее горизонтально масштабировать сервис на несколько серверов",
+        "Logout не мгновенный, а отзыв токенов требует blacklist или ротации",
+        "Данные пользователя приходится хранить в cookie JSESSIONID браузера"
       ],
       "correctIndex": 2,
       "rationales": [
-        "Неверно: обращение к хранилищу на каждый запрос — минус stateful, а не stateless.",
-        "Неверно: сложность горизонтального масштабирования — минус stateful; stateless как раз легко масштабируется.",
-        "Верно: у stateless logout не мгновенный и токены трудно отзывать, поэтому применяют Refresh Token Rotation или Blacklist.",
-        "Неверно: stateless, наоборот, легко масштабируется на сотни серверов."
+        "Неверно: обращение к хранилищу на каждый запрос — минус stateful; в stateless центрального хранилища сессий нет.",
+        "Неверно: сложность масштабирования — минус stateful; stateless легко масштабируется на сотни серверов.",
+        "Верно: минусы stateless — logout не мгновенный и токены сложно отзывать, поэтому применяют Refresh Token Rotation или Blacklist.",
+        "Неверно: cookie JSESSIONID — механизм stateful-сессий; в stateless клиент носит JWT в заголовке Authorization."
       ],
-      "explanation": "Минусы stateless (JWT): logout не мгновенный, сложно отзывать токены, приходится использовать Refresh Token Rotation или Blacklist.",
+      "explanation": "Stateless (JWT) даёт масштабируемость и минимальную задержку, но платит за это: logout не мгновенный, токены сложно отзывать, приходится использовать Refresh Token Rotation или Blacklist.",
       "sourceQuote": "logout не мгновенный; сложно отзывать токены"
     },
     {
@@ -157,20 +160,89 @@
       "questionType": "scenario",
       "question": "В каком случае предпочтителен stateful-подход (серверные сессии)?",
       "options": [
-        "Когда нужна максимальная горизонтальная масштабируемость на сотни серверов",
-        "Когда важны контроль и мгновенное управление сессиями: смена пароля инвалидирует все сессии, блокировка прекращает доступ немедленно",
-        "Когда сервер принципиально не должен хранить состояние",
-        "Когда нужен идеальный вариант для развёртывания в Kubernetes"
+        "Когда нужна максимальная горизонтальная масштабируемость без общего хранилища",
+        "Когда важен контроль: блокировка пользователя должна прекращать доступ немедленно",
+        "Когда сервер принципиально не должен хранить состояние между запросами клиента",
+        "Когда сервис разворачивают в Kubernetes и нужна минимальная задержка на проверку"
       ],
       "correctIndex": 1,
       "rationales": [
-        "Неверно: масштабируемость на сотни серверов — довод в пользу stateless.",
-        "Верно: stateful выбирают, когда важны контроль и мгновенное управление сессиями (инвалидация при смене пароля, немедленная блокировка).",
-        "Неверно: отказ от хранения состояния — это про stateless.",
-        "Неверно: идеал для Kubernetes — это довод в пользу stateless."
+        "Неверно: масштабируемость без центрального хранилища сессий — довод в пользу stateless.",
+        "Верно: stateful выбирают, когда важны контроль и мгновенное управление сессиями — при смене пароля все сессии сразу инвалидируются, при блокировке доступ прекращается немедленно.",
+        "Неверно: отказ от хранения состояния на сервере — это определение stateless.",
+        "Неверно: лёгкое масштабирование в Kubernetes и минимальная задержка перечислены как плюсы stateless."
       ],
-      "explanation": "Stateful используют, когда важны контроль, безопасность и возможность мгновенно управлять сессиями: при смене пароля все сессии сразу инвалидируются, а при блокировке пользователя доступ прекращается немедленно.",
+      "explanation": "Stateful используют, когда важны контроль, безопасность и возможность мгновенно управлять сессиями: при смене пароля все сессии сразу инвалидируются, при блокировке пользователя доступ прекращается немедленно; также легко ограничить число устройств.",
       "sourceQuote": "все сессии сразу инвалидируются."
+    },
+    {
+      "id": "t006-mcq-08",
+      "type": "mcq",
+      "concept": "сценарий form login по шагам",
+      "difficulty": "medium",
+      "questionType": "scenario",
+      "question": "Пользователь отправил POST /login с полями username и password. Что происходит в Spring Security дальше?",
+      "options": [
+        "DispatcherServlet направляет запрос в контроллер, который сам проверяет пароль",
+        "BearerTokenAuthenticationFilter проверяет заголовок Authorization и выдаёт JWT",
+        "FilterSecurityInterceptor сверяет пароль и сразу выдаёт клиенту cookie JSESSIONID",
+        "UsernamePasswordAuthenticationFilter передаёт проверку AuthenticationManager"
+      ],
+      "correctIndex": 3,
+      "rationales": [
+        "Неверно: до контроллера запрос ещё не дошёл — проверка логина и пароля выполняется в цепочке фильтров.",
+        "Неверно: BearerTokenAuthenticationFilter проверяет JWT или OAuth2-токен из заголовка, а не форму логина.",
+        "Неверно: FilterSecurityInterceptor выполняет финальную проверку прав доступа, а не аутентификацию по паролю.",
+        "Верно: POST /login перехватывает UsernamePasswordAuthenticationFilter, AuthenticationManager вызывает DaoAuthenticationProvider, тот через UserDetailsService находит пользователя, а PasswordEncoder сверяет пароль."
+      ],
+      "explanation": "Сценарий form login: UsernamePasswordAuthenticationFilter перехватывает POST /login → AuthenticationManager вызывает DaoAuthenticationProvider → UserDetailsService ищет пользователя в БД → PasswordEncoder сверяет пароль (BCrypt, Argon2) → при успехе создаётся объект Authentication и сохраняется в SecurityContext.",
+      "sourceQuote": "UsernamePasswordAuthenticationFilter - перехватывает POST /login, проверяет логин/пароль."
+    },
+    {
+      "id": "t006-mcq-09",
+      "type": "mcq",
+      "concept": "уровни авторизации (URL, методный, ACL)",
+      "difficulty": "hard",
+      "questionType": "scenario",
+      "question": "Требование: редактировать статью может только её автор. На каком уровне авторизации это решается?",
+      "options": [
+        "На уровне доменных объектов — через AclService и PermissionEvaluator",
+        "На URL-уровне — правилом requestMatchers(\"/articles/**\").hasRole(\"AUTHOR\")",
+        "На методном уровне — достаточно аннотации @PreAuthorize(\"hasRole('AUTHOR')\")",
+        "На уровне фильтров — правило добавляют в FilterSecurityInterceptor вручную"
+      ],
+      "correctIndex": 0,
+      "rationales": [
+        "Верно: право зависит от конкретного доменного объекта (той самой статьи), а такой доступ описывают на уровне ACL — через AclService и PermissionEvaluator.",
+        "Неверно: правило по URL не различает, чья именно статья редактируется, — оно даёт доступ всем обладателям роли.",
+        "Неверно: проверка роли hasRole('AUTHOR') разрешит редактировать любую статью; привязка к конкретному объекту так не выражается.",
+        "Неверно: FilterSecurityInterceptor выполняет проверку по конфигурации URL-уровня, ручные правила по объектам туда не добавляют."
+      ],
+      "explanation": "Авторизация имеет три уровня: URL (в HttpSecurity через authorizeHttpRequests), методный (@PreAuthorize, где проверка может быть завязана и на бизнес-логику) и доступ на уровне доменных объектов — ACL через AclService и PermissionEvaluator. Право, зависящее от конкретного объекта, решается именно на уровне ACL.",
+      "sourceQuote": "Пример: только автор статьи может её редактировать."
+    },
+    {
+      "id": "t006-mcq-10",
+      "type": "mcq",
+      "concept": "цепочка фильтров и SecurityFilterChain",
+      "difficulty": "medium",
+      "questionType": "scenario",
+      "question": "В приложении /api/** защищается через JWT, а /login работает через форму логина. Чем описывают такое разделение?",
+      "options": [
+        "Одним AuthenticationManager, который сам выбирает способ проверки по пути",
+        "Двумя объектами SecurityContext — по одному на каждую группу адресов",
+        "Отдельными SecurityFilterChain — конфигурацией для своего набора URL",
+        "Настройкой DelegatingFilterProxy, где перечисляют пути и их фильтры"
+      ],
+      "correctIndex": 2,
+      "rationales": [
+        "Неверно: AuthenticationManager делегирует проверку провайдерам, но не решает, какая цепочка фильтров применяется к пути.",
+        "Неверно: SecurityContext хранит Authentication текущего пользователя и конфигурацией доступа не является.",
+        "Верно: SecurityFilterChain — конфигурация безопасности для конкретного набора URL, поэтому /api/** и /login описывают разными цепочками.",
+        "Неверно: DelegatingFilterProxy лишь передаёт управление из контейнера в Spring Security, списком цепочек управляет FilterChainProxy."
+      ],
+      "explanation": "SecurityFilterChain — конфигурация безопасности для конкретного набора URL: например, /api/** защищается через JWT, а /login работает через форму. Списком таких цепочек управляет FilterChainProxy.",
+      "sourceQuote": "SecurityFilterChain - конфигурация безопасности для конкретного набора URL"
     },
     {
       "id": "t006-open-01",
@@ -191,6 +263,22 @@
     {
       "id": "t006-open-02",
       "type": "open",
+      "concept": "жизненный цикл запроса в Spring Security",
+      "difficulty": "hard",
+      "questionType": "explain",
+      "question": "Опишите жизненный цикл запроса в Spring Security: как запрос проходит путь от клиента до контроллера и обратно, и какие фильтры при этом участвуют.",
+      "keyPoints": [
+        "клиент отправляет запрос, он попадает на сервер (Tomcat/Jetty/Undertow), контейнер запускает цепочку фильтров",
+        "среди фильтров есть DelegatingFilterProxy, который передаёт управление в Spring Security",
+        "запрос проходит серию фильтров: загрузка контекста из сессии, CSRF, аутентификация (форма, Basic, Bearer), анонимная роль, обработка ошибок безопасности, финальная проверка прав",
+        "при успешной аутентификации и авторизации запрос доходит до контроллера, а ответ снова идёт через фильтры (сохранение в сессию, заголовки безопасности)"
+      ],
+      "modelAnswer": "Клиент (браузер, мобильное приложение или другой сервис) отправляет запрос, он попадает на сервер (Tomcat, Jetty, Undertow), и контейнер запускает цепочку фильтров. Среди них есть DelegatingFilterProxy, который передаёт управление в Spring Security, где FilterChainProxy прогоняет запрос через серию фильтров: SecurityContextPersistenceFilter загружает данные о пользователе из сессии, CsrfFilter проверяет CSRF-токен, UsernamePasswordAuthenticationFilter обрабатывает POST /login, BasicAuthenticationFilter — заголовок Authorization: Basic, BearerTokenAuthenticationFilter — JWT или OAuth2-токен, AnonymousAuthenticationFilter присваивает анонимную роль незалогиненному пользователю, ExceptionTranslationFilter обрабатывает ошибки безопасности, а FilterSecurityInterceptor выполняет финальную проверку прав. Если аутентификация и авторизация успешны, запрос доходит до контроллера; ответ снова проходит через фильтры — часть данных сохраняется в сессию, добавляются заголовки безопасности.",
+      "sourceQuote": "Среди фильтров есть DelegatingFilterProxy, который передаёт управление в Spring Security."
+    },
+    {
+      "id": "t006-open-03",
+      "type": "open",
       "concept": "Stateful (сессии) vs Stateless (JWT)",
       "difficulty": "hard",
       "questionType": "tradeoff",
@@ -205,7 +293,7 @@
       "sourceQuote": "Сервер не хранит состояние в памяти."
     },
     {
-      "id": "t006-open-03",
+      "id": "t006-open-04",
       "type": "open",
       "concept": "уровни авторизации (URL, методный, ACL)",
       "difficulty": "medium",

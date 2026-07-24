@@ -1,0 +1,220 @@
+{
+  "topicId": 4,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 7, "fix": 3, "discard": 0 },
+  "topicNotes": "Ключи все верны — мои независимые ответы совпали со всеми семью, включая нетривиальные mcq-03 (умолчания LAZY/EAGER) и mcq-06 (IDENTITY vs SEQUENCE). Найден один содержательный дефект: в mcq-06 обоснование дистрактора склеено из чужой темы («это про Netty/БД неверное утверждение») — очевидный след копирования из задания про встроенные серверы; студенту такое обоснование ничего не объясняет. Ещё в mcq-01 обоснование последнего варианта апеллирует к источнику вместо разбора ошибки, а сам вариант («JPA — распределённый кэш, Hibernate — язык запросов») гротескный. Открытый open-01 просит описать «три слоя», перечисляя в скобках четыре пункта — ORM это подход, а не слой; формулировка исправлена. По покрытию не тронуты: состояния сущности (Transient/Managed/Detached/Removed — целая таблица источника), Open Session In View, блокировки @Version/PESSIMISTIC_WRITE, equals/hashCode по бизнес-ключу, батч-обработка.",
+  "reviews": [
+    {
+      "id": "t004-mcq-01",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "major",
+          "explanation": "Вариант 3 («JPA — распределённый кэш, а Hibernate — язык запросов») не является правдоподобным заблуждением: обе половины утверждения не соотносятся ни с одним понятием темы, вариант отсекается без знания предмета. Заменён на реальную путаницу — приписывание JPA роли Spring Data.",
+          "evidence": null
+        },
+        {
+          "code": "WEAK_RATIONALE",
+          "severity": "minor",
+          "explanation": "Обоснование варианта 3 («ни то, ни другое не описано так в источнике») не объясняет ошибку, а ссылается на отсутствие фразы в тексте — для подготовки бесполезно.",
+          "evidence": null
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант почти вдвое длиннее остальных (108 против 53-56).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t004-mcq-01",
+        "type": "mcq",
+        "concept": "три слоя: ORM, JPA, Hibernate, Spring Data JPA",
+        "difficulty": "easy",
+        "questionType": "comparison",
+        "question": "Как соотносятся JPA и Hibernate?",
+        "options": [
+          "JPA — стандарт (спецификация, сама ничего не выполняет), Hibernate — его реализация",
+          "Hibernate — стандарт ORM для Java, а JPA — его реализация, поставляемая со Spring",
+          "JPA и Hibernate — два названия одного продукта, различающиеся только вендором",
+          "JPA — надстройка, убирающая шаблонный код, а Hibernate — набор аннотаций стандарта"
+        ],
+        "correctIndex": 0,
+        "rationales": [
+          "Верно: JPA — стандарт ORM (спецификация, сама ничего не выполняет), Hibernate — его самая распространённая реализация.",
+          "Неверно: роли перепутаны — стандартом является JPA, а Hibernate его реализует; со Spring поставляется Spring Data JPA, и это тоже не реализация стандарта.",
+          "Неверно: это спецификация и её реализация, а не два имени одного продукта: JPA задаёт интерфейсы и аннотации, Hibernate генерирует по ним SQL.",
+          "Неверно: шаблонный код убирает Spring Data JPA, а аннотации @Entity/@Id принадлежат самому стандарту JPA; Hibernate — исполнитель этого стандарта."
+        ],
+        "explanation": "JPA — стандарт ORM для Java (спецификация, сама ничего не выполняет), а Hibernate — самая распространённая реализация JPA, которая генерирует SQL, ведёт кэш и отслеживает изменения.",
+        "sourceQuote": "Это спецификация - сама она ничего не выполняет."
+      }
+    },
+    {
+      "id": "t004-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант — самый длинный (95 против 46-63).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType «tradeoff» не соответствует содержанию: компромисс не обсуждается, задание спрашивает эффект readOnly = true (definition).",
+          "evidence": null
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант почти вдвое длиннее остальных (95 против 41-57).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-06",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "WEAK_RATIONALE",
+          "severity": "major",
+          "explanation": "Обоснование варианта 2 начинается словами «это про Netty/БД неверное утверждение» — Netty относится к теме встроенных веб-серверов и к генерации идентификаторов отношения не имеет. Обоснование бессвязно и в обучающей системе будет прочитано студентом как факт.",
+          "evidence": "Неверно: это про Netty/БД неверное утверждение; SEQUENCE как раз позволяет батчить."
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 120 знаков против 51-58 у дистракторов (в 2,07 раза длиннее второго по длине); ключ виден по форме.",
+          "evidence": null
+        },
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Вариант 2 («SEQUENCE работает только в MySQL») отсекается без знания темы и вдобавок вводит в заблуждение фактом вне источника. Заменён на правдоподобное заблуждение о том, что батчинг зависит только от hibernate.jdbc.batch_size.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t004-mcq-06",
+        "type": "mcq",
+        "concept": "генерация идентификаторов IDENTITY vs SEQUENCE",
+        "difficulty": "hard",
+        "questionType": "comparison",
+        "question": "Как выбор стратегии генерации id (IDENTITY vs SEQUENCE) влияет на пакетную вставку?",
+        "options": [
+          "IDENTITY и SEQUENCE поддерживают батчинг одинаково: способ получения id на него не влияет",
+          "SEQUENCE отключает батчинг из-за обращения к последовательности, а IDENTITY его включает",
+          "Батчинг определяется только настройкой hibernate.jdbc.batch_size и от стратегии id не зависит",
+          "IDENTITY отключает пакетную вставку, а SEQUENCE с оптимизаторами позволяет батчить"
+        ],
+        "correctIndex": 3,
+        "rationales": [
+          "Неверно: способ получения id как раз влияет — при IDENTITY Hibernate обязан забрать сгенерированный id сразу после каждого INSERT, и объединить вставки в пакет уже нельзя.",
+          "Неверно: роли перепутаны — обращения к последовательности как раз экономят оптимизаторы (pooled/pooled-lo), а батчинг отключает IDENTITY.",
+          "Неверно: hibernate.jdbc.batch_size включает батчинг, но при IDENTITY он всё равно не работает — стратегия генерации id имеет приоритет.",
+          "Верно: IDENTITY отключает пакетную вставку (Hibernate обязан получить id сразу после каждого INSERT), а SEQUENCE с оптимизаторами (pooled/pooled-lo) позволяет батчить."
+        ],
+        "explanation": "IDENTITY отключает пакетную вставку — Hibernate обязан получить сгенерированный id сразу после каждого INSERT; SEQUENCE с оптимизаторами (pooled/pooled-lo) позволяет батчить и экономит обращения.",
+        "sourceQuote": "IDENTITY отключает пакетную вставку"
+      }
+    },
+    {
+      "id": "t004-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант — самый длинный (110 против 48-66).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-open-01",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "UNCLEAR",
+          "severity": "minor",
+          "explanation": "Вопрос просит описать «три слоя», но в скобках перечисляет четыре пункта. По источнику слоёв действительно три (JPA задаёт стандарт, Hibernate исполняет, Spring Data убирает шаблон), а ORM — это подход, а не слой. Студент, честно считающий пункты, получает противоречие. Правка точечная: уточнена формулировка вопроса, keyPoints и modelAnswer не меняются.",
+          "evidence": "три слоя делят ответственность - JPA задаёт стандарт, Hibernate его исполняет, Spring Data убирает шаблонный код"
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t004-open-01",
+        "type": "open",
+        "concept": "три слоя: ORM, JPA, Hibernate, Spring Data JPA",
+        "difficulty": "medium",
+        "questionType": "explain",
+        "question": "Что такое ORM как подход и какие три слоя доступа к БД (JPA, Hibernate, Spring Data JPA) на нём строятся? Как они делят ответственность?",
+        "keyPoints": [
+          "ORM — подход: объекты предметной области отображаются на строки таблиц, чтобы не писать SQL вручную",
+          "JPA — стандарт ORM для Java (интерфейсы и аннотации @Entity, @Id, EntityManager); спецификация, сама ничего не выполняет",
+          "Hibernate — самая распространённая реализация JPA: генерирует SQL, ведёт кэш, отслеживает изменения сущностей",
+          "Spring Data JPA — надстройка над JPA, убирающая шаблонный код и превращающая интерфейс-репозиторий в готовую реализацию"
+        ],
+        "modelAnswer": "ORM — это подход, при котором объекты предметной области отображаются на строки таблиц, чтобы работать с данными как с объектами, а не писать SQL вручную. JPA — стандарт ORM для Java: набор интерфейсов и аннотаций (@Entity, @Id, EntityManager); это спецификация, которая сама ничего не выполняет. Hibernate — самая распространённая реализация JPA: генерирует SQL, ведёт кэш и отслеживает изменения сущностей. Spring Data JPA — надстройка Spring над JPA: убирает шаблонный код доступа к данным, превращая интерфейс-репозиторий в готовую реализацию. Итог: JPA задаёт стандарт, Hibernate его исполняет, Spring Data убирает шаблон.",
+        "sourceQuote": "Hibernate - самая распространённая реализация JPA"
+      }
+    },
+    {
+      "id": "t004-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

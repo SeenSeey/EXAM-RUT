@@ -1,0 +1,57 @@
+{
+  "topicId": 5,
+  "reviewVersion": "1.0",
+  "reviewedCount": 6,
+  "summary": { "keep": 6, "fix": 0, "discard": 0 },
+  "topicNotes": "Устойчивость раскрыта корректно: определение, практика многоступенчатой сортировки, механизм устойчивости слияния и несравнительных сортировок. В mcq-03 из четырёх вариантов ровно один (выбором) неустойчив — MULTIPLE_CORRECT нет. sourceQuote в mcq-03 взят из таблицы раздела 4, но дословен и подтверждает ответ. Дефектов не найдено.",
+  "reviews": [
+    {
+      "id": "t005-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

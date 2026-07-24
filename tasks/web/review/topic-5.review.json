@@ -1,0 +1,168 @@
+{
+  "topicId": 5,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 8, "fix": 2, "discard": 0 },
+  "topicNotes": "Содержательно тема сделана аккуратно: все семь ключей совпали с моими независимыми ответами, включая mcq-02 про идемпотентность (POST — единственный неидемпотентный из четырёх, GET/PUT/DELETE идемпотентны по источнику и по HTTP), отрицание в вопросе выделено заглавными. Правки — только по форме: в mcq-01 и mcq-07 верный вариант в 1,8-2,1 раза длиннее дистракторов. Ослабляют задания и «инородные» дистракторы: кэш второго уровня Hibernate в вопросе про ResponseEntity и «UI, который сам пишет контроллеры» в вопросе про OAS — они из другой предметной области и отсекаются без знания REST. По покрытию не проверены: методы HEAD/OPTIONS/QUERY, различие OpenAPI и Swagger как экосистемы инструментов, springdoc и путь /v3/api-docs, антипаттерн «всегда 200 OK», отдача JPA-сущностей наружу.",
+  "reviews": [
+    {
+      "id": "t005-mcq-01",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 109 знаков против 41-61 у дистракторов (в 1,8 раза длиннее второго по длине) и единственный содержит развёрнутую формулировку. В fixedQuestion длины выровнены, содержание и ключ не изменились.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t005-mcq-01",
+        "type": "mcq",
+        "concept": "принципы REST (ресурсы/URI, единый интерфейс, stateless, разделение клиента и сервера)",
+        "difficulty": "easy",
+        "questionType": "definition",
+        "question": "Что означает принцип stateless (отсутствие состояния на сервере) в REST?",
+        "options": [
+          "Сервер хранит состояние диалога с клиентом в HttpSession между запросами",
+          "Всё состояние хранит сервер, а клиент не имеет права хранить данные",
+          "Каждый ресурс обязан иметь ровно один URI и ровно один HTTP-метод",
+          "Сервер не обязан хранить сессию диалога: каждый запрос самодостаточен"
+        ],
+        "correctIndex": 3,
+        "rationales": [
+          "Неверно: хранение сессии диалога на сервере — это как раз stateful, противоположность stateless.",
+          "Неверно: stateless не о том, что клиент лишён состояния; наоборот, состояние переносится на сторону клиента.",
+          "Неверно: это принцип адресации ресурсов, а не отсутствие состояния; один ресурс обслуживают разными методами.",
+          "Верно: при stateless сервер не обязан хранить сессию диалога, а каждый запрос содержит всё необходимое для обработки."
+        ],
+        "explanation": "Stateless означает, что между запросами сервер не обязан хранить «сессию диалога» с клиентом: каждый запрос содержит всё необходимое для обработки.",
+        "sourceQuote": "Каждый запрос содержит всё необходимое для обработки."
+      }
+    },
+    {
+      "id": "t005-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант самый длинный (91 против 48-62).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Вариант 2 («чтобы включить кэш второго уровня Hibernate») из другой предметной области: связи между типом возвращаемого значения контроллера и L2-кэшем нет настолько очевидно, что вариант не конкурирует.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Вариант 3 («интерактивный UI, который сам пишет контроллеры») гротескный: генерация контроллеров интерфейсом Swagger UI не является правдоподобным заблуждением. Правдоподобнее было бы спутать OAS со Swagger UI или с генератором клиентского кода.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-07",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 157 знаков против 50-76 у дистракторов (в 2,07 раза длиннее второго по длине). Единственный вариант, где вообще раскрыты оба подхода, — выбирается по объёму. В fixedQuestion все четыре варианта приведены к сопоставимой длине.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t005-mcq-07",
+        "type": "mcq",
+        "concept": "code-first vs design-first",
+        "difficulty": "hard",
+        "questionType": "comparison",
+        "question": "Чем отличаются подходы code-first и design-first к появлению спецификации API?",
+        "options": [
+          "code-first фиксирует контракт заранее, а design-first генерирует его из кода после реализации",
+          "Оба подхода генерируют серверный код прямо из Swagger UI, отдельная спецификация не нужна",
+          "code-first: документ генерируют из готового кода; design-first: сначала фиксируют контракт",
+          "design-first обходится без OpenAPI-контракта: команды договариваются об API в свободной форме"
+        ],
+        "correctIndex": 2,
+        "rationales": [
+          "Неверно: роли перепутаны — контракт заранее фиксирует design-first, а из кода документ генерирует code-first.",
+          "Неверно: спецификация присутствует в обоих подходах, различие лишь в том, что появляется раньше — код или контракт.",
+          "Верно: code-first генерирует документ из кода (как springdoc), design-first сначала фиксирует контракт, по которому реализуют сервер и клиентов.",
+          "Неверно: design-first как раз строится вокруг OpenAPI-контракта — он становится точкой согласования до начала разработки."
+        ],
+        "explanation": "При code-first сначала пишут контроллеры и модели, а OpenAPI-документ генерируют из кода (как springdoc). При design-first сначала согласуют и фиксируют OpenAPI-контракт, а сервер и клиенты реализуют уже по нему.",
+        "sourceQuote": "При подходе code-first сначала пишут контроллеры и модели, а OpenAPI-документ генерируют из кода"
+      }
+    },
+    {
+      "id": "t005-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

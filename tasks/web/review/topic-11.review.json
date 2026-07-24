@@ -1,0 +1,245 @@
+{
+  "topicId": 11,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 6, "fix": 4, "discard": 0 },
+  "topicNotes": "Все семь ключей верны, фактических ошибок нет. Главная претензия к теме — не отдельные вопросы, а разброс сложности: mcq-07 («Через какой инструмент в Spring Boot собирают метрики?» с вариантами SLF4J, Jackson, Testcontainers) не проверяет ничего — ни один из дистракторов не имеет отношения к метрикам, и на него отвечают, просто узнав слово Micrometer. Он помечен fix и переформулирован так, чтобы различать Micrometer (API метрик) и Micrometer Tracing (трассировка) — это реальное различие, которое студенты путают. Формально: 7/7 MCQ имеют верный вариант самым длинным, в mcq-02 перекос 2,74, в mcq-05 — 2,26, в mcq-07 — 2,50. Последовательность correctIndex — [2,3,0,1,2,3,0], точный цикл с периодом 4 (см. общее замечание к теме 9). Отдельно: тема сильно пересекается с темой 10 по логированию (SLF4J, Logback, уровни) — это идёт от самого источника, где разделы 10 и 11 частично дублируют друг друга. Разграничение сейчас разумное: в теме 10 логирование даётся со стороны кода (фасад, плейсхолдеры, MDC), в теме 11 — со стороны эксплуатации (устройство Logback, Actuator, метрики, трассировка), так что переписывать не нужно. По покрытию не проверено ценное различие logback-spring.xml против logback.xml (обычный logback.xml загружается раньше и не видит часть Spring-конфигурации) и разделение системных и бизнес-метрик — рекомендую добавить по вопросу на каждое.",
+  "reviews": [
+    {
+      "id": "t011-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос 1,62 (110 против 68) — в допустимых пределах. Дистрактор 3 с перепутанными ролями сделан правильно и заставляет читать формулировку до конца.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-02",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант 96 знаков против 35/31/28 — в 2,74 раза длиннее второго по длине.",
+          "evidence": null
+        },
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Дистракторы взяты из чужих тем («библиотека сериализации JSON», «инструмент сборки Docker-образа») и не выглядят правдоподобными описаниями модуля Spring Boot. В fixedQuestion все четыре варианта оформлены как «Модуль …» и описывают правдоподобные, но разные подсистемы Boot, так что выбирать приходится по смыслу.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t011-mcq-02",
+        "type": "mcq",
+        "concept": "Spring Boot Actuator (liveness/readiness/health)",
+        "difficulty": "medium",
+        "questionType": "definition",
+        "question": "Что такое Spring Boot Actuator?",
+        "options": [
+          "Модуль автоконфигурации стартеров и подбора версий зависимостей",
+          "Модуль сбора и агрегации логов приложения в едином хранилище",
+          "Модуль сборки исполняемого jar и OCI-образа приложения",
+          "Модуль эксплуатационных эндпоинтов: готовность, метрики, сведения об окружении"
+        ],
+        "correctIndex": 3,
+        "rationales": [
+          "Неверно: автоконфигурацией и согласованием версий занимаются сам Spring Boot и его BOM.",
+          "Неверно: сбором и агрегацией логов занимаются внешние системы (ELK, Loki).",
+          "Неверно: сборкой jar и образа занимаются плагины Boot и buildpacks.",
+          "Верно: Actuator — модуль эксплуатационных эндпоинтов (готовность приложения, метрики, иногда сведения об окружении и конфигурации); подключается стартером spring-boot-starter-actuator."
+        ],
+        "explanation": "Spring Boot Actuator — модуль эксплуатационных эндпоинтов: готовность приложения, метрики, иногда сведения об окружении и конфигурации; подключается стартером spring-boot-starter-actuator.",
+        "sourceQuote": "Spring Boot Actuator - модуль эксплуатационных эндпоинтов: готовность приложения, метрики"
+      }
+    },
+    {
+      "id": "t011-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос 1,81 (125 против 69) — на границе, но дистракторы правдоподобны, а вариант с перепутанными ролями заставляет действительно различать liveness и readiness. Оставляю.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-04",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант 119 знаков против 58/48/45 — в 2,05 раза длиннее второго по длине, и он единственный описывает обе роли (кто хранит и кто рисует). В fixedQuestion все варианты описывают обе роли и выровнены до 65-88.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t011-mcq-04",
+        "type": "mcq",
+        "concept": "Prometheus scrape и Grafana",
+        "difficulty": "medium",
+        "questionType": "scenario",
+        "question": "Как Prometheus и Grafana работают с метриками приложения?",
+        "options": [
+          "Приложение само пушит метрики напрямую в Grafana, минуя хранилище",
+          "Prometheus периодически забирает (scrape) метрики и хранит ряды, Grafana строит дашборды",
+          "Grafana хранит временные ряды метрик, а Prometheus рисует по ним графики",
+          "Actuator пишет метрики в лог-файл, откуда Grafana читает их напрямую"
+        ],
+        "correctIndex": 1,
+        "rationales": [
+          "Неверно: приложение только отдаёт метрики на endpoint, забирает их Prometheus; в Grafana ничего не пушится.",
+          "Верно: Prometheus сам периодически забирает (scrape) метрики с endpoint вроде /actuator/prometheus и хранит временные ряды, а Grafana строит по ним дашборды и алерты.",
+          "Неверно: роли перепутаны — хранит временные ряды Prometheus, рисует Grafana.",
+          "Неверно: метрики отдаются на HTTP-endpoint в формате Prometheus, а не через лог-файл."
+        ],
+        "explanation": "Если на classpath есть micrometer-registry-prometheus, Actuator отдаёт метрики на endpoint вроде /actuator/prometheus; Prometheus периодически сам забирает (scrape) их и хранит временные ряды, а Grafana строит дашборды и алерты.",
+        "sourceQuote": "Prometheus периодически сам забирает (scrape) эти данные и хранит временные ряды."
+      }
+    },
+    {
+      "id": "t011-mcq-05",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант 95 знаков против 42/38/32 — в 2,26 раза длиннее второго по длине. Содержательно вопрос один из лучших в теме: дистракторы Trace, traceId и Prometheus проверяют ровно ту путаницу понятий, ради которой он задан, — поэтому правка чисто косметическая, все варианты приведены к 58-61 знаку, смысл сохранён.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t011-mcq-05",
+        "type": "mcq",
+        "concept": "распределённая трассировка (Trace/Span/traceId)",
+        "difficulty": "medium",
+        "questionType": "definition",
+        "question": "Что такое Span в распределённой трассировке?",
+        "options": [
+          "Весь путь одного запроса через цепочку из нескольких сервисов",
+          "Общий идентификатор пути, одинаковый во всех шагах запроса",
+          "Один логический шаг внутри trace: обработка запроса, вызов БД",
+          "Хранилище временных рядов, куда складывают метрики и трейсы"
+        ],
+        "correctIndex": 2,
+        "rationales": [
+          "Неверно: весь путь запроса через несколько сервисов — это Trace, а не Span.",
+          "Неверно: общий идентификатор всего пути — это traceId.",
+          "Верно: Span — один логический шаг внутри trace: обработка HTTP-запроса, вызов БД или обращение к другому сервису; у дочернего span'а есть ссылка на родителя.",
+          "Неверно: временные ряды хранит Prometheus; Span — понятие трассировки, а не хранилище."
+        ],
+        "explanation": "Span — один логический шаг внутри trace: обработка HTTP-запроса, вызов БД или обращение к другому сервису; у дочернего span'а есть ссылка на родителя.",
+        "sourceQuote": "один логический шаг внутри trace: обработка HTTP-запроса, вызов БД, обращение к другому сервису"
+      }
+    },
+    {
+      "id": "t011-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Перекос по длине небольшой (1,36), но есть другой намёк: три дистрактора построены на абсолютах — «Никакие», «Только /actuator/health», «Только эндпоинт метрик», — а варианты с «никакие/только» в тестах почти всегда неверны, и опытный тестируемый это знает. Содержание при этом верное и вопрос полезный, поэтому оставляю; при следующей правке стоит переписать хотя бы один дистрактор без абсолютной формы, например «threaddump и heapdump — они дают доступ к содержимому памяти».",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-07",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "major",
+          "explanation": "Вопрос ничего не проверяет: дистракторы SLF4J, Jackson и Testcontainers не имеют отношения к сбору метрик, и выбрать верный ответ можно, просто узнав слово Micrometer, без всякого понимания. В fixedQuestion вопрос переформулирован на роль Micrometer, а дистракторы взяты из соседних, реально путаемых ролей: SLF4J как фасад логирования, Prometheus/Grafana как хранение и отрисовка, Micrometer Tracing как трассировка. Ключ по смыслу тот же.",
+          "evidence": null
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Дополнительно: верный вариант единственный имел пояснительную скобку «(единый API: MeterRegistry, Counter, Timer)», которой нет у дистракторов — 60 знаков против 24/20/17.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t011-mcq-07",
+        "type": "mcq",
+        "concept": "метрики и Micrometer",
+        "difficulty": "medium",
+        "questionType": "definition",
+        "question": "Какую роль в Spring Boot играет Micrometer?",
+        "options": [
+          "Даёт единый API метрик, а систему хранения выбирает подключённый registry",
+          "Даёт единый API логирования, а реализацию подключают отдельной зависимостью",
+          "Сам хранит временные ряды метрик и строит по ним графики и алерты",
+          "Отправляет готовые трейсы во внешние системы просмотра — Jaeger или Zipkin"
+        ],
+        "correctIndex": 0,
+        "rationales": [
+          "Верно: код и автоконфигурация Spring работают с единым API Micrometer (MeterRegistry, Counter, Timer), а куда передавать данные дальше, решает подключённый registry — адаптер к Prometheus, InfluxDB, CloudWatch и т.д.",
+          "Неверно: единый API логирования — это фасад SLF4J, а не Micrometer.",
+          "Неверно: временные ряды хранит Prometheus, а графики и алерты строит Grafana.",
+          "Неверно: за трассировку отвечает отдельный проект Micrometer Tracing, а не Micrometer как API метрик."
+        ],
+        "explanation": "В Spring Boot метрики собирают через Micrometer: код и автоконфигурация работают с единым API (MeterRegistry, Counter, Timer), а куда передавать данные дальше, решает подключённый registry — адаптер к конкретной системе хранения (Prometheus, InfluxDB, CloudWatch).",
+        "sourceQuote": "Kод и автоконфигурация Spring работают с единым API (MeterRegistry, Counter, Timer и др.), а куда передавать дальше решает подключённый registry"
+      }
+    },
+    {
+      "id": "t011-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "minor",
+          "explanation": "Первый keyPoint («Trace — весь путь…, Span — один логический шаг») дословно повторяет mcq-05. Остальные три пункта (traceId/spanId, передача контекста в заголовках, Micrometer Tracing поверх OpenTelemetry) уникальны и оправдывают задание, поэтому оставляю.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

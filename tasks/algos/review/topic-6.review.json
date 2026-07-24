@@ -1,0 +1,64 @@
+{
+  "topicId": 6,
+  "reviewVersion": "1.0",
+  "reviewedCount": 6,
+  "summary": { "keep": 6, "fix": 0, "discard": 0 },
+  "topicNotes": "Неустойчивые сортировки (выбором, быстрая, пирамидальная, introsort) разобраны верно, ключи совпали с независимым ответом, sourceQuote дословны. Единственное замечание — косметический перекос длины варианта в mcq-01, не мешающий подготовке. Дефектов уровня выше minor не найдено.",
+  "reviews": [
+    {
+      "id": "t006-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант заметно длиннее и снабжён хеджем «Как правило потому, что» и скобочным пояснением, тогда как три дистрактора — короткие «Потому что…»; тест-искушённый студент может выбрать по форме. Не критично: сам вопрос и ключ корректны.",
+          "evidence": "переставляет далёкие друг от друга элементы (ради памяти O(1) или скорости)"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "topicId": 7,
+  "reviewVersion": "1.0",
+  "reviewedCount": 6,
+  "summary": { "keep": 6, "fix": 0, "discard": 0 },
+  "topicNotes": "Непрактичные сортировки (Bogosort, Gnome, Bubble, Stooge, Slow) покрыты корректно. Худшая сложность Bogosort как «бесконечная» и учебная непрактичность Bubble Sort соответствуют источнику. Ключи совпали с независимым ответом, sourceQuote дословны. Дефектов не найдено.",
+  "reviews": [
+    {
+      "id": "t007-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

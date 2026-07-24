@@ -1,0 +1,117 @@
+{
+  "topicId": 1,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 10, "fix": 0, "discard": 0 },
+  "topicNotes": "Все семь ключей совпали с моими независимыми ответами, sourceQuote дословны, дистракторы в основном правдоподобны. Главная системная претензия — форма: в трёх заданиях верный вариант заметно длиннее и детальнее остальных (это часть общей проблемы всего раздела web: в 45 из 54 MCQ верный ответ — самый длинный вариант, что позволяет угадывать без знания темы). По покрытию: не проверены хуки жизненного цикла (@PostConstruct/@PreDestroy, InitializingBean), сеттерное внедрение как способ для опциональных зависимостей, циклические зависимости (заявлены в conceptsIdentified, но задания нет), Aware-интерфейсы и FactoryBean. Дефектов уровня выше minor не найдено.",
+  "reviews": [
+    {
+      "id": "t001-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант (112 знаков) в полтора раза длиннее и детальнее трёх коротких дистракторов (71/53/66). Содержание корректно, дефект косметический, но в масштабе всего раздела длина стабильно указывает на ключ.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант (117 знаков) вдвое длиннее дистракторов (50/53/73) и единственный содержит перечисление из источника.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант (124 знака) заметно длиннее остальных (75/60/66); частично оправдано двухчастностью сравнения BFPP/BPP.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Вариант 2 («Обязательно перейти на полевое внедрение») отсекается без знания темы: связь между способом внедрения и неоднозначностью типа отсутствует настолько явно, что вариант не конкурирует. Вариант 3 (scope prototype) ослаблен по той же причине, хотя это менее заметно.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

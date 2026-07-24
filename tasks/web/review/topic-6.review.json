@@ -1,0 +1,153 @@
+{
+  "topicId": 6,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 9, "fix": 1, "discard": 0 },
+  "topicNotes": "Ключи верны: все семь моих независимых ответов совпали. Главная претензия к теме — не отдельные задания, а баланс. Тема самая объёмная в разделе (архитектура фильтров, сценарии аутентификации, три уровня авторизации, жизненный цикл запроса, stateful/stateless), но три задания из десяти (mcq-06, mcq-07, open-02) разбирают одну и ту же таблицу «Stateful vs Stateless», причём open-02 полностью поглощает содержание обоих MCQ. При этом совсем не проверены: состав цепочки фильтров (UsernamePasswordAuthenticationFilter, ExceptionTranslationFilter, FilterSecurityInterceptor и др.), сценарий form login по шагам, HTTP Basic, OAuth2/OpenID Connect, защита от CSRF/session fixation/clickjacking, роль FilterChainProxy и SecurityFilterChain. Рекомендую заменить одно из заданий по stateful/stateless на цепочку фильтров или защиту от атак. Из локального: mcq-05 и mcq-06 содержат по гротескному дистрактору.",
+  "reviews": [
+    {
+      "id": "t006-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант — самый длинный (121 против 64-73) и единственный содержит оба пояснения в скобках.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 3,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант заметно длиннее (86 против 42-52) — он единственный содержит противопоставление «а не в ThreadLocal».",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Варианты 1 («login.password.role») и 3 («cookie.session.token») отсекаются без знания JWT — это произвольные наборы слов в формате токена. Реальную конкуренцию составляет только вариант 2 (iss.aud.exp), поэтому задание фактически бинарное.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Вариант 3 («Совсем невозможно масштабировать на несколько серверов») гротескно преувеличен и отсекается без знания темы; при этом он дублирует по смыслу вариант 1 про сложность масштабирования, только в абсолютной форме.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-mcq-07",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — 132 знака против 54-74 у дистракторов (в 1,78 раза длиннее второго по длине) и единственный содержит два примера после двоеточия. В fixedQuestion длины выровнены: пример оставлен один, дистракторы дополнены.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t006-mcq-07",
+        "type": "mcq",
+        "concept": "Stateful (сессии) vs Stateless (JWT)",
+        "difficulty": "medium",
+        "questionType": "scenario",
+        "question": "В каком случае предпочтителен stateful-подход (серверные сессии)?",
+        "options": [
+          "Когда нужна максимальная горизонтальная масштабируемость без общего хранилища",
+          "Когда важен контроль: блокировка пользователя должна прекращать доступ немедленно",
+          "Когда сервер принципиально не должен хранить состояние между запросами клиента",
+          "Когда сервис разворачивают в Kubernetes и нужна минимальная задержка на проверку"
+        ],
+        "correctIndex": 1,
+        "rationales": [
+          "Неверно: масштабируемость без центрального хранилища сессий — довод в пользу stateless.",
+          "Верно: stateful выбирают, когда важны контроль и мгновенное управление сессиями — при смене пароля все сессии инвалидируются, при блокировке доступ прекращается сразу.",
+          "Неверно: отказ от хранения состояния на сервере — это определение stateless.",
+          "Неверно: лёгкое масштабирование в Kubernetes и минимальная задержка перечислены как плюсы stateless."
+        ],
+        "explanation": "Stateful используют, когда важны контроль, безопасность и возможность мгновенно управлять сессиями: при смене пароля все сессии сразу инвалидируются, а при блокировке пользователя доступ прекращается немедленно.",
+        "sourceQuote": "все сессии сразу инвалидируются."
+      }
+    },
+    {
+      "id": "t006-open-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-open-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "minor",
+          "explanation": "Рубрика полностью покрывает содержание t006-mcq-06 (минусы stateless) и t006-mcq-07 (когда выбирать stateful). Само задание корректно и как открытый вопрос сильнее обоих MCQ, но втроём они занимают треть темы одним материалом.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t006-open-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}
