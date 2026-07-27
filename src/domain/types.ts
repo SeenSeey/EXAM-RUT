@@ -11,7 +11,7 @@ export interface McqQuestion extends QuestionBase {
   type: 'mcq'; options: string[]; correctIndex: number; rationales?: string[]; explanation: string;
 }
 export interface OpenQuestion extends QuestionBase {
-  type: 'open'; keyPoints: string[]; modelAnswer: string;
+  type: 'open'; keyPoints: string[]; answerPlan?: string[]; modelAnswer: string;
 }
 export type Question = McqQuestion | OpenQuestion;
 export interface TopicFile { topicId: number; topicTitle: string; promptVersion?: string; conceptsIdentified?: string[]; questions: Question[] }
@@ -20,7 +20,7 @@ export interface QuestionRef { key: string; topicKey: string; questionId: string
 
 export interface TrackDefinition {
   id: string; title: string; shortTitle: string; description: string; allowedQuestionTypes: QuestionKind[];
-  topicMode: TopicMode; icon: string;
+  topicMode: TopicMode; icon: string; categories?: string[];
 }
 export interface McqAnswer { kind: 'mcq'; selectedIndex: number; correct: boolean; answeredAt: string }
 export interface OpenAnswer { kind: 'open'; text: string; skipped: boolean; rating?: OpenRating; answeredAt: string }

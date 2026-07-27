@@ -10,7 +10,7 @@ const mcq = base.extend({
 }).superRefine((question, ctx) => {
   if (question.correctIndex >= question.options.length) ctx.addIssue({ code: 'custom', path: ['correctIndex'], message: 'correctIndex выходит за границы options' });
 });
-const open = base.extend({ type: z.literal('open'), keyPoints: z.array(z.string()), modelAnswer: z.string().min(1) });
+const open = base.extend({ type: z.literal('open'), keyPoints: z.array(z.string()), answerPlan: z.array(z.string().min(1)).optional(), modelAnswer: z.string().min(1) });
 export const topicFileSchema = z.object({
   topicId: z.number().int().nonnegative(), topicTitle: z.string().min(1), promptVersion: z.string().optional(),
   conceptsIdentified: z.array(z.string()).optional(), questions: z.array(z.union([mcq, open])).min(1)

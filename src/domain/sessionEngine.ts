@@ -12,7 +12,8 @@ export function allQuestions(topics: readonly Topic[]): QuestionWithKey[] {
   return topics.flatMap((topic) => topic.questions.map((question) => ({ key: `${topic.key}:${question.id}`, topicKey: topic.key, question })));
 }
 export function filterPool(topics: readonly Topic[], track: TrackDefinition, topicKey?: string): QuestionWithKey[] {
-  const selected = track.topicMode === 'selected' ? topics.filter((topic) => topic.category === topicKey || topic.key === topicKey) : topics;
+  const inTrack = track.categories?.length ? topics.filter((topic) => track.categories?.includes(topic.category)) : topics;
+  const selected = track.topicMode === 'selected' ? inTrack.filter((topic) => topic.category === topicKey || topic.key === topicKey) : inTrack;
   return allQuestions(selected).filter(({ question }) => track.allowedQuestionTypes.includes(question.type));
 }
 export function balancedShuffle(pool: readonly QuestionWithKey[], types: QuestionKind[], random: Random = Math.random): QuestionWithKey[] {
