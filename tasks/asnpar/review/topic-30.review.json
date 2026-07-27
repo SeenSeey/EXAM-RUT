@@ -1,0 +1,27 @@
+{
+  "topicId": 30,
+  "reviewVersion": "1.0",
+  "reviewedCount": 9,
+  "summary": { "keep": 9, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, тема покрыта полно, mcq-07 (транзакция привязана к соединению) и mcq-06 (ограничение конкурентности размером пула) — сильные задания, проверяющие практические выводы источника, а не определения. Внешняя проблема: источник пересекается с темами 14 и 16, поэтому mcq-02 (C10K и событийный цикл) почти дублирует t014-mcq-04 и t014-mcq-05, а объяснение про виртуальные потоки в open-01 — материал темы 16. Формально: все семь верных ответов на позиции 1; в четырёх mcq верный вариант вдвое-втрое длиннее дистракторов.",
+  "reviews": [
+    { "id": "t030-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t030-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Дублирует t014-mcq-04 (почему «поток на соединение» не масштабируется, C10K) и частично t014-mcq-05 (мультиплексирование как решение).", "evidence": "модель «поток на соединение» не масштабируется на десятки тысяч клиентов" },
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «10 КБ данных, решается сжатием» и «невозможность шифровать 10000 соединений, решается TLS» — выдуманные расшифровки аббревиатуры, отсекаемые без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t030-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t030-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пересекается с open-01: тот же перечень двух способов, только там его требуется развернуть.", "evidence": "Есть два способа сделать доступ к БД масштабируемым:" }
+    ], "fixedQuestion": null },
+    { "id": "t030-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Тот же тезис, что и t018-mcq-08 (блокирующий вызов замораживает событийный цикл), только на примере драйвера БД.", "evidence": "замораживает весь однопоточный цикл - встают все соединения" }
+    ], "fixedQuestion": null },
+    { "id": "t030-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 150 симв. против 67 — единственный отвечает на обе части двусоставного вопроса.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t030-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t030-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t030-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

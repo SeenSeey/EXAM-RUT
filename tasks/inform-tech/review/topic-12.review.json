@@ -1,0 +1,20 @@
+{
+  "topicId": 12,
+  "reviewVersion": "1.0",
+  "reviewedCount": 5,
+  "summary": { "keep": 5, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, mcq-01 и mcq-04 сделаны правильно (зеркальный дистрактор и подмена протокола интерфейсом/стеком). Пробелы покрытия при насыщенном источнике: топологии (шина, звезда, кольцо, дерево, смешанная), порядок семи уровней OSI, распределение протоколов по уровням TCP/IP (Ethernet, IP, TCP/UDP, HTTP/DNS) и сетевые технологии Ethernet/Wi-Fi не проверяются ни одним заданием — при том что mcq-03 спрашивает только число уровней, а не их содержание.",
+  "reviews": [
+    { "id": "t012-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t012-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "UNGROUNDED", "severity": "minor", "explanation": "Дистрактор 0 (PAN) вводит класс сетей, которого в источнике нет; rationale это честно оговаривает, но задание опирается на общее знание, а не на текст.", "evidence": "по географии: LAN (локальные), MAN (городские), WAN (глобальные)" }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "FILLER", "severity": "minor", "explanation": "Проверяется только пара чисел (7 и 4), а не понимание уровней; difficulty hard для запоминания двух цифр завышена.", "evidence": "Модель OSI (7 уровней)" }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t012-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "UNGROUNDED", "severity": "minor", "explanation": "keyPoint «одноранговая сеть — сеть равноправных узлов без выделенного сервера» вводит определение, которого в источнике нет: там одноранговые сети только названы в классификации по управлению. Факт верный, но за пределами текста.", "evidence": "по управлению: «клиент-сервер», одноранговые" }
+    ], "fixedQuestion": null }
+  ]
+}

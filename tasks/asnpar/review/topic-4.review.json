@@ -1,0 +1,94 @@
+{
+  "topicId": 4,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Все четыре стратегии из источника покрыты, ключи верны, цитаты дословны. Дистракторы построены удачно — это соседние стратегии из той же темы, поэтому задания действительно проверяют различение, а не общую эрудицию. Минус общий для темы: верный вариант почти всегда несёт дописанное обоснование («…, снимая нагрузку», «…; она даёт естественную балансировку») и потому заметно длиннее дистракторов.",
+  "reviews": [
+    {
+      "id": "t004-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 103 симв. против 43 у самого длинного дистрактора: к ответу дописано обоснование «снимая нагрузку с единственного хозяина и лучше масштабируясь», тогда как дистракторы — короткие назывные фразы.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант единственный содержит вторую часть с обоснованием («она даёт естественную балансировку нагрузки») и вдвое длиннее остальных.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "AMBIGUOUS",
+          "severity": "minor",
+          "explanation": "Дистрактор 0 (пул потоков с общей очередью) сам по себе тоже не имеет единого управляющего, и подготовленный студент может счесть его децентрализованным. Спасает то, что источник относит общую очередь задач к стратегии «портфель задач», а децентрализованную иллюстрирует именно круговым конвейером; rationale это и указывает.",
+          "evidence": "Задачи помещаются в общий «портфель», разделяемый несколькими рабочими процессами"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t004-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

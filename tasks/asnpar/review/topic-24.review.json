@@ -1,0 +1,25 @@
+{
+  "topicId": 24,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, mcq-05 (false sharing) и open-01 — лучшие задания темы: материал про кэш-линии в разделе больше нигде не встречается и угадать его нельзя. Главная проблема темы внешняя: источник дублирует тему 7 («Проблемы взаимодействия процессов») и частично тему 3, поэтому mcq-02 (count++), mcq-03 (livelock против deadlock), mcq-04 (starvation) и mcq-06 (иерархия блокировок) почти совпадают с t007-mcq-02, t007-mcq-05, t007-open-03 и t011-mcq-06. При сборке билета эти темы нельзя ставить рядом. Формально: правильный ответ во всех шести mcq на позиции 1, ни одного easy.",
+  "reviews": [
+    { "id": "t024-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы 2 («слишком медленный язык») и 3 («отсутствие графического интерфейса») не являются правдоподобными заблуждениями и отсекаются мгновенно.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t024-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Совпадает по содержанию с t007-mcq-02 (неатомарность инкремента, потерянное увеличение) — тот же механизм, те же три шага, отличается только имя переменной.", "evidence": "Операция count++ не является атомарной." }
+    ], "fixedQuestion": null },
+    { "id": "t024-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Дублирует t007-mcq-05 и частично t003-mcq-02: во всех трёх проверяется одно различение livelock против deadlock/starvation.", "evidence": "Livelock: В отличие от дедлока, потоки не заморожены." }
+    ], "fixedQuestion": null },
+    { "id": "t024-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Совпадает с t011-mcq-06 (единый глобальный порядок захвата как средство против deadlock), отличается формулировкой вопроса.", "evidence": "Иерархия блокировок (всегда захватывать мониторы в строгом, заранее определенном порядке)" }
+    ], "fixedQuestion": null },
+    { "id": "t024-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t024-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

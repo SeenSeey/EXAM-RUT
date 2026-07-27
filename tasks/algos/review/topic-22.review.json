@@ -1,0 +1,20 @@
+{
+  "topicId": 22,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, шесть понятий на шесть mcq, дистракторы взяты из соседних структур (BST, красно-чёрное дерево, хеш-таблица) и отсекаются осмысленно. mcq-04 (скорость зависит от длины ключа, а не от их числа) — ключевое отличие бора, проверено правильно. Пробелы: варианты бора (сжатый radix/Patricia, троичный) и приведённый в источнике код insert/TrieNode заданиями не задействованы.",
+  "reviews": [
+    { "id": "t022-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пересекается с mcq-03: там та же мысль дана как «O(L), независимо от числа хранимых слов» и служит верным вариантом.", "evidence": "скорость зависит от длины ключа, а не от количества ключей" }
+    ], "fixedQuestion": null },
+    { "id": "t022-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы (балансировка сетевой нагрузки, сортировка чисел, сжатие изображений с потерями) взяты из посторонних областей и отсекаются без знания бора.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t022-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

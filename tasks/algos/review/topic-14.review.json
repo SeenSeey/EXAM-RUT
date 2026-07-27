@@ -1,0 +1,23 @@
+{
+  "topicId": 14,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех шести mcq. Дистракторы к mcq-04 и mcq-05 взяты из соседних строк таблицы вариантов деревьев (куча, бор, дерево отрезков, B-дерево) — конструкция рабочая, задания различают по существу. Пробелы покрытия: терминология (глубина, высота, степень, лист) и различие AVL/красно-чёрных деревьев отдельных заданий не получили; open-02 и mcq-06 держатся на одном тезисе о сбалансированности.",
+  "reviews": [
+    { "id": "t014-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t014-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t014-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t014-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t014-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "UNCLEAR", "severity": "minor", "explanation": "Вопрос оборван многоточием («применяется для...») и продолжается вариантами — вне билета формулировка выглядит незавершённой.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t014-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t014-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "UNGROUNDED", "severity": "minor", "explanation": "keyPoint и modelAnswer приписывают обходам назначения («pre-order — для копирования/сериализации, post-order — для удаления»), которых в источнике нет: там перечислены только порядки обхода и указано, что in-order у BST даёт сортировку.", "evidence": "обратный (post-order): лево → право → корень" }
+    ], "fixedQuestion": null },
+    { "id": "t014-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Полностью пересекается с mcq-06: тот же тезис о сбалансированности и вырождении в цепочку.", "evidence": "Всё определяет сбалансированность" }
+    ], "fixedQuestion": null }
+  ]
+}

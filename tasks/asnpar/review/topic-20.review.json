@@ -1,0 +1,28 @@
+{
+  "topicId": 20,
+  "reviewVersion": "1.0",
+  "reviewedCount": 13,
+  "summary": { "keep": 13, "fix": 0, "discard": 0 },
+  "topicNotes": "Один из лучших блоков по содержанию: покрыты идея пула, устройство, логика приёма core→очередь→maximum→отклонение, фабрики Executors, Future, work stealing, подбор размера, опасность неограниченной очереди, четыре политики отклонения и pool-induced deadlock. Ключи верны во всех десяти mcq, дистракторы к mcq-04 и mcq-09 — это соседние фабрики и соседние политики, что делает задания по-настоящему различающими. Дефекты формы: правильный ответ во всех десяти mcq на позиции 1; в восьми из десяти он вдвое-втрое длиннее дистракторов; при девяти понятиях лишь одно easy-задание.",
+  "reviews": [
+    { "id": "t020-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 2 («невозможность работать с сетью») не связан с темой и отсекается мгновенно.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t020-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "major", "explanation": "Верный вариант 160 симв. против 67: единственный описывает всю цепочку приёма, дистракторы — короткие крайности («всегда», «отклоняет любую»).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t020-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-09", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-10", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 2 («когда очередь задач пуста») бессмыслен как причина тупика и отбрасывается без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t020-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t020-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t020-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "topicId": 8,
+  "reviewVersion": "1.0",
+  "reviewedCount": 4,
+  "summary": { "keep": 4, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, mcq-02 и mcq-03 построены правильно — по таблицам источника, с дистракторами из соседних строк тех же таблиц. Пробелы покрытия при 47 строках источника: четыре свойства ИТ (целесообразность, наличие компонентов и структуры, взаимодействие с внешней средой, управляемость и развитие) не проверяются ни одним заданием; из пяти групп технических средств задание есть только по одной. Ни одного hard. В conceptsIdentified продублировано одно и то же понятие: «уровни программных средств» и «три уровня ПО и их назначение».",
+  "reviews": [
+    { "id": "t008-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «максимальное потребление ресурсов» и «увеличение объёма данных любой ценой» сформулированы как заведомые нелепости и отсекаются без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t008-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "UNCLEAR", "severity": "minor", "explanation": "Вариант 2 («Драйвер устройства») выпадает из ряда: вопрос спрашивает про уровень ПО, а здесь названа не категория, а конкретная программа. Это заметно и подсказывает, что вариант лишний.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t008-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t008-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Полностью включает материал mcq-02 (компилятор → инструментальное ПО); при выпадении в одном билете mcq подсказывает часть ответа на open.", "evidence": "создание нового ПО" }
+    ], "fixedQuestion": null }
+  ]
+}

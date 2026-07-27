@@ -1,0 +1,20 @@
+{
+  "topicId": 21,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, четыре алгоритма разведены по ключевой идее (сдвиг на 1, префикс-функция, сравнение с конца, хеши), дистракторы взаимно берут идею соседнего алгоритма — конструкция рабочая. Замечание: mcq-03, mcq-04 и mcq-05 построены по одному шаблону «узнай алгоритм по его отличительной черте», а mcq-06 добавляет к этому лишь критерий выбора; заданий на последствия (почему у Бойера-Мура и Рабина-Карпа в источнике указано O(n⋅m), несмотря на «большие скачки» и хеши) нет.",
+  "reviews": [
+    { "id": "t021-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "UNCLEAR", "severity": "minor", "explanation": "Дистрактор 2 сформулирован как «Бойера-Мура для множества образцов» — смесь названия одного алгоритма с областью применения другого (множество образцов — это Рабин-Карп); вариант читается как оговорка, а не как правдоподобный ответ.", "evidence": "Рабин–Карп\nпоиск множества образцов" }
+    ], "fixedQuestion": null },
+    { "id": "t021-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика собирает содержание mcq-02 … mcq-06 целиком: те же идеи, сложности и критерии выбора.", "evidence": "линейная сложность; отсутствуют лишние сравнения" }
+    ], "fixedQuestion": null }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "topicId": 9,
+  "reviewVersion": "1.0",
+  "reviewedCount": 9,
+  "summary": { "keep": 9, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех семи mcq. Заметно, что генератор аккуратно обошёл дыру в источнике: строка «Псевдокод алгоритма» есть, а самого псевдокода нет — заданий на чтение кода не построено, и это правильно. Слабости: пять из семи mcq — questionType definition при почти полном отсутствии scenario/tradeoff, требуемых для экзамена по проектированию; верный вариант почти всегда вдвое длиннее дистракторов; понятие критической секции и требования Дейкстры получили по одному-двум заданиям, а вся вторая половина темы (Петерсон) — четыре.",
+  "reviews": [
+    {
+      "id": "t009-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 113 симв. против 53; дистрактор 0 («выполняемый всеми потоками одновременно») — прямое отрицание понятия и отсекается сразу.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Дистракторы 0 («в КС могут находиться сразу два процесса») и 2 («процесс никогда не покидает КС») противоречат самому понятию критической секции, а не требованию bounded waiting, поэтому отсекаются без знания трёх требований Дейкстры.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 114 симв. против 51: единственный, где названы сразу и «программное», и «для двух процессов», и «без аппаратных инструкций».",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType antipattern, но задание не просит найти ошибку в решении — оно воспроизводит две названные в источнике причины; по содержанию это explain/definition.",
+          "evidence": "Почему алгоритм Петерсона «умер» на современном железе"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t009-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

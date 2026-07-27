@@ -1,0 +1,22 @@
+{
+  "topicId": 29,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, противопоставление «общая память против сети» проведено последовательно: mcq-04 и mcq-05 удачно сортируют проблемы по принадлежности к параллельным или распределённым алгоритмам. Замечания: mcq-01, mcq-02 и mcq-03 держатся на одном противопоставлении и вместе полностью входят в open-01; ограничение «не любую задачу можно распараллелить из-за сильной зависимости частей» проверяется только как набор дистракторов в mcq-06.",
+  "reviews": [
+    { "id": "t029-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t029-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t029-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Собирает вместе определения из mcq-01 и mcq-02; варианты тех заданий служат дистракторами здесь, поэтому в билете задания подсказывают друг друга.", "evidence": "при параллельных вычислениях используется общая память одного компьютера, а при распределённых взаимодействие происходит по сети" }
+    ], "fixedQuestion": null },
+    { "id": "t029-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t029-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Верный вариант («просеивание вверх при вставке в кучу») взят из другой темы и отсекается по категории, а не по знанию проблем распределённых алгоритмов; остальные три варианта — реальные пункты списка источника.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t029-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 1, 2 и 3 описывают одну и ту же ситуацию — последовательную зависимость шагов, мешающую распараллеливанию; фактически альтернатива одна.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t029-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

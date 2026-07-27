@@ -1,0 +1,20 @@
+{
+  "topicId": 17,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все пять понятий покрыты, дистракторы взяты из соседних тегов того же документа (link, meta charset, html, title) — задания различают по существу. Замечания: ни одного hard при 2 easy и 5 medium; open-01 и open-02 перекрываются по разделу <head> (в open-01 он один из четырёх пунктов, в open-02 — весь предмет); тезис источника о влиянии структуры на индексацию и SEO заданиями не проверяется.",
+  "reviews": [
+    { "id": "t017-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант вдвое длиннее остальных и единственный отвечает на обе части двусоставного вопроса (как строят разметку и какова роль <div>).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t017-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t017-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пересекается с open-01 (там <head> и его теги — один из четырёх пунктов рубрики) и с mcq-04 про <title>.", "evidence": "<head> - раздел с метаданными, которые не видны обычному пользователю при просмотре сайта." }
+    ], "fixedQuestion": null }
+  ]
+}

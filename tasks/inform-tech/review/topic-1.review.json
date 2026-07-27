@@ -1,0 +1,17 @@
+{
+  "topicId": 1,
+  "reviewVersion": "1.0",
+  "reviewedCount": 4,
+  "summary": { "keep": 4, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник обзорный и почти без проверяемой конкретики (определение информатики, причина её появления, перечень смежных наук, четыре этапа истории). Ключи верны, цитаты дословны, за пределы источника задания не выходят. Замечания: ни одного hard; история развития (счёты и арифмометры → первые ЭВМ → персональные компьютеры → интернет и распределённая обработка) занимает половину источника, но проверяется только косвенно через mcq-02, отдельного задания на последовательность этапов нет.",
+  "reviews": [
+    { "id": "t001-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 112 симв. против 62: единственный развёрнутый, остальные — короткие сужения предмета.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t001-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 0 («до XX века информации как явления не существовало») гротескен и прямо опровергается первой же строкой абзаца источника.", "evidence": "Информация существовала всегда" }
+    ], "fixedQuestion": null },
+    { "id": "t001-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t001-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

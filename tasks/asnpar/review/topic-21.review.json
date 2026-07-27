@@ -1,0 +1,27 @@
+{
+  "topicId": 21,
+  "reviewVersion": "1.0",
+  "reviewedCount": 9,
+  "summary": { "keep": 8, "fix": 0, "discard": 1 },
+  "topicNotes": "Ключи верны во всех семи mcq, и это единственная тема раздела, где позиция верного ответа не приклеена к одному варианту (0, 1 и 2 встречаются). Главный дефект — mcq-03 и mcq-04 построены на одной и той же строке источника («Сам Future обычно не создает вычисление, а лишь позволяет…»): один спрашивает, что Future делает, второй — чего не делает, ответы взаимно подсказывают друг друга. Рекомендую снять mcq-04 и занять освободившийся слот понятием «необходимость объекта для будущего результата» (первый абзац источника), которое сейчас заявлено в conceptsIdentified, но ни одним mcq не проверяется. Дистракторы в остальном сильные — соседние примитивы и чужие наборы состояний.",
+  "reviews": [
+    { "id": "t021-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Парное с t021-mcq-04: оба задания опираются на одну строку источника. Само по себе задание корректно, поэтому оставляю именно его, а дубль снимаю.", "evidence": "Сам Future обычно не создает вычисление, а лишь позволяет" }
+    ], "fixedQuestion": null },
+    { "id": "t021-mcq-04", "verdict": "discard", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Полный смысловой дубль t021-mcq-03: тот же перечень возможностей Future, только вывернутый в отрицание. Три дистрактора здесь — дословно варианты правильного ответа из mcq-03, поэтому в одном билете задания подсказывают друг друга.", "evidence": "Сам Future обычно не создает вычисление, а лишь позволяет" },
+      { "code": "FILLER", "severity": "major", "explanation": "Задание не добавляет проверяемого содержания сверх mcq-03 — оно существует ради разнообразия questionType (negative).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t021-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "UNGROUNDED", "severity": "minor", "explanation": "Rationale к варианту 3 объясняет неверность ссылкой на circuit breaker — понятие, которого в источнике нет. На ключ не влияет: набор Pending/Completed/Failed/Cancelled взят из источника дословно.", "evidence": "- Pending : вычисление ещё идёт" }
+    ], "fixedQuestion": null },
+    { "id": "t021-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 3 («отмену работы операционной системы») бессмыслен и отсекается без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t021-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t021-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

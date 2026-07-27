@@ -1,0 +1,28 @@
+{
+  "topicId": 12,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 11, "fix": 0, "discard": 0 },
+  "topicNotes": "Тема разобрана точно: wait/signal/broadcast, атомарность wait, отсутствие памяти сигнала, Mesa-семантика и все три проблемы покрыты, ключи верны во всех восьми mcq, дистракторы взяты из соседних проблем той же темы. Замечания: ни одного easy при 8 medium и 3 hard; mcq-05 и open-02 проверяют один и тот же тезис (почему while, а не if); верный вариант систематически вдвое длиннее дистракторов.",
+  "reviews": [
+    { "id": "t012-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t012-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 3 («мьютекс нужен только для ускорения работы») пустой по смыслу и отсекается без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t012-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 111 симв. против 49 и единственный, где названы обе стороны сравнения (условная переменная и семафор).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Проверяет тот же тезис, что и t012-open-02 («почему while, а не if»), причём в open этот вопрос задан прямым текстом. В одном билете дублируются.", "evidence": "проверять предикат в цикле while, а не в if" }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 3 («не использовать мьютекс вовсе») противоречит базовому правилу работы условной переменной и отбрасывается сразу.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t012-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t012-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t012-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t012-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

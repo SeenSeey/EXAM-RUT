@@ -1,0 +1,26 @@
+{
+  "topicId": 27,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник тонкий (десяток строк плюс пример с ConcurrentHashMap), и заданий из него выжато ровно столько, сколько материала: пять mcq и два open, все ключи верны. Лучшее задание — mcq-05, оно опирается на конкретику примера (2000 против 1842). Слабости: ни одного hard; mcq-03 проверяет запоминание списка из четырёх слов; все пять верных ответов стоят на позиции 1. Источник смешивает два разных понятия — параллельные потоки обработки (map/filter/reduce) и потокобезопасные коллекции (ConcurrentHashMap), — и задания это смешение наследуют, но выйти за источник тут нельзя.",
+  "reviews": [
+    { "id": "t027-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 2 («хранят данные только на диске») не связан с темой и отсекается мгновенно.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t027-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 0 («каждый следующий после предыдущего») и 2 («строго по одному в единственном потоке») описывают одно и то же — последовательную обработку.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t027-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "FILLER", "severity": "minor", "explanation": "Проверяет запоминание одной строки-перечисления; дистракторы взяты из совсем других областей (синхронизация, транзакции, стек), поэтому задание решается узнаванием, а не пониманием.", "evidence": "Типичные операции для параллельных коллекций: map, filter, reduce, foreach." }
+    ], "fixedQuestion": null },
+    { "id": "t027-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 144 симв. против 69 и единственный содержит обе половины ответа (когда эффективны и когда нет), что прямо отвечает двусоставному вопросу.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t027-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t027-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t027-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Опирается на тот же пример и те же цифры, что и mcq-05; при выпадении в одном билете второе задание почти не добавляет проверки.", "evidence": "Результат всегда будет ровно 2000." }
+    ], "fixedQuestion": null }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "topicId": 31,
+  "reviewVersion": "1.0",
+  "reviewedCount": 5,
+  "summary": { "keep": 5, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник — двенадцать строк, и четыре mcq плюс open для него адекватный объём; ключи верны, за пределы текста задания не выходят. Главная проблема внешняя: тема почти целиком дублирует раздел «Потоковые алгоритмы» темы 30 — t031-mcq-04 (Bloom Filter и HyperLogLog) пересекается с t030-mcq-04 и t030-mcq-05, а t031-mcq-03 (один проход, минимум памяти) — с t030-mcq-03. В одном билете темы 30 и 31 ставить нельзя. Внутри темы все четыре mcq — воспроизведение определений, ни одного hard.",
+  "reviews": [
+    { "id": "t031-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t031-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t031-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Тот же тезис, что и t030-mcq-03 темы 30 (один проход, сублинейная память, не хранить поток целиком).", "evidence": "использовать один проход по данным и минимальный объём памяти" }
+    ], "fixedQuestion": null },
+    { "id": "t031-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Пересекается с t030-mcq-04 и t030-mcq-05: те же Bloom Filter и HyperLogLog, только здесь достаточно узнать названия.", "evidence": "Bloom Filter (видел ли я?) и HyperLogLog (сколько разных?)" },
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы (сортировка с бинарным поиском, Дейкстра/Беллман-Форд, DFS/BFS) взяты из посторонних тем и отсекаются по категории.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t031-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика включает содержание всех четырёх mcq этой темы.", "evidence": "Получили элемент -> обновили состояние -> забыли элемент" }
+    ], "fixedQuestion": null }
+  ]
+}

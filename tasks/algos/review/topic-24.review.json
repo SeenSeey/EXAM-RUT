@@ -1,0 +1,20 @@
+{
+  "topicId": 24,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, тема покрыта плотно: определение, причина вырождения BST, поворот, инвариант AVL, сравнение с красно-чёрным и практический выбор библиотек. mcq-05 и mcq-06 удачны — они требуют помнить именно оговорку источника про константы и число поворотов, а не общий смысл. Пробел: пять свойств красно-чёрного дерева (раскраска, чёрная высота, отсутствие двух красных подряд) отдельным заданием не проверяются, хотя занимают в источнике абзац; прочие сбалансированные структуры (B-/B+, 2-3, splay) тоже не затронуты.",
+  "reviews": [
+    { "id": "t024-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «несбалансированный связный список» и «дерево без корневого узла» неправдоподобны как определения и отсекаются без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t024-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Опирается на тот же тезис, что и mcq-05 (у красно-чёрного меньше поворотов при изменениях), и вместе с ним полностью входит в open-01.", "evidence": "красно-чёрные балансируются мягче и требуют меньше поворотов при модификациях" }
+    ], "fixedQuestion": null },
+    { "id": "t024-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

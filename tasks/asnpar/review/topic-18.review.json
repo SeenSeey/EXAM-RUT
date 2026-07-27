@@ -1,0 +1,27 @@
+{
+  "topicId": 18,
+  "reviewVersion": "1.0",
+  "reviewedCount": 12,
+  "summary": { "keep": 12, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех девяти mcq, материал покрыт полно — от GIL и трёх моделей конкурентности до TaskGroup, блокировки цикла и потерянной задачи. Сильные задания: mcq-07 (TaskGroup против gather) и mcq-09 (слабая ссылка на Task) — они проверяют детали, которые нельзя угадать. Дефекты формы те же, что и по всему разделу: правильный ответ во всех девяти mcq стоит на позиции 1, ни одного easy при 10 medium и 2 hard, и в девяти из девяти mcq верный вариант заметно длиннее дистракторов, потому что несёт полное объяснение.",
+  "reviews": [
+    { "id": "t018-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 123 симв. против 45; дистракторы — короткие отрицания.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t018-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "major", "explanation": "Верный вариант 165 симв. против 76: единственный, где расписаны все три модели; дистрактор 2 («все три дают реальный параллелизм одинаково») отсекается сразу.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t018-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 2 («оба выполняют строго последовательно») и 3 («роли перепутаны») отрицают одно и то же различие; фактически альтернатив три.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t018-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-09", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t018-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t018-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t018-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

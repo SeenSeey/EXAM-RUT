@@ -1,0 +1,20 @@
+{
+  "topicId": 12,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, четыре реализации Set разведены корректно, mcq-04 и mcq-05 сделаны по таблице источника с дистракторами из соседних строк — работают. Два замечания по файлу целиком: (1) mcq-01 и mcq-02 висят на одном понятии «определение Set и главная операция contains», причём mcq-02 проверяет одну строку и по сути дублирует первое; (2) правильный ответ в четырёх mcq из шести стоит на позиции 3 — позиции стоит перемешать.",
+  "reviews": [
+    { "id": "t012-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t012-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "FILLER", "severity": "minor", "explanation": "Проверяет одну строку источника и опирается на то же понятие, что и mcq-01; дистракторы («подсчёт дубликатов», «доступ по индексу») отсекаются самим определением множества.", "evidence": "Главная операция - проверка принадлежности (contains)" }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный содержит обе стороны сравнения с асимптотиками и потому вдвое длиннее прочих.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t012-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t012-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t012-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t012-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

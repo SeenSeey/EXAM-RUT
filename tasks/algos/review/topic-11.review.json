@@ -1,0 +1,19 @@
+{
+  "topicId": 11,
+  "reviewVersion": "1.0",
+  "reviewedCount": 6,
+  "summary": { "keep": 6, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все пять понятий покрыты, mcq-05 (потеря кэш-локальности при равной асимптотике) — лучшее задание темы, оно проверяет понимание, а не запоминание. Дистракторы к mcq-01 и mcq-02 взяты из соседних структур (массив, BST, кольцевой список) — работают. Замечание: кольцевой список назван только как дистрактор, отдельного задания не получил; сложности вставки в конец и в середину проверяются лишь через open.",
+  "reviews": [
+    { "id": "t011-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант заметно длиннее остальных трёх и единственный описывает структуру целиком.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t011-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t011-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t011-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «O(log n)» и «O(n²)» не соответствуют ни одной операции связного списка и отбрасываются без знания темы; реальная альтернатива одна — O(n).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t011-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t011-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

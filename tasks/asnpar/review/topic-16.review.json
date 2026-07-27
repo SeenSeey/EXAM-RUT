@@ -1,0 +1,29 @@
+{
+  "topicId": 16,
+  "reviewVersion": "1.0",
+  "reviewedCount": 12,
+  "summary": { "keep": 12, "fix": 0, "discard": 0 },
+  "topicNotes": "Тема разобрана точно и полно: управление со стороны JVM, дешёвый стек в куче, M:N и carrier threads, mount/unmount, pinning с решением до и после JDK 24, запрет пулинга, границы применимости и API. Ключи верны во всех девяти mcq, mcq-03 содержит по-настоящему тонкий дистрактор (переставленные M и N). Замечания: правильный ответ во всех девяти mcq на позиции 1; ни одного easy; в семи mcq верный вариант вдвое-втрое длиннее дистракторов. Отдельно: практический постмортем из источника (пиннинг на Spring Data Redis, jfr-снепшоты, откат виртуальных потоков в двух проектах) не использован ни в одном задании, хотя это самый пригодный материал для scenario-вопроса.",
+  "reviews": [
+    { "id": "t016-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы 0 («не имеют стека вообще») и 3 («работают без JVM») неправдоподобны и отсекаются без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t016-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 154 симв. против 59: единственный с полным описанием механизма.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t016-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "major", "explanation": "Верный вариант 167 симв. против 56; дистракторы 2 и 3 называют другие проблемы виртуальных потоков одной короткой фразой, а вопрос «что такое pinning» требует определения — по форме ответ очевиден.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t016-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 0, 2 и 3 (I/O-задачи, серверы с множеством соединений, веб-сервисы, ждущие БД/HTTP) — это три формулировки одного и того же случая, где VT как раз выигрывают. Реальных альтернатив две.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t016-mcq-09", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t016-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t016-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t016-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

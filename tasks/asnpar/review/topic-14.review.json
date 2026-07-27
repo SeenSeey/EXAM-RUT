@@ -1,0 +1,57 @@
+{
+  "topicId": 14,
+  "reviewVersion": "1.0",
+  "reviewedCount": 12,
+  "summary": { "keep": 11, "fix": 1, "discard": 0 },
+  "topicNotes": "Материал темы объёмный, покрыт хорошо: разграничение синхронное/асинхронное и конкурентность/параллелизм, C10K, четыре модели I/O, Reactor против Proactor, четыре подхода к коду и блокировка цикла. Ключи верны во всех девяти mcq. Дефекты формы серьёзные: правильный ответ во всех девяти mcq стоит на позиции 1, и в семи из них он вдвое-втрое длиннее дистракторов — файл решается без чтения вопросов. В mcq-03 два дистрактора дублируют друг друга по смыслу; исправлено.",
+  "reviews": [
+    { "id": "t014-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 132 симв. против 72 и единственный описывает обе части сравнения.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t014-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 149 симв. против 50; дистракторы — короткие однофразовые утверждения.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t014-mcq-03", "verdict": "fix", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "OVERLAP", "severity": "major", "explanation": "Дистракторы 2 («на чисто вычислительных задачах без ожидания») и 3 («на задачах, где ввода-вывода вообще нет») описывают одну и ту же ситуацию — задачу без I/O. Фактически вариантов три, а не четыре.", "evidence": null }
+    ], "fixedQuestion": {
+      "id": "t014-mcq-03",
+      "type": "mcq",
+      "concept": "выигрыш на I/O-bound задачах и проблема C10K",
+      "difficulty": "medium",
+      "questionType": "tradeoff",
+      "question": "На каких задачах асинхронность даёт главный выигрыш?",
+      "options": [
+        "На CPU-bound задачах в один поток",
+        "На I/O-bound задачах (сеть, диск, БД), где поток простаивает в ожидании ввода-вывода",
+        "На чисто вычислительных задачах без ожидания ввода-вывода",
+        "На задачах, которым нужен физически одновременный счёт на нескольких ядрах"
+      ],
+      "correctIndex": 1,
+      "rationales": [
+        "Неверно: для CPU-bound задач асинхронность в один поток выигрыша не даёт.",
+        "Верно: главный выигрыш — на I/O-bound задачах, где поток простаивает в ожидании ввода-вывода.",
+        "Неверно: если ожидания нет, освобождать поток не от чего — выигрыша асинхронность не даёт.",
+        "Неверно: физически одновременное выполнение на разных ядрах — это параллелизм, отдельное свойство; асинхронность даёт конкурентность."
+      ],
+      "explanation": "Главный выигрыш асинхронности — на I/O-bound задачах (сеть, диск, БД), где поток простаивает в ожидании ввода-вывода; для CPU-bound задач в один поток выигрыша нет, там нужен параллелизм на нескольких ядрах.",
+      "sourceQuote": "Главный выигрыш - на I/O-bound задачах"
+    } },
+    { "id": "t014-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 0 («потоки не умеют работать с сетью») бессмыслен и отсекается без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t014-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t014-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 132 симв. против 59, хотя зеркальный дистрактор 0 с переставленными ролями содержателен.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t014-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 0 («полная невозможность обработки ошибок») — гротескное усиление; источник говорит лишь о разъезжающейся обработке ошибок.", "evidence": "разъезжающаяся обработка ошибок" }
+    ], "fixedQuestion": null },
+    { "id": "t014-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t014-mcq-09", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный содержит и последствие, и решение (worker pool), отчего вдвое длиннее прочих.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t014-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t014-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t014-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

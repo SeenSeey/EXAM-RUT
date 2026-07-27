@@ -1,0 +1,27 @@
+{
+  "topicId": 31,
+  "reviewVersion": "1.0",
+  "reviewedCount": 9,
+  "summary": { "keep": 9, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все семь паттернов источника покрыты, mcq-03 и open-01 корректно разводят Latch и Barrier — типовое место путаницы. Замечания: тема замыкающая и обобщающая, поэтому Thread Pool и Future/Promise здесь пересекаются с темами 20 и 21 (t031-mcq-01 против t020-mcq-01, t031-mcq-07 против t021-mcq-01/t021-mcq-03); mcq-06 проверяет запоминание строки итогового списка «задача → паттерн», а не понимание. По сложности файл плоский: ни одного hard, 1 easy и 8 medium, все семь верных ответов на позиции 1.",
+  "reviews": [
+    { "id": "t031-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Совпадает по содержанию с t020-mcq-01 и t020-mcq-02 (идея и устройство пула потоков), а также с t002-mcq-08 из темы про потоки.", "evidence": "создается фиксированное или динамическое количество «воркеров», которые берут задачи из общей очереди" }
+    ], "fixedQuestion": null },
+    { "id": "t031-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t031-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "major", "explanation": "Верный вариант 165 симв. против 70: единственный содержит определения обеих сущностей; остальные — короткие отрицания и утверждение про языки.", "evidence": null },
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Тот же материал, что и в t031-open-01, где сравнение Latch и Barrier требуется изложить словами.", "evidence": "Barrier: Группа потоков ждет друг друга в «точке сбора»." }
+    ], "fixedQuestion": null },
+    { "id": "t031-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t031-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t031-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "FILLER", "severity": "minor", "explanation": "Задание проверяет запоминание одной строки итогового перечня («Для сглаживания пиковых нагрузок и асинхронности: Producer-Consumer»), а не понимание паттерна; формулировка «источник рекомендует» вне билета выглядит странно.", "evidence": "Для сглаживания пиковых нагрузок и асинхронности: Producer-Consumer." }
+    ], "fixedQuestion": null },
+    { "id": "t031-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пересекается с темой 21 (t021-mcq-01, t021-mcq-03): те же роль Future как заглушки и блокирующий get().", "evidence": "метод мгновенно возвращает объект-заглушку (Future)" }
+    ], "fixedQuestion": null },
+    { "id": "t031-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t031-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

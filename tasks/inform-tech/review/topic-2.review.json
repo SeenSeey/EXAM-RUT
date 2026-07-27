@@ -1,0 +1,16 @@
+{
+  "topicId": 2,
+  "reviewVersion": "1.0",
+  "reviewedCount": 5,
+  "summary": { "keep": 5, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, дистракторы правдоподобны (зеркальная перестановка определений в mcq-01, подмена количества качеством в mcq-04). Главная претензия — покрытие: источник по этой теме самый насыщенный в разделе (47 строк), а заданий всего четыре mcq на четыре понятия. Не проверяются: таблица единиц (1 Кбайт = 1024 байта, а не 1000), соотношение i=log2 N ⟺ N=2^i в расчётном виде, определение информации в широком и узком смысле, отдельные свойства качества кроме перечисления. Расчётных заданий («сообщение из 20 символов алфавита мощностью 32 — сколько бит») нет ни одного, хотя формулы в источнике даны.",
+  "reviews": [
+    { "id": "t002-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t002-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 134 симв. против 78 и единственный называет обе стороны сравнения.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t002-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t002-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t002-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

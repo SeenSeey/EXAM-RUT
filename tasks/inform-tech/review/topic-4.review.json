@@ -1,0 +1,16 @@
+{
+  "topicId": 4,
+  "reviewVersion": "1.0",
+  "reviewedCount": 5,
+  "summary": { "keep": 5, "fix": 0, "discard": 0 },
+  "topicNotes": "Лучший блок раздела по конструкции: mcq-03 — единственное во всём inform-tech расчётное задание (N=2^I при I=8), и оно корректно; дистракторы к нему подобраны из соседних степеней двойки и из самой разрядности, то есть ловят типовые ошибки. Ключи верны, все четыре понятия покрыты. Не задействован приведённый в источнике ряд частот (8 000 Гц телефон … 44 100 Гц Audio CD), хотя он даёт готовое scenario-задание на сопоставление частоты и применения.",
+  "reviews": [
+    { "id": "t004-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 96 симв. против 57 и единственный дан полным определением.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t004-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t004-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t004-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t004-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

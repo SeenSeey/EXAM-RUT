@@ -1,0 +1,141 @@
+{
+  "topicId": 10,
+  "reviewVersion": "1.0",
+  "reviewedCount": 13,
+  "summary": { "keep": 13, "fix": 0, "discard": 0 },
+  "topicNotes": "Самая плотная тема источника разобрана добросовестно: покрыты определение, состояния по счётчику, все операции, атомарность, отличие от мьютекса, непарность up/down и оба пути взятия. Ключи верны во всех десяти mcq, дистракторы почти всегда взяты из соседних операций того же семафора (up/проверить/trywait/блокировать) — это сильная конструкция. Общий дефект формы: в восьми mcq из десяти верный вариант вдвое-втрое длиннее дистракторов, так как несёт полное определение.",
+  "reviews": [
+    {
+      "id": "t010-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 92 симв. против 42 и единственный содержит расшифровку обоих состояний.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Дистрактор 0 («чтобы семафор мог хранить строки») бессмыслен и отсекается без знания темы; дистрактор 3 («чтобы поток крутился в цикле опроса») противоречит цели синхронизации.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-08",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Дистрактор 0 прямо отрицает посылку вопроса («up и down обязаны вызываться строго одним потоком»), поэтому отбрасывается автоматически — фактически выбор идёт из трёх вариантов.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-09",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "DUPLICATE",
+          "severity": "minor",
+          "explanation": "Пересекается с t010-mcq-08: оба построены на непарности up/down, а рационале mcq-08 уже содержит формулировку «лишний up впустит больше потоков» — то есть ответ на mcq-09. В одном билете рядом их лучше не ставить.",
+          "evidence": "лишний up впустит в ресурс больше потоков, чем задумано, а забытый up оставит ждущих спать навсегда"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-mcq-10",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t010-open-03",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

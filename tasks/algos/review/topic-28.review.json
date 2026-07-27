@@ -1,0 +1,20 @@
+{
+  "topicId": 28,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, оба алгоритма (Кан и DFS) разведены по основе и по способу обнаружения цикла, дистракторы берут механику соседних алгоритмов. Замечания по файлу: правильный ответ в четырёх mcq из шести стоит на позиции 3 — позиции стоит перемешать; приведённый в источнике код topoSort на Java не задействован ни одним заданием, хотя даёт готовый материал для scenario («что вернёт функция, если граф не DAG»); неединственность топологического порядка для DAG отражена только в рубрике open.",
+  "reviews": [
+    { "id": "t028-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «если граф оказался неориентированным» и «если все вершины имеют одинаковую полустепень» не являются правдоподобными критериями обнаружения цикла и отсекаются сразу.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t028-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t028-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика собирает содержание mcq-03, mcq-04, mcq-05 и mcq-06 целиком.", "evidence": "BFS + полустепени захода" }
+    ], "fixedQuestion": null }
+  ]
+}

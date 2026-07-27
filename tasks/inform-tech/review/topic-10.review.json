@@ -1,0 +1,18 @@
+{
+  "topicId": 10,
+  "reviewVersion": "1.0",
+  "reviewedCount": 5,
+  "summary": { "keep": 5, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, mcq-02 и mcq-04 — сильные задания: дистракторы взяты из соседних свойств и структур того же перечня, так что перепутать можно только не зная темы. Пробел покрытия: из пяти положений принципа программного управления (программное управление, хранимая программа, последовательное выполнение, адресность, условный переход) проверяется только хранимая программа; способы записи алгоритма (словесный, блок-схема, псевдокод, язык программирования) не проверяются вовсе. Ни одного hard.",
+  "reviews": [
+    { "id": "t010-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 115 симв. против 57 и единственный дан полным определением.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t010-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t010-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t010-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t010-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Включает материал mcq-02 (массовость) целиком; в одном билете mcq подсказывает пункт рубрики open.", "evidence": "Массовость - применим не к одной задаче, а к целому классу однотипных задач с разными исходными данными." }
+    ], "fixedQuestion": null }
+  ]
+}

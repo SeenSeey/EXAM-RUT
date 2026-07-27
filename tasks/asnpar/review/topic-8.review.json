@@ -1,0 +1,162 @@
+{
+  "topicId": 8,
+  "reviewVersion": "1.0",
+  "reviewedCount": 12,
+  "summary": { "keep": 11, "fix": 1, "discard": 0 },
+  "topicNotes": "Ключи верны во всех девяти mcq, цитаты дословны, сравнение «критическая секция против семафора» проработано и в mcq, и в open. Слабые места: ни одного hard при 3 easy и 9 medium; сообщения (сигналы, почтовые ящики) как примитив отдельного mcq не получили, хотя в conceptsIdentified не заявлены — по факту тема покрыта не полностью; в mcq-06 два дистрактора гротескные.",
+  "reviews": [
+    {
+      "id": "t008-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Дистракторы 0 («синхронизация всегда избыточна») и 3 («взаимное исключение неизбежно приводит к дедлоку») неправдоподобны как утверждения и отсекаются без знания задачи про молоко.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-06",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "major",
+          "explanation": "Дистракторы «Только с диапазоном −1..1» и «Только строковым» гротескны: второй отсекается любым студентом, впервые услышавшим слово «семафор». Реально задание проверяет только вариант 0 против верного.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t008-mcq-06",
+        "type": "mcq",
+        "concept": "семафоры как примитив",
+        "difficulty": "easy",
+        "questionType": "definition",
+        "question": "Какие значения может принимать семафор согласно источнику?",
+        "options": [
+          "Только 0 или 1: семафор всегда булевский",
+          "0/1 у булевского семафора либо от 0 до n у счётного",
+          "Только от 0 до n: булевский вариант — это уже мьютекс, а не семафор",
+          "Любое целое число, включая отрицательные значения счётчика"
+        ],
+        "correctIndex": 1,
+        "rationales": [
+          "Неверно: кроме булевского есть счётный семафор со значениями от 0 до n.",
+          "Верно: семафор бывает булевским (0/1) или счётным (от 0 до n).",
+          "Неверно: булевский семафор — это разновидность семафора; мьютекс же описан как пара «булевский семафор + идентификатор владельца».",
+          "Неверно: источник задаёт диапазон от 0 до n, отрицательных значений семафор не принимает."
+        ],
+        "explanation": "Семафор — переменная со значением 0/1 (булевский) или от 0 до n (счётный), со счётчиком и очередью ожидания.",
+        "sourceQuote": "переменная со значением 0/1 (булевский) или от 0 до n (счётный)"
+      }
+    },
+    {
+      "id": "t008-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-08",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 133 симв. против 55 и единственный содержит перечисление; дистрактор 1 («не имеют ни переменных, ни процедур») пустой по смыслу.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-mcq-09",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант вдвое длиннее остальных, хотя дистракторы содержательны (очередь сообщений, взаимное исключение, наследование приоритетов).",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t008-open-03",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "Задание обзорное — просит перечислить все примитивы, — но помечено concept «разделяемая память как примитив» и difficulty easy, хотя рубрика требует шести пунктов по разным примитивам.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    }
+  ]
+}

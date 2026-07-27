@@ -1,0 +1,18 @@
+{
+  "topicId": 3,
+  "reviewVersion": "1.0",
+  "reviewedCount": 4,
+  "summary": { "keep": 4, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник — девять строк, из них выжато ровно то, что в нём есть: определение энтропии, связь со сжимаемостью, зависимость количества информации от получателя. Ключи верны. Замечания: ни одного hard; Шеннон и 1948 год упомянуты в источнике, но заданием не покрыты; в mcq-02 два дистрактора утверждают одно и то же.",
+  "reviews": [
+    { "id": "t003-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t003-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 1 («случайные данные с высокой энтропией») и 3 («чем выше энтропия, тем сильнее сжимаются») выражают одно и то же ошибочное утверждение — что высокая энтропия улучшает сжатие; реальных альтернатив три.", "evidence": null },
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант — единственный, к которому дописано обоснование через тире («— у него низкая энтропия»).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t003-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 3 («разные получатели читают с разной скоростью») не является правдоподобным заблуждением о количестве информации.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t003-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

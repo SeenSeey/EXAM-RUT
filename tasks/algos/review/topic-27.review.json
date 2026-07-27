@@ -1,0 +1,18 @@
+{
+  "topicId": 27,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все четыре метода поиска цикла разведены, и дистракторы взаимно берут критерий соседнего метода (серая вершина, родитель, in-degree, множество DSU) — это правильная конструкция, задание нельзя решить, не различая методы. Замечания: mcq-02 … mcq-05 построены по одному шаблону «узнай критерий метода», а open-01 собирает их все вместе; область применения поиска циклов (топосортировка, компиляторы, дедлоки, графы зависимостей) в заданиях не отражена.",
+  "reviews": [
+    { "id": "t027-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t027-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t027-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t027-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t027-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t027-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t027-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика дословно собирает критерии из mcq-02, mcq-03, mcq-04 и mcq-05 — четырёх из шести mcq темы.", "evidence": "White (не посещена), Gray (находится в текущем пути DFS), Black (полностью обработана)" }
+    ], "fixedQuestion": null }
+  ]
+}

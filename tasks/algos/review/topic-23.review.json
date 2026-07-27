@@ -1,0 +1,21 @@
+{
+  "topicId": 23,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все три случая удаления и все три обхода покрыты, назначения preorder/postorder здесь взяты прямо из источника (в отличие от темы 14, где они домыслены). Замечания: mcq-03 и mcq-06 — две части одного понятия «удаление узла», и обе целиком входят в open-01; mcq-04 и mcq-05 так же полностью покрываются open-02; при шести mcq тема фактически проверяет три идеи. Высота дерева и различие сбалансированных/несбалансированных деревьев в заданиях не отражены.",
+  "reviews": [
+    { "id": "t023-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Вместе с mcq-04 составляет пару по обходам, и обе полностью входят в рубрику open-02.", "evidence": "Используется для удаления дерева" }
+    ], "fixedQuestion": null },
+    { "id": "t023-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Второй случай того же понятия, что и mcq-03 (удаление узла); дистракторы одного задания — верные ответы другого.", "evidence": "если удаляем узел с одним потомком - потомок занимает его место" }
+    ], "fixedQuestion": null },
+    { "id": "t023-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t023-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

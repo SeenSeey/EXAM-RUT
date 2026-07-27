@@ -1,0 +1,139 @@
+{
+  "topicId": 11,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 10, "fix": 1, "discard": 0 },
+  "topicNotes": "Ключи верны во всех восьми mcq. Сильная часть — mcq-06 и mcq-07: дистракторы там взяты из решений соседних проблем (наследование приоритетов, случайные задержки, fair-мьютексы), и перепутать их можно только не зная темы. Слабая — единственное hard-задание mcq-08, где три дистрактора гротескны; исправлено. Сложность смещена: 1 easy / 8 medium / 2 hard.",
+  "reviews": [
+    {
+      "id": "t011-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Дистракторы 2 («немедленно захватывает мьютекс силой») и 3 («поток завершается с ошибкой») неправдоподобны; фактически выбор идёт между спинлоком и сном через ОС.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-mcq-08",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "major",
+          "explanation": "Все три дистрактора гротескны: «захватить мьютекс несколькими потоками сразу», «превратить мьютекс в счётный семафор», «отключить взаимное исключение». Ни один не соответствует правдоподобному заблуждению — задание помечено hard, но решается без знания RAII.",
+          "evidence": null
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант 140 симв. против 50 у самого длинного дистрактора и единственный содержательный.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t011-mcq-08",
+        "type": "mcq",
+        "concept": "RAII-обёртки для гарантированного освобождения",
+        "difficulty": "hard",
+        "questionType": "antipattern",
+        "question": "От какой ошибки при работе с мьютексом защищают RAII-обёртки (std::lock_guard, defer в Go, try-with-resources/finally в Java)?",
+        "options": [
+          "От захвата мьютексов в разном порядке: обёртка выстраивает единый глобальный порядок и исключает круговое ожидание",
+          "От незакрытого мьютекса: захват в конструкторе и освобождение в деструкторе гарантируют unlock даже при исключении",
+          "От нечестной выдачи мьютекса: обёртка ставит ожидающих в FIFO-очередь и снимает голодание",
+          "От обращения к ядру ОС при захвате: обёртка выполняет lock атомарной инструкцией процессора"
+        ],
+        "correctIndex": 1,
+        "rationales": [
+          "Неверно: единый глобальный порядок захвата — отдельная дисциплина против deadlock, обёртка порядок не задаёт.",
+          "Верно: RAII-обёртка захватывает мьютекс в конструкторе и освобождает в деструкторе, поэтому освобождение происходит и при выходе по исключению.",
+          "Неверно: от starvation защищают «честные» (fair) мьютексы с очередью, а не RAII-обёртки.",
+          "Неверно: попытка захвата и так выполняется атомарной инструкцией на аппаратном уровне — это свойство самого мьютекса, а не обёртки."
+        ],
+        "explanation": "RAII-обёртки захватывают мьютекс в конструкторе и освобождают в деструкторе, поэтому мьютекс освобождается даже при исключении, что защищает от забытого unlock().",
+        "sourceQuote": "захватывают мьютекс в конструкторе и освобождают в деструкторе"
+      }
+    },
+    {
+      "id": "t011-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t011-open-03",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

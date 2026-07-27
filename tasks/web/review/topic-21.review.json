@@ -1,0 +1,27 @@
+{
+  "topicId": 21,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 10, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех семи mcq, mcq-02 (дочерний против потомственного комбинатора) и mcq-05 (unset как умный сброс) — сильные задания. Две системные претензии. Первая: mcq-06, mcq-07 и open-03 держатся на одной шкале весов (1000/100/10/1), причём mcq-07 отвечает на половину mcq-06 — в билете они дублируются. Вторая: специфичность здесь пересекается с t019-mcq-03 темы 19, где та же тема подана через тройку разрядов; темы 19 и 21 нельзя ставить рядом. Псевдоклассы (:hover, :focus, :nth-child) в источнике описаны, но проверяются только как дистракторы.",
+  "reviews": [
+    { "id": "t021-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный содержит шесть свойств вместо трёх и вдвое длиннее остальных.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t021-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t021-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Вместе с mcq-07 и open-03 проверяет одну и ту же шкалу весов; варианты mcq-06 (1000/100/10/1) прямо содержат ответ на mcq-07.", "evidence": "Inline-стили (написанные прямо в HTML через атрибут style=\"\") - весят 1000." }
+    ], "fixedQuestion": null },
+    { "id": "t021-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Пара к mcq-06 по той же шкале весов; кроме того, пересекается с t019-mcq-03 темы 19 про специфичность.", "evidence": "ID селекторы (#id) - весят 100." }
+    ], "fixedQuestion": null },
+    { "id": "t021-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t021-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t021-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика перечисляет ровно те же четыре веса, что проверяют mcq-06 и mcq-07.", "evidence": "Теги и псевдоэлементы (p, div, ::before) - весят 1." }
+    ], "fixedQuestion": null }
+  ]
+}

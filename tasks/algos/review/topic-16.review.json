@@ -1,0 +1,20 @@
+{
+  "topicId": 16,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все шесть понятий покрыты, mcq-06 (почему DFS/BFS не годятся для взвешенного кратчайшего пути) — сильное задание. Дистракторы взяты из соседних алгоритмов и структур, отсекаются осмысленно. Пробел: в источнике приведён код обоих обходов на Java, но ни одного задания на чтение кода нет; применения DFS (мосты, точки сочленения, backtracking) проверяются только через open.",
+  "reviews": [
+    { "id": "t016-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t016-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «список рёбер» и «топологическая сортировка» отвечают не на тот вопрос (представление и другая задача), поэтому отсекаются по категории; реальная альтернатива одна — DFS.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t016-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t016-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика собирает вместе содержание mcq-01, mcq-02, mcq-03 и mcq-04 этой же темы — в одном билете mcq подсказывают почти весь ответ.", "evidence": "Реализация - рекурсия или явный стек" }
+    ], "fixedQuestion": null }
+  ]
+}

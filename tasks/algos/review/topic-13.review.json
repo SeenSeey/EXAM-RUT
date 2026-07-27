@@ -1,0 +1,23 @@
+{
+  "topicId": 13,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех шести mcq, покрыты определение, сравнение реализаций, рехэширование, операции и критерии выбора. Дистракторы в mcq-03 и mcq-04 частично взяты из другой темы (HashSet, LinkedHashSet, BitSet — это множества, а не карты), из-за чего отсекаются по категории, а не по существу. mcq-03 и mcq-04 — зеркальная пара по одному понятию «выбор реализации», их материал целиком входит в open-01.",
+  "reviews": [
+    { "id": "t013-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t013-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный называет обе структуры с их асимптотиками и потому вдвое длиннее остальных.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t013-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы BitSet и «связный список» отсекаются тем, что это вообще не реализации Map; реальная альтернатива одна — TreeMap.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t013-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "major", "explanation": "Три из четырёх вариантов (HashSet, LinkedHashSet и, по смыслу вопроса, HashMap) — множества либо заведомо неподходящая структура; студент выбирает единственную карту с сортировкой, не рассуждая о диапазонах.", "evidence": null },
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Зеркальная пара к mcq-03 по тому же понятию «выбор реализации под задачу».", "evidence": "TreeMap - когда необходимы упорядоченность и операции над диапазонами ключей" }
+    ], "fixedQuestion": null },
+    { "id": "t013-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t013-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t013-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

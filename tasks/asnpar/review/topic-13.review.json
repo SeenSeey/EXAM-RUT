@@ -1,0 +1,23 @@
+{
+  "topicId": 13,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Все пять понятий источника покрыты, ключи верны. Критично другое и относится ко всему файлу: во всех шести mcq правильный ответ стоит на позиции 1 (вариант «Б»). Студент, отвечающий «второй вариант» не читая, получает 6 из 6. Позиции верных ответов нужно перемешать — это дефект файла целиком, а не отдельного задания. Дополнительно в mcq-05 и mcq-06 по одному гротескному дистрактору.",
+  "reviews": [
+    { "id": "t013-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 116 симв. против 63; дистракторы содержательны (мьютекс, очередь сообщений, семафор), но ответ виден и по длине.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t013-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t013-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t013-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t013-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 2 («барьер ускоряет медленные потоки до среднего уровня») приписывает барьеру несуществующую способность и отсекается без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t013-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 3 («ничего не произойдёт — барьер устойчив к сбоям») прямо противоречит постановке вопроса об опасности и не является правдоподобным заблуждением.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t013-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t013-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

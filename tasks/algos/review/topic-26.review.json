@@ -1,0 +1,21 @@
+{
+  "topicId": 26,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, шесть понятий покрыты, дистракторы во всех заданиях — это идеи соседних алгоритмов сжатия из того же источника (скользящее окно, одно число, пары «значение+счётчик», префиксный код), поэтому задания реально проверяют различение методов. Пробел: таблица применений (BMP/факсы, GIF/TIFF, gzip/PNG, JPEG/MP3) и различие LZ77 против LZW/LZ78 заданиями не задействованы; сжатие с потерями представлено только как половина mcq-02.",
+  "reviews": [
+    { "id": "t026-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика включает содержание mcq-02, mcq-03, mcq-04, mcq-05 и mcq-06 — почти весь набор mcq этой темы.", "evidence": "DEFLATE - комбинация: сначала LZ77-кодирование, затем кодирование Хаффмана" }
+    ], "fixedQuestion": null },
+    { "id": "t026-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Полностью повторяет mcq-05 (различие Хаффмана и арифметического кодирования), добавляя только общее определение энтропийного кодирования.", "evidence": "в отличие от Хаффмана, кодирует всё сообщение в одно число" }
+    ], "fixedQuestion": null }
+  ]
+}

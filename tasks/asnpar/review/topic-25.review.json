@@ -1,0 +1,25 @@
+{
+  "topicId": 25,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 10, "fix": 0, "discard": 0 },
+  "topicNotes": "Сильный блок: ключи верны везде, покрыты CAS, границы применимости, spinning, ABA, volatile против Atomic и условие, когда мьютекс выгоднее. Задания mcq-07 и mcq-08 сделаны хорошо — они требуют помнить именно оговорки источника, а не общий смысл. Дефект: mcq-02 (разбор count++ на Read-Modify-Write) — уже третье задание раздела на этот же механизм после t007-mcq-02 и t024-mcq-02; в одном билете их сочетать нельзя. Формально: 7 из 8 верных ответов на позиции 1.",
+  "reviews": [
+    { "id": "t025-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Третье задание раздела на неатомарность инкремента: дублирует t007-mcq-02 и t024-mcq-02, различаясь лишь формулировкой вопроса.", "evidence": "На уровне процессора это не атомарная операция. Она состоит из трех шагов:" }
+    ], "fixedQuestion": null },
+    { "id": "t025-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 119 симв. против 67 и единственный называет сразу два преимущества.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t025-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 150 симв. против 65: единственный разводит обе стороны сравнения, дистрактор 2 («полностью эквивалентны») отбрасывается сразу.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t025-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t025-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t025-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

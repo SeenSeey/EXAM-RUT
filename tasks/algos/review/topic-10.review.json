@@ -1,0 +1,23 @@
+{
+  "topicId": 10,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Сильный блок: ключи верны во всех шести mcq, все шесть понятий покрыты, дистракторы правдоподобны и взяты из смежных структур и режимов работы таблицы. mcq-06 и open-02 корректно разводят средний и худший случай с указанием причины вырождения. Замечание по сложности: заявленный hard только один, при этом mcq-02 (негативное задание про обратимость) по трудности сопоставим.",
+  "reviews": [
+    { "id": "t010-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "UNGROUNDED", "severity": "minor", "explanation": "Rationale к варианту 0 ссылается на TreeMap и O(log n) — этого в секции источника нет (упомянут только Java HashMap и превращение цепочек в красно-чёрное дерево). На ключ не влияет.", "evidence": "В Java 8+ длинные цепочки превращаются в красно-чёрное дерево" }
+    ], "fixedQuestion": null },
+    { "id": "t010-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t010-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный отвечает на обе части двусоставного вопроса («что такое» и «почему неизбежна») и потому заметно длиннее.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t010-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t010-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t010-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t010-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Первая половина рубрики (что такое коллизия и почему неизбежна) дословно совпадает с mcq-03, вторая — с mcq-04.", "evidence": "разные ключи дают один индекс. Неизбежны (ключей больше, чем бакетов - принцип Дирихле)" }
+    ], "fixedQuestion": null },
+    { "id": "t010-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

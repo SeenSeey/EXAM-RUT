@@ -1,0 +1,20 @@
+{
+  "topicId": 18,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все шесть понятий покрыты, mcq-03 (разрезающее свойство как обоснование жадности) — сильное задание, которое нельзя взять здравым смыслом. Дистракторы к mcq-04 и mcq-05 взаимно берут описание соседнего алгоритма — это работает. Пробелы: код Краскала с DSU в источнике приведён, но заданий на его чтение нет; применения MST (проектирование сетей, кластеризация, аппроксимация коммивояжёра) и неединственность MST при равных весах не проверяются.",
+  "reviews": [
+    { "id": "t018-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t018-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 1 («случайно перемешивает рёбра до получения дерева») бессмыслен и отсекается без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t018-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t018-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика собирает содержание mcq-04, mcq-05 и mcq-06 целиком, добавляя только критерий выбора (разреженный/плотный граф).", "evidence": "Краскал\nO(E log E)\nразреженные графы (мало рёбер)" }
+    ], "fixedQuestion": null }
+  ]
+}

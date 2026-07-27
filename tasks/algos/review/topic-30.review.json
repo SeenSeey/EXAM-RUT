@@ -1,0 +1,21 @@
+{
+  "topicId": 30,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, шесть понятий покрыты, mcq-04 (Bloom filter «не лжёт в отрицательную сторону») и mcq-05 (HyperLogLog против Count-Min и Bloom) требуют точного знания таблицы источника — это сильные задания. Пробелы: Count-Min Sketch как третья sketch-структура отдельного задания не получил (только как дистрактор), резервуарная выборка с приведённым кодом не задействована, таблица сравнения парадигм (число проходов, память, точность) тоже не проверяется.",
+  "reviews": [
+    { "id": "t030-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант заметно длиннее и дословно повторяет формулировку источника, остальные — короткие альтернативы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t030-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t030-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t030-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t030-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t030-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t030-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t030-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Первый пункт рубрики (порядок Map → Shuffle/Sort → Reduce) полностью совпадает с mcq-06.", "evidence": "Поток данных: Map → Shuffle/Sort → Reduce" }
+    ], "fixedQuestion": null }
+  ]
+}

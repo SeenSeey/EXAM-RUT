@@ -1,0 +1,132 @@
+{
+  "topicId": 5,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 11, "fix": 0, "discard": 0 },
+  "topicNotes": "Сильный блок: все шесть понятий покрыты, ключи верны, дистракторы — это соседние модели из того же источника, поэтому задания различают студентов по существу. Претензии: ни одного easy при 9 medium и 2 hard; questionType проставлен формально (mcq-07 помечен comparison, хотя ничего не сравнивает); mcq-04 и mcq-08 обыгрывают один и тот же материал — список применений моделей.",
+  "reviews": [
+    {
+      "id": "t005-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Дистрактор 2 («Чтение, Модификация, Запись, Проверка») не соотносится ни с одним понятием темы и отсекается без знания PCAM; difficulty medium для узнавания четырёх этапов завышена.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 114 симв. против 52: остальные три этапа названы одной фразой, а верный дан вместе с целью. Содержательно задание при этом работает — дистракторы суть реальные этапы PCAM.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант заметно длиннее (131 симв. против 78), хотя зеркальный дистрактор 0 с переставленными ролями удерживает содержательность.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "К верному варианту дописано обоснование через тире («— она даёт динамическую балансировку нагрузки»), чего нет у дистракторов.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType comparison, но задание спрашивает о свойстве одной модели, ничего не сопоставляя; по содержанию definition.",
+          "evidence": "Синхронизация: Происходит на этапе слияния результатов"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-mcq-08",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t005-open-03",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

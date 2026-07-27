@@ -1,0 +1,20 @@
+{
+  "topicId": 15,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, три представления графа разведены корректно, дистракторы к mcq-03 и mcq-04 взяты из плюсов и минусов соседнего представления — задание проверяет именно различение. Замечания: mcq-03 и mcq-04 висят на одном понятии (плюс и минус матрицы смежности) и вместе входят в open-01; виды графов проверяются одним лёгким заданием про взвешенность, ориентированность и связность не затронуты.",
+  "reviews": [
+    { "id": "t015-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t015-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t015-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t015-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пара к mcq-03 по тому же понятию: там плюс матрицы смежности, здесь её минус; варианты одного задания служат дистракторами другого.", "evidence": "требует много памяти" }
+    ], "fixedQuestion": null },
+    { "id": "t015-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "UNCLEAR", "severity": "minor", "explanation": "Дистрактор 2 («Список рёбер только для плотных графов») сформулирован как утверждение о списке рёбер, а не как ответ на вопрос о представлении, — вариант читается неуклюже; rationale к нему тоже размытый.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t015-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t015-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

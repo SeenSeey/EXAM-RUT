@@ -1,0 +1,28 @@
+{
+  "topicId": 25,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 11, "fix": 0, "discard": 0 },
+  "topicNotes": "Лучший блок раздела web: ключи верны во всех восьми mcq, и задания опираются на механику, а не на формулировки — mcq-05 (порядок хуков в списке на Fiber как причина Rules of Hooks), mcq-06 (сравнение по ссылке и push), mcq-07 (функциональная форма setState против stale closure) невозможно взять здравым смыслом. Дистракторы правдоподобны и отражают типовые заблуждения (forceUpdate, «хуки ищутся по имени»). Пробелы: батчинг React 18 и legacy ReactDOM.render, а также key/индекс массива в reconciliation отдельных mcq не получили — key разобран только в рубрике open-03.",
+  "reviews": [
+    { "id": "t025-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант заметно длиннее и единственный содержит и механизм, и оговорку про браузер.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t025-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t025-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t025-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Включает mcq-02 (природа JSX) и mcq-03 (className/htmlFor); новое в рубрике — только правило одного корневого узла и {выражение}.", "evidence": "className/htmlFor - потому что class/for - зарезервированные слова JS, а не разметки." }
+    ], "fixedQuestion": null },
+    { "id": "t025-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Третий пункт рубрики повторяет mcq-05 (список хуков и порядок вызова).", "evidence": "идёт по этому списку по порядку вызова, а не по имени переменной" }
+    ], "fixedQuestion": null },
+    { "id": "t025-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Первые два пункта рубрики совпадают с mcq-06 (сравнение по ссылке, push не создаёт новую ссылку); часть про key и reconciliation — новая.", "evidence": "Мутация state.items.push(x) не создаёт новую ссылку → React не увидит изменения и не перерисует дерево" }
+    ], "fixedQuestion": null }
+  ]
+}

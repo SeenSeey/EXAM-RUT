@@ -1,0 +1,27 @@
+{
+  "topicId": 19,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник по теме тонкий: четыре строки схемы Event Loop плюс три примера кода, и заданий на большее в нём нет. Ключи верны, цитаты дословны, фактов извне источника не привнесено. Но по качеству это самый слабый блок раздела: все шесть mcq — воспроизведение определений и списков («что такое колбэк», «в каких состояниях Promise», «в чём преимущество»), ни одного hard, правильный ответ во всех шести на позиции 1. Примеры кода из источника (setTimeout, цепочка .then/.catch, async-функция с try/catch) не задействованы, хотя именно они дали бы scenario-задание.",
+  "reviews": [
+    { "id": "t019-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "FILLER", "severity": "minor", "explanation": "Задание воспроизводит одну строку определения из источника и по сути проверяет, читал ли студент абзац; в связке с mcq-05 и open-02, где колбэки тоже разбираются, ценность низкая.", "evidence": "Колбэк - функция, которая будет вызвана после завершения операции" }
+    ], "fixedQuestion": null },
+    { "id": "t019-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 81 симв. против 29: единственный с русскими расшифровками состояний, остальные — короткие тройки терминов.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t019-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 0 («полное отсутствие асинхронности») бессмыслен для вопроса о преимуществе Promise и отсекается без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t019-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 104 симв. против 50 и единственный перечисляет несколько преимуществ сразу.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t019-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "THIN_RUBRIC", "severity": "minor", "explanation": "keyPoints дословно повторяют четыре пункта «упрощённой схемы» источника — рубрика не различает понимание от заучивания, а modelAnswer их просто пересказывает.", "evidence": "Event Loop переносит задачу в стек вызовов, когда он освобождается" }
+    ], "fixedQuestion": null },
+    { "id": "t019-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

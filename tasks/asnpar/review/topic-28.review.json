@@ -1,0 +1,26 @@
+{
+  "topicId": 28,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 11, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех восьми mcq. mcq-02 — образцовое задание раздела: дистрактор 0 воспроизводит ровно то смешение понятий, от которого предостерегает источник («асинхронная модель системы» против «асинхронной передачи сообщения»), и ловит поверхностное понимание. Сильны также mcq-05 (Лампорт против векторных часов) и mcq-07 (FLP). Пробел покрытия: порядок доставки FIFO → causal → total order, гарантии at-most/at-least/exactly-once как классификация и практический стек (Kafka, ZooKeeper, etcd, Raft) отдельных заданий не получили. Формально: все восемь верных ответов на позиции 1; в шести mcq верный вариант вдвое длиннее дистракторов.",
+  "reviews": [
+    { "id": "t028-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 132 симв. против 69 и единственный перечисляет все признаки контекста.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t028-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 127 симв. против 40: единственный содержит и условие, и контрпример; дистракторы — короткие крайности («для любых», «ни для каких»).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t028-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "major", "explanation": "Верный вариант 182 симв. против 69 — почти втрое длиннее; он единственный формулирует обе стороны сравнения, остальные варианты однофразовые.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t028-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t028-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t028-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t028-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t028-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

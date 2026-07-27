@@ -1,0 +1,22 @@
+{
+  "topicId": 26,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник по теме — двенадцать строк, и семь заданий покрывают его целиком: этапы, классовые методы, тело эффекта, функция очистки и подвох пустого массива зависимостей. Ключи верны. Замечания: mcq-03 и mcq-05 вместе с open-02 трижды обыгрывают список зависимостей, а open-01 полностью включает mcq-01, mcq-02 и mcq-04 — то есть все пять mcq продублированы двумя открытыми заданиями. Тема также пересекается с темой 27 (React Hooks), где useEffect разбирается подробнее.",
+  "reviews": [
+    { "id": "t026-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Развивает mcq-03 (пустой список зависимостей) и полностью входит в рубрику open-02.", "evidence": "эффект продолжит работать со старым, устаревшим значением этой переменной." }
+    ], "fixedQuestion": null },
+    { "id": "t026-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика включает mcq-01 (три этапа), mcq-02 (componentWillUnmount) и mcq-04 (функция очистки).", "evidence": "Размонтирование (unmounting) — удаление компонента со страницы. Классовый метод: componentWillUnmount." }
+    ], "fixedQuestion": null },
+    { "id": "t026-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика повторяет mcq-03 и mcq-05 — три варианта списка зависимостей и подвох пустого массива.", "evidence": "пустой список — сработает только один раз при появлении, без списка вообще — после каждой отрисовки, с указанными значениями — только когда они изменились." }
+    ], "fixedQuestion": null }
+  ]
+}

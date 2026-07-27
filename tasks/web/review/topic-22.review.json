@@ -1,0 +1,29 @@
+{
+  "topicId": 22,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 10, "fix": 0, "discard": 0 },
+  "topicNotes": "Сильный блок: ключи верны, mcq-02 (fr делит остаток, а не всю ширину), mcq-04 (неявный грид) и mcq-06 (dense разводит визуальный порядок с DOM и ломает доступность) проверяют именно те места, где ошибаются на практике. Замечание: mcq-07 и open-03 сравнивают Grid и Flexbox, что уже сделано в t019-mcq-05 темы 19 — при сборке билета эти задания взаимозаменяемы; grid-template-areas и именованные линии в источнике есть, но заданиями не покрыты.",
+  "reviews": [
+    { "id": "t022-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант втрое длиннее остальных и единственный содержит развёрнутое определение.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t022-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «создаёт 200 колонок» и «повторяет трек 200 раз» приписывают minmax поведение repeat и неправдоподобны для того, кто видел синтаксис.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t022-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t022-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "DUPLICATE", "severity": "major", "explanation": "Дублирует t019-mcq-05 из темы 19 (Flexbox одномерный против двумерного Grid) — тот же вопрос, тот же верный вариант по смыслу.", "evidence": "двумерная (строки и столбцы одновременно)" }
+    ], "fixedQuestion": null },
+    { "id": "t022-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пункты про fr и minmax повторяют mcq-02 и mcq-03.", "evidence": "minmax() - задаёт диапазон размера трека" }
+    ], "fixedQuestion": null },
+    { "id": "t022-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Включает содержание mcq-04 (неявный грид) и mcq-06 (dense и доступность).", "evidence": "браузер сам достраивает недостающие строки/столбцы - это неявный (implicit) грид" }
+    ], "fixedQuestion": null },
+    { "id": "t022-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

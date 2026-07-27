@@ -1,0 +1,17 @@
+{
+  "topicId": 9,
+  "reviewVersion": "1.0",
+  "reviewedCount": 6,
+  "summary": { "keep": 6, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех пяти mcq, дистракторы удачные — они взяты из соседней структуры (стек против очереди против приоритетной очереди), поэтому задания различают по существу. Все пять понятий покрыты. Замечания: ни одного hard-задания; операции стека (push/pop/peek/count) проверяются только косвенно через open, тогда как операциям очереди отведён отдельный mcq.",
+  "reviews": [
+    { "id": "t009-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t009-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t009-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t009-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t009-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант заметно длиннее и единственный содержит формулировку из источника («сохраняющего порядок поступления»).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t009-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

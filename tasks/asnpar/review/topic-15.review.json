@@ -1,0 +1,31 @@
+{
+  "topicId": 15,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 10, "fix": 0, "discard": 0 },
+  "topicNotes": "Фактических ошибок нет: ключи верны во всех семи mcq, цитаты дословны. Но это самый однородный файл раздела: все 10 заданий помечены medium (ни одного easy или hard), правильный ответ во всех семи mcq стоит на позиции 1, шесть из семи mcq — пересказ определений из источника, а mcq-03 и mcq-06 проверяют по сути один тезис (корутина уступает управление сама, ОС её не вытесняет). Источник по теме короткий, поэтому семь mcq для него — потолок, и материала на разведение по сложности действительно мало.",
+  "reviews": [
+    { "id": "t015-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 101 симв. против 48; дистракторы — короткие назывные определения других сущностей.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t015-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 2 («не может хранить локальные переменные») неправдоподобен для любого понимающего, что такое функция.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t015-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пересекается с t015-mcq-06: оба проверяют тезис «корутину не вытесняет ОС, она уступает управление сама», отличаются лишь ракурсом формулировки.", "evidence": "корутина должна сама явно отдать управление" }
+    ], "fixedQuestion": null },
+    { "id": "t015-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t015-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t015-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 134 симв. против 45: единственный, где описаны обе стороны сравнения.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t015-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 0 («параллельность на двух ядрах») и 3 («всегда параллельное выполнение независимо от числа потоков») утверждают одно и то же — наличие параллельности; реальных альтернатив три.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t015-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t015-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "THIN_RUBRIC", "severity": "minor", "explanation": "keyPoints ровно повторяют четыре подзаголовка «Преимущества» из источника — рубрика воспроизводит список, а не различает сильный ответ от слабого.", "evidence": "Легковесность: Корутины потребляют минимум ресурсов" }
+    ], "fixedQuestion": null },
+    { "id": "t015-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

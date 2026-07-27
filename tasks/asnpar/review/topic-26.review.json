@@ -1,0 +1,24 @@
+{
+  "topicId": 26,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 11, "fix": 0, "discard": 0 },
+  "topicNotes": "Лучший по содержанию блок раздела: ключи верны, mcq-03 (lock-free против wait-free), mcq-06 (безопасная рекламация) и mcq-08 (два указателя в очереди Майкла–Скотта) требуют настоящего понимания и не берутся здравым смыслом. Дистракторы точные — соседние структуры и уровни гарантий. Пробел покрытия: заявленные в conceptsIdentified «contention» и «частичный lock-free (ConcurrentHashMap)» ни одним заданием не проверяются, ConcurrentHashMap встречается только как дистрактор; при этом именно contention даёт главный практический вывод источника (неблокирующая версия не всегда быстрее хорошего мьютекса, LongAdder против AtomicLong). Формально: все восемь верных ответов на позиции 1, ни одного easy.",
+  "reviews": [
+    { "id": "t026-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пересекается с t026-open-02, где паттерн read-modify-CAS требуется описать словами; в одном билете задания подсказывают друг друга.", "evidence": "read-modify-CAS в цикле повтора" }
+    ], "fixedQuestion": null },
+    { "id": "t026-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t026-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 148 симв. против 55; дистракторы («работала только в один поток», «отказаться от CAS», «массив фиксированного размера») слабо правдоподобны для темы lock-free.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t026-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t026-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t026-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

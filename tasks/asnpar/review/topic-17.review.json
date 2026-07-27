@@ -1,0 +1,27 @@
+{
+  "topicId": 17,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 11, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны во всех восьми mcq. Хорошо разведены три средства синхронизации: дистракторы к mcq-06 и mcq-07 — это соседние механизмы (каналы, WaitGroup, select, Mutex), перепутать их можно только не зная темы. Слабости: пять mcq из восьми — questionType definition; правильный ответ во всех восьми на позиции 1; в источнике есть готовый код (пример с WaitGroup и с каналом), но ни одного задания на чтение кода не построено, хотя это самый естественный формат для scenario/antipattern по этой теме.",
+  "reviews": [
+    { "id": "t017-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 0 («1-2 МБ, как поток ОС») и 2 («ровно столько же, сколько поток ОС») утверждают одно и то же; реальных вариантов три.", "evidence": null },
+      { "code": "TYPE_MISMATCH", "severity": "minor", "explanation": "questionType comparison, хотя спрашивается конкретное числовое значение из источника — это definition.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t017-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "major", "explanation": "Верный вариант 178 симв. против 49 у самого длинного дистрактора — почти вчетверо; остальные варианты короткие и явно неправдоподобные («каналы отключают планировщик», «копируют все данные в каждую горутину»).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t017-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-08", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "OVERLAP", "severity": "minor", "explanation": "Дистракторы 0 («горутины строго кооперативны») и 3 («корутины вытесняющие, а горутины кооперативные») отрицают одно и то же утверждение источника; по сути это один дистрактор в двух формулировках.", "evidence": "с версии Go 1.14 планировщик Go стал полностью вытесняющим" }
+    ], "fixedQuestion": null },
+    { "id": "t017-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t017-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t017-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

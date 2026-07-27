@@ -1,0 +1,23 @@
+{
+  "topicId": 24,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, шесть понятий покрыты. Сильная часть — mcq-04 и mcq-05: они требуют понимать, когда инлайновый стиль оправдан и что даёт изменение CSS-переменной на корне, а не воспроизводить определение. Замечания: mcq-02 и первая половина open-01 дословно совпадают (почему классы предпочтительны), open-02 собирает mcq-04 и mcq-05; таким образом три из шести mcq продублированы открытыми заданиями.",
+  "reviews": [
+    { "id": "t024-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант вдвое длиннее и единственный содержит содержательный довод; три дистрактора — заведомо ложные утверждения («единственный доступный способ», «обойтись без CSS-файла»).", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t024-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t024-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t024-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Включает mcq-02 (почему классы предпочтительны) и mcq-03 (поведение toggle).", "evidence": "JavaScript отвечает только за логику, а все оформление остается в CSS." }
+    ], "fixedQuestion": null },
+    { "id": "t024-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Собирает содержание mcq-04 (когда уместен element.style) и mcq-05 (эффект изменения CSS-переменной).", "evidence": "Все дочерние элементы, использующие эту переменную, обновятся автоматически." }
+    ], "fixedQuestion": null }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "topicId": 1,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 7, "fix": 1, "discard": 0 },
+  "topicNotes": "Тема раскрыта равномерно, ключи верны, все sourceQuote дословны. Основная слабость — дистракторы построены как гротескные отрицания источника (особенно mcq-05), а questionType местами не соответствует содержанию: mcq-03 помечен tradeoff, но компромисса не разбирает, mcq-05 помечен comparison, хотя сравнения в нём нет.",
+  "reviews": [
+    {
+      "id": "t001-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType заявлен tradeoff, но задание не разбирает компромисс, а воспроизводит определение накладных расходов; по содержанию это definition, а difficulty ближе к easy.",
+          "evidence": "не используется для совершения полезной работы и представляет собой накладные расходы"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-mcq-05",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "major",
+          "explanation": "Все три дистрактора — гротескные отрицания («общее адресное пространство со всеми процессами», «единый стек, общий для всех процессов ОС», «регистры, разделяемые между всеми процессами»). Они отсекаются без знания темы, задание не различает подготовленного и неподготовленного студента.",
+          "evidence": null
+        },
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант единственный содержательный и заметно длиннее остальных (91 симв. против 46), выбирается по форме.",
+          "evidence": null
+        },
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType comparison, но X против Y не сопоставляется; по содержанию definition.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t001-mcq-05",
+        "type": "mcq",
+        "concept": "определение и изоляция процесса",
+        "difficulty": "medium",
+        "questionType": "definition",
+        "question": "Что из перечисленного процесс имеет в собственном распоряжении согласно источнику?",
+        "options": [
+          "Счётчик команд, регистры и стек, тогда как области памяти процессы разделяют между собой",
+          "Собственные области памяти, стек, отображение виртуальной памяти на физическую",
+          "Только PCB: память и стек процесс получает во временное пользование на время кванта",
+          "Ничего индивидуального: процесс — это лишь заявка на потребление ресурсов"
+        ],
+        "correctIndex": 1,
+        "rationales": [
+          "Неверно: области памяти процессы не разделяют — они изолированы друг от друга.",
+          "Верно: у процесса собственные области памяти, стек и отображение виртуальной памяти на физическую.",
+          "Неверно: PCB выделяется в состоянии New, но собственные память и стек у процесса есть постоянно, а не на время кванта.",
+          "Неверно: заявкой на потребление ресурсов процесс рассматривается ОС, но это не отменяет его собственных областей памяти и стека."
+        ],
+        "explanation": "Процессы изолированы: каждый имеет собственные области памяти, стек и отображение виртуальной памяти на физическую.",
+        "sourceQuote": "собственные области памяти, стек, отображение виртуальной памяти на физическую"
+      }
+    },
+    {
+      "id": "t001-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t001-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

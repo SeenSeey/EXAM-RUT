@@ -1,0 +1,20 @@
+{
+  "topicId": 11,
+  "reviewVersion": "1.0",
+  "reviewedCount": 5,
+  "summary": { "keep": 5, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, дистракторы в mcq-03 и mcq-04 взяты из соседних узлов компьютера (кэш, шина, УУ, внешняя память) — задания различают по существу. Замечания: ни одного easy при четырёх medium и одном hard, причём hard-задание (mcq-02 про энергозависимость RAM) на деле простое. Пробелы покрытия: пять процессов функциональной организации (ввод, хранение, обработка, вывод, управление), материнская плата и системная шина, а также шестишаговый цикл работы компьютера (загрузка программы в ОЗУ → выборка команды → анализ в УУ → выполнение в АЛУ → запись результата → переход к следующей) не проверяются ни одним заданием, хотя занимают половину источника.",
+  "reviews": [
+    { "id": "t011-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t011-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "TYPE_MISMATCH", "severity": "minor", "explanation": "difficulty hard не соответствует содержанию: вопрос о том, стирается ли RAM при выключении, — базовое знание, а дистракторы 2 и 3 (перенос в регистры, копирование в кэш навсегда) неправдоподобны.", "evidence": "После выключения компьютера её содержимое удаляется." }
+    ], "fixedQuestion": null },
+    { "id": "t011-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t011-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 105 симв. против 64 и единственный содержит объяснение «зачем», тогда как вопрос спрашивает именно назначение.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t011-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пункты рубрики про кэш и энергозависимость RAM повторяют mcq-02 и mcq-04 этой же темы.", "evidence": "Она хранит наиболее часто используемые данные, благодаря чему процессору не приходится постоянно обращаться к более медленной оперативной памяти." }
+    ], "fixedQuestion": null }
+  ]
+}

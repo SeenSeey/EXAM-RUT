@@ -1,0 +1,20 @@
+{
+  "topicId": 17,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, четыре алгоритма разведены по применимости, дистракторы — это соседние алгоритмы из того же перечня, что и требуется. Замечания: mcq-02 и mcq-03 висят на одном понятии (применимость Дейкстры и её же ограничение); mcq-05 и mcq-06 сводятся к выбору названия алгоритма из четырёх, то есть проверяют узнавание, а не рассуждение; механика Дейкстры (релаксация, приоритетная очередь на куче) и матрица расстояний Флойда-Уоршелла отдельных заданий не получили.",
+  "reviews": [
+    { "id": "t017-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Обратная сторона mcq-02: там сказано, что Дейкстра для неотрицательных весов, здесь — что не работает при отрицательных. Варианты одного задания подсказывают ответ другого.", "evidence": "не работает при наличии отрицательных весов" }
+    ], "fixedQuestion": null },
+    { "id": "t017-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t017-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "TYPE_MISMATCH", "severity": "minor", "explanation": "difficulty hard не соответствует содержанию: задание сводится к выбору BFS для невзвешенного графа — это прямое утверждение источника, повторяющее mcq-05 темы 16.", "evidence": "используется только для невзвешенных графов, где все ребра имеют одинаковую стоимость" }
+    ], "fixedQuestion": null },
+    { "id": "t017-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

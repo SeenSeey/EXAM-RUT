@@ -1,0 +1,133 @@
+{
+  "topicId": 2,
+  "reviewVersion": "1.0",
+  "reviewedCount": 11,
+  "summary": { "keep": 10, "fix": 1, "discard": 0 },
+  "topicNotes": "Ключи верны во всех восьми mcq, цитаты дословны, открытые задания опираются на источник. Сложность смещена: 1 easy / 8 medium / 2 hard при 7 понятиях. Дистракторы про критические секции и семафоры взяты из соседних тем — это допустимо, но делает mcq-01 решаемым без знания темы потоков.",
+  "reviews": [
+    {
+      "id": "t002-mcq-01",
+      "verdict": "fix",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "major",
+          "explanation": "Верный вариант — единственный, к которому дописано обоснование («именно они являются базовой единицей планирования»); два других варианта («Критические секции», «Семафоры») вообще не являются единицами планирования и отсекаются без знания темы. Выбор делается по форме.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": {
+        "id": "t002-mcq-01",
+        "type": "mcq",
+        "concept": "определение потока и планирование именно потоков",
+        "difficulty": "easy",
+        "questionType": "definition",
+        "question": "Какой сущности ОС выделяет процессорное время как базовой единице планирования?",
+        "options": [
+          "Процессу целиком, а он сам распределяет время между своими потоками",
+          "Потоку",
+          "Пулу потоков, который затем делит время между задачами",
+          "Кванту времени, закреплённому за адресным пространством"
+        ],
+        "correctIndex": 1,
+        "rationales": [
+          "Неверно: ОС планирует именно потоки, а не процессы; распределением времени внутри процесса процесс не занимается.",
+          "Верно: поток — базовая единица, которой ОС выделяет процессорное время.",
+          "Неверно: пул потоков — контейнер заранее созданных потоков, берущих задачи из очереди, а не единица планирования ОС.",
+          "Неверно: квант — это отрезок времени, выдаваемый потоку при вытесняющем планировании, а не планируемая сущность."
+        ],
+        "explanation": "Поток — базовая единица, которой ОС выделяет процессорное время; планирует ОС именно потоки, а не процессы.",
+        "sourceQuote": "Планирует ОС именно потоки, а не процессы"
+      }
+    },
+    {
+      "id": "t002-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 0,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "TYPE_MISMATCH",
+          "severity": "minor",
+          "explanation": "questionType definition, хотя задание сопоставляет два способа завершения потока и ближе к comparison.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-mcq-08",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t002-open-03",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

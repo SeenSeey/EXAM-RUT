@@ -1,0 +1,24 @@
+{
+  "topicId": 23,
+  "reviewVersion": "1.0",
+  "reviewedCount": 6,
+  "summary": { "keep": 6, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник — восемь строк, и шесть заданий выжимают из него практически всё; ключи верны, ничего сверх текста не привнесено. mcq-04 (typeof null возвращает «объект») — единственный содержательный подвох темы, и он использован. Замечания: ни одного hard; mcq-01 и mcq-02 полностью входят в рубрику open-01, mcq-04 — в open-02, то есть половина заданий дублируется парами mcq↔open; формулировки заданий избегают синтаксиса (=== , typeof) и пересказывают его словами («проверка типа», «строгое сравнение»), из-за чего экзаменуемый может не связать вопрос с реальным кодом.",
+  "reviews": [
+    { "id": "t023-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистрактор 0 («доступ через точку в JavaScript не работает») неправдоподобен для любого, кто видел JS.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t023-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [
+      { "code": "TYPE_MISMATCH", "severity": "minor", "explanation": "questionType negative, но отрицания в вопросе нет — спрашивается прямое значение typeof null.", "evidence": null },
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный с пояснением («давняя ошибка языка, сохранённая ради совместимости») и втрое длиннее остальных.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t023-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика полностью включает mcq-01 (Set) и mcq-02 (Map против объекта).", "evidence": "Map (то же самое, но ключом может быть что угодно, не только строка, и порядок вставки сохраняется)" }
+    ], "fixedQuestion": null },
+    { "id": "t023-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Вторая половина рубрики совпадает с mcq-04 (typeof null).", "evidence": "проверка типа для значения null возвращает «объект»" }
+    ], "fixedQuestion": null }
+  ]
+}

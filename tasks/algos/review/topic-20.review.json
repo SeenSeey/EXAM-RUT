@@ -1,0 +1,22 @@
+{
+  "topicId": 20,
+  "reviewVersion": "1.0",
+  "reviewedCount": 7,
+  "summary": { "keep": 7, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, тема покрыта полно: определение, условия оптимальности, положительные и отрицательные примеры, сопоставление с ДП и перебором. mcq-04 построен на конкретном контрпримере из источника (номиналы 1, 3, 4) — это правильный ход, но формулировка вопроса уже содержит жадный ответ и подводит к верному варианту. mcq-05 и mcq-04 вместе плюс open-01 трижды обыгрывают один тезис «где жадность ошибается».",
+  "reviews": [
+    { "id": "t020-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный содержит пояснение в скобках («берём по убыванию удельной ценности») и вдвое длиннее остальных; дистрактор 3 («любая задача оптимизации без исключений») отсекается сразу.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t020-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "GIVEAWAY", "severity": "major", "explanation": "Условие само сообщает жадный результат (4+1+1, 3 монеты), а верный вариант просто дописывает оптимум 3+3; остальные три варианта либо противоречат условию, либо утверждают отсутствие решения. Задание проверяет чтение условия, а не понимание.", "evidence": "для номиналов 1, 3, 4 на сумму 6 жадный даёт 4+1+1 (3 монеты), а оптимум - 3+3 (2 монеты)" }
+    ], "fixedQuestion": null },
+    { "id": "t020-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант втрое длиннее остальных и единственный описывает все три подхода.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t020-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "topicId": 6,
+  "reviewVersion": "1.0",
+  "reviewedCount": 4,
+  "summary": { "keep": 4, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, open-01 сделан хорошо: рубрика из четырёх моделей с указанием, что подчёркивает каждая, — это действительно различает сильный ответ от слабого. Пробел покрытия: шесть фаз цикла (сбор, передача, обработка, хранение, представление, использование) названы в conceptsIdentified темы косвенно, но ни одним mcq не проверяются — все три mcq ушли в определение, модели и вывод про ценность цикла. Пересечение с темой 5: этапы информационного процесса там и фазы цикла здесь — один материал в двух темах.",
+  "reviews": [
+    { "id": "t006-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 94 симв. против 51 и единственный дан полным определением.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t006-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t006-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы 0 («потеря не влияет на результат») и 3 («хранение заменяет передачу») противоречат постановке вопроса и отсекаются без знания темы; difficulty hard для такого задания завышена.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t006-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

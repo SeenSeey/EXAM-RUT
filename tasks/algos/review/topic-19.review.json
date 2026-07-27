@@ -1,0 +1,25 @@
+{
+  "topicId": 19,
+  "reviewVersion": "1.0",
+  "reviewedCount": 8,
+  "summary": { "keep": 8, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, оба подхода (top-down и bottom-up) разведены и по механике, и по плюсам-минусам, open-02 корректно воспроизводит шестишаговый алгоритм построения ДП-решения. Замечания по файлу: mcq-03, mcq-04 и mcq-06 держатся на одной паре «рекурсия+мемоизация против цикла», причём mcq-03 фактически даёт ответы на два других; правильный ответ в четырёх mcq из шести стоит на позиции 0 — позиции стоит перемешать.",
+  "reviews": [
+    { "id": "t019-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы взяты из чужих областей (свойства графов, требования бинарного поиска, свойства сортировок) и отсекаются по категории, а не по существу ДП.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t019-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Плюсы bottom-up уже названы в вариантах mcq-03 (цикл, отсутствие рекурсии); задания подсказывают друг друга.", "evidence": "Плюсы: быстрее; нет рекурсии; меньше расход памяти стека" }
+    ], "fixedQuestion": null },
+    { "id": "t019-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Минусы top-down зеркальны плюсам bottom-up из mcq-04; вместе с mcq-03 это третье задание на одно противопоставление.", "evidence": "Минусы: используется рекурсия; возможное переполнение стека" }
+    ], "fixedQuestion": null },
+    { "id": "t019-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Полностью включает mcq-01 и mcq-02 — определение ДП и два свойства задачи.", "evidence": "Одни и те же подзадачи возникают многократно" }
+    ], "fixedQuestion": null },
+    { "id": "t019-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

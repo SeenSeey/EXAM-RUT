@@ -1,0 +1,22 @@
+{
+  "topicId": 23,
+  "reviewVersion": "1.0",
+  "reviewedCount": 9,
+  "summary": { "keep": 9, "fix": 0, "discard": 0 },
+  "topicNotes": "Ключи верны, все семь понятий покрыты, open-02 — сильное задание с рубрикой из шести различающих пунктов. Замечания: правильный ответ во всех семи mcq стоит на позиции 1; шесть из семи mcq — воспроизведение определений, единственное ситуативное задание mcq-07. Источник по этой теме почти целиком состоит из кода (fetchUserData с колбэком, EventEmitter с двумя слушателями, async-генератор температур с for await...of), но ни одно задание не просит прочитать код и сказать, что произойдёт, — самый естественный формат здесь не использован.",
+  "reviews": [
+    { "id": "t023-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Определение колбэка дословно повторяет t019-mcq-03 из темы 19 (тот же вопрос, тот же верный вариант). Внутри темы 23 дубля нет, но при сборке общего банка вопросов эти два задания взаимозаменяемы.", "evidence": "Колбэк - функция, которая вызывается после завершения операции." }
+    ], "fixedQuestion": null },
+    { "id": "t023-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t023-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант 90 симв. против 44; дистракторы 2 и 3 приписывают yield создание потока и блокировку цикла — неправдоподобно для того, кто вообще знает, что такое генератор.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t023-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t023-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null },
+    { "id": "t023-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [], "fixedQuestion": null }
+  ]
+}

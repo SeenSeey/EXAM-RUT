@@ -1,0 +1,21 @@
+{
+  "topicId": 20,
+  "reviewVersion": "1.0",
+  "reviewedCount": 6,
+  "summary": { "keep": 6, "fix": 0, "discard": 0 },
+  "topicNotes": "Источник по теме — двенадцать строк на таблицы и формы сразу, и четыре mcq с двумя open для него адекватны; ключи верны, за пределы текста задания не выходят. Замечания: ни одного hard; mcq-01 и open-01 держатся на одном перечне тегов таблицы, mcq-03 и mcq-04 целиком входят в open-02; атрибуты формы (action, method) и типы input упоминаются только в рубрике open-02, отдельного задания на них нет.",
+  "reviews": [
+    { "id": "t020-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [
+      { "code": "ABSURD_DISTRACTOR", "severity": "minor", "explanation": "Дистракторы «<th> вообще не отображается» и «между <th> и <td> нет разницы» неправдоподобны и отсекаются без знания темы.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t020-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t020-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t020-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика повторяет mcq-01 (какие теги за что отвечают) и mcq-02 (особенность <th>).", "evidence": "Строки создаются с помощью <tr>, ячейки с данными — <td>, а заголовки — <th>" }
+    ], "fixedQuestion": null },
+    { "id": "t020-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Рубрика включает mcq-03 (связь label с полем) и mcq-04 (<textarea> для многострочного ввода).", "evidence": "Для ввода текста в несколько строк используют <textarea>." }
+    ], "fixedQuestion": null }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "topicId": 7,
+  "reviewVersion": "1.0",
+  "reviewedCount": 12,
+  "summary": { "keep": 12, "fix": 0, "discard": 0 },
+  "topicNotes": "Содержательно самый крепкий блок: шесть проблем взаимодействия и их решения разведены, дистракторы к каждому вопросу — это соседние проблемы из того же списка (дедлок/livelock/starvation/инверсия приоритетов), поэтому задания реально проверяют различение. Ключи верны во всех девяти mcq. Системный дефект — форма: в 8 из 9 mcq верный вариант вдвое-втрое длиннее дистракторов, потому что к нему дописано объяснение. Отдельно: rationales и explanation в mcq-03 и mcq-04 ссылаются на «требования Дейкстры к критической секции» — факт верный, но в источнике его нет.",
+  "reviews": [
+    {
+      "id": "t007-mcq-01",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 149 симв. против 73, но дистракторы — корректные определения дедлока, инверсии приоритетов и голодания, так что задание работает содержательно.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-02",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "ABSURD_DISTRACTOR",
+          "severity": "minor",
+          "explanation": "Дистрактор 1 («всегда даёт правильный результат независимо от потоков») отсекается самой постановкой вопроса о небезопасности операции.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-03",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "UNGROUNDED",
+          "severity": "minor",
+          "explanation": "Rationale к варианту 2 объясняет неверность ссылкой на «требования Дейкстры к критической секции» — утверждение верное, но в источнике отсутствует. На правильность ключа это не влияет: источник прямо перечисляет ровно четыре условия Коффмана.",
+          "evidence": "должны одновременно выполняться 4 условия"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-04",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "UNGROUNDED",
+          "severity": "minor",
+          "explanation": "Explanation относит «ограниченное ожидание» к требованиям Дейкстры — этого в источнике нет. Сам ключ обоснован: источник даёт закрытый список из четырёх условий Коффмана, и bounded waiting в него не входит.",
+          "evidence": "Взаимное исключение (ресурс нельзя использовать совместно)"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-05",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-06",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Три дистрактора названы одной короткой фразой, к верному дописано пояснение через тире (98 симв. против 36). Содержательно дистракторы сильные — это решения дедлока, инверсии приоритетов и голодания.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-07",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 1,
+      "defects": [
+        {
+          "code": "UNCLEAR",
+          "severity": "minor",
+          "explanation": "В rationale к верному варианту роли перепутаны местами: «H ждёт из-за L, но L вытесняет M» — по источнику вытесняет как раз M процесс L. Ключ и текст самого варианта верны, ошибка только в пояснении.",
+          "evidence": "просыпается процесс со средним приоритетом M, который не требует ресурса, и вытесняет L с процессора"
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-08",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [
+        {
+          "code": "GIVEAWAY",
+          "severity": "minor",
+          "explanation": "Верный вариант 99 симв. против 34: единственный с расшифровкой механизма.",
+          "evidence": null
+        }
+      ],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-mcq-09",
+      "verdict": "keep",
+      "answeredIndependently": true,
+      "myAnswerIndex": 2,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-open-01",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-open-02",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    },
+    {
+      "id": "t007-open-03",
+      "verdict": "keep",
+      "answeredIndependently": false,
+      "myAnswerIndex": null,
+      "defects": [],
+      "fixedQuestion": null
+    }
+  ]
+}

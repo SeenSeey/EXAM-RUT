@@ -1,0 +1,27 @@
+{
+  "topicId": 19,
+  "reviewVersion": "1.0",
+  "reviewedCount": 10,
+  "summary": { "keep": 10, "fix": 0, "discard": 0 },
+  "topicNotes": "Один из самых крепких блоков раздела: ключи верны во всех семи mcq, покрыты каскад, специфичность, блочная модель, наследование, модели компоновки, единицы и типовые ошибки. mcq-03 (специфичность сравнивается по разрядам, а не складывается) и mcq-06 (absolute без позиционированного родителя) требуют настоящего понимания. Пробел: таблица селекторов и комбинаторов (>, +, атрибутные, псевдоклассы и псевдоэлементы) занимает в источнике целый раздел, но не проверяется ни одним заданием — при том что это самая используемая часть темы.",
+  "reviews": [
+    { "id": "t019-mcq-01", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [
+      { "code": "GIVEAWAY", "severity": "minor", "explanation": "Верный вариант единственный отвечает на обе части вопроса и втрое длиннее остальных.", "evidence": null }
+    ], "fixedQuestion": null },
+    { "id": "t019-mcq-02", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-03", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-04", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 1, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-05", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 0, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-06", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 2, "defects": [], "fixedQuestion": null },
+    { "id": "t019-mcq-07", "verdict": "keep", "answeredIndependently": true, "myAnswerIndex": 3, "defects": [], "fixedQuestion": null },
+    { "id": "t019-open-01", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Пункт про специфичность повторяет mcq-03; остальная рубрика (происхождение, !important, порядок) добавляет новое, поэтому задание сохраняю.", "evidence": "У ID-селектора вес больше, чем у любого числа классов" }
+    ], "fixedQuestion": null },
+    { "id": "t019-open-02", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Последний пункт рубрики (Flexbox одномерный, Grid двумерный) совпадает с mcq-05.", "evidence": "Grid (display: grid) - двумерная раскладка" }
+    ], "fixedQuestion": null },
+    { "id": "t019-open-03", "verdict": "keep", "answeredIndependently": false, "myAnswerIndex": null, "defects": [
+      { "code": "DUPLICATE", "severity": "minor", "explanation": "Вторая половина рубрики про absolute без позиционированного родителя дословно повторяет mcq-06.", "evidence": "absolute без позиционированного родителя привязывается к границам всего документа." }
+    ], "fixedQuestion": null }
+  ]
+}
