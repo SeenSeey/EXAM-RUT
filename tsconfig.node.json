@@ -1,0 +1,4 @@
+{
+  "compilerOptions": { "composite": true, "skipLibCheck": true, "module": "ESNext", "moduleResolution": "Bundler", "emitDeclarationOnly": true, "outDir": "node_modules/.cache/tsconfig-node" },
+  "include": ["vite.config.ts", "eslint.config.js"]
+}

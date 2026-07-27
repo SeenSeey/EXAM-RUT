@@ -1,0 +1,2 @@
+import type { Question, Topic } from '../domain/types';
+export function QuestionMeta({ question, topic }: { question: Question; topic: Topic }) { const difficulty = { easy: 'Легко', medium: 'Средне', hard: 'Сложно' }[question.difficulty] ?? question.difficulty; return <div className="meta"><span>{question.type === 'mcq' ? 'Тест' : 'Открытый'}</span><span>{difficulty}</span><span>{question.concept}</span><span>{topic.categoryTitle}</span></div>; }
