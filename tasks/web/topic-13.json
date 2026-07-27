@@ -1,13 +1,13 @@
 {
   "topicId": 13,
   "topicTitle": "Валидация данных",
-  "promptVersion": "1.0",
+  "promptVersion": "2.0",
   "conceptsIdentified": [
     "валидация и Bean Validation (Hibernate Validator)",
     "аннотации-ограничения (@NotNull/@NotBlank/@NotEmpty/@Size)",
-    "@Valid vs @Validated и группы",
+    "роли @Valid и @Validated, группы и каскад",
     "механика @RequestBody + @Valid (MethodArgumentNotValidException)",
-    "точки исполнения валидации и их исключения",
+    "границы исполнения валидации и типы ошибок",
     "каскадная валидация вложенных объектов",
     "эталонная реализация Hibernate Validator"
   ],
@@ -20,17 +20,17 @@
       "questionType": "definition",
       "question": "Что такое валидация данных и какой стандарт её задаёт в экосистеме Java?",
       "options": [
-        "Шифрование данных перед записью в БД",
-        "Проверка соответствия данных бизнес-правилам до попадания в логику или БД; стандарт — Bean Validation (Jakarta Bean Validation)",
-        "Преобразование JSON в Java-объект",
-        "Кэширование результатов запросов"
+        "Преобразование входного JSON в объект Java по правилам библиотеки Jackson",
+        "Проверка ограничений до бизнес-логики или БД через Jakarta Validation",
+        "Проверка полномочий пользователя перед выполнением операции над ресурсом",
+        "Шифрование чувствительных полей перед сохранением объекта в базе данных"
       ],
       "correctIndex": 1,
       "rationales": [
-        "Неверно: валидация — не шифрование.",
+        "Неверно: это десериализация; она создаёт объект, но сама по себе не проверяет предметные ограничения.",
         "Верно: валидация — проверка соответствия данных бизнес-правилам до попадания в логику/БД, стандартизированная Bean Validation.",
-        "Неверно: преобразование JSON — это сериализация/десериализация, а не валидация.",
-        "Неверно: валидация не связана с кэшированием."
+        "Неверно: проверка полномочий относится к авторизации, а не к качеству входных данных.",
+        "Неверно: шифрование защищает конфиденциальность и не проверяет бизнес-ограничения."
       ],
       "explanation": "Валидация — проверка, что данные соответствуют бизнес-правилам, до того как они попадут в основную логику или в БД; в Java это стандартизировано спецификацией Bean Validation (JSR 380 / Jakarta Bean Validation).",
       "sourceQuote": "проверка, что данные соответствуют бизнес-правилам"
@@ -61,25 +61,25 @@
     {
       "id": "t013-mcq-03",
       "type": "mcq",
-      "concept": "@Valid vs @Validated и группы",
+      "concept": "роли @Valid и @Validated, группы и каскад",
       "difficulty": "hard",
       "questionType": "comparison",
-      "question": "Чем @Validated отличается от @Valid?",
+      "question": "Как корректно различать @Valid и Spring-аннотацию @Validated?",
       "options": [
-        "@Valid — надмножество @Validated и умеет группы, а @Validated группы не поддерживает",
-        "Это два полностью взаимозаменяемых синонима",
-        "@Validated — аннотация Spring, надмножество @Valid, умеет группы валидации; обычный @Valid группы не поддерживает",
-        "@Validated работает только на сущностях, а @Valid — только на контроллерах"
+        "@Valid задаёт триггер и каскад; @Validated — Spring-группы и method validation",
+        "@Valid выбирает группы, а @Validated нужна только для каскада по вложенным полям объекта",
+        "Аннотации полностью взаимозаменяемы, включая группы, каскад и точки применения",
+        "@Validated работает только с JPA-сущностями, а @Valid — только с параметрами контроллера"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "rationales": [
-        "Неверно: роли перепутаны — группы умеет @Validated, а не @Valid.",
-        "Неверно: они не эквивалентны — различаются поддержкой групп.",
-        "Верно: @Validated — аннотация Spring, надмножество @Valid, поддерживает группы валидации, тогда как обычный @Valid — нет.",
-        "Неверно: это не про разграничение «сущности/контроллеры»."
+        "Верно: @Valid относится к Jakarta Validation и используется как триггер/каскад, а @Validated — Spring-аннотация для validation hints, групп и AOP method validation; одна не является простым надмножеством другой.",
+        "Неверно: роли перепутаны — группы выбирают через @Validated, а каскад вложенного поля задают @Valid.",
+        "Неверно: различия проявляются именно в группах, каскаде и механизмах Spring method validation.",
+        "Неверно: обе аннотации применяются шире и не разделены на сущности и контроллеры."
       ],
-      "explanation": "@Valid — стандарт Bean Validation, @Validated — аннотация Spring, надмножество @Valid, которое умеет группы валидации; обычный @Valid группы не поддерживает.",
-      "sourceQuote": "надмножество @Valid - умеет группы валидации"
+      "explanation": "@Valid — аннотация Jakarta Validation, которая запускает проверку в поддерживаемой точке и включает каскад для вложенного значения. @Validated — Spring-аннотация: она передаёт группы/validation hints и служит точкой включения AOP method validation. Это связанные, но не взаимозаменяемые роли.",
+      "sourceQuote": "@Valid и @Validated решают связанные, но не одинаковые задачи"
     },
     {
       "id": "t013-mcq-04",
@@ -87,45 +87,45 @@
       "concept": "механика @RequestBody + @Valid (MethodArgumentNotValidException)",
       "difficulty": "hard",
       "questionType": "scenario",
-      "question": "Тело запроса @RequestBody с @Valid не прошло проверку. Какое исключение бросит Spring MVC и какой статус сформируется?",
+      "question": "Обычный параметр @Valid @RequestBody не прошёл проверку, а BindingResult рядом нет. Каков типичный результат в Spring MVC?",
       "options": [
-        "ConstraintViolationException → 500 Internal Server Error",
-        "IllegalArgumentException → 400 Bad Request",
-        "Никакого исключения — метод вернёт null",
-        "MethodArgumentNotValidException, из которой формируется 400 Bad Request (в Spring 6 — ProblemDetail)"
+        "ConstraintViolationException, которую MVC всегда преобразует в 500 Internal Server Error",
+        "IllegalArgumentException, после которой контроллер вызывается с частично заполненным объектом",
+        "Контроллер вызывается, а ошибки доступны только через глобальный Validator в сервисном слое",
+        "MethodArgumentNotValidException; стандартная MVC-обработка формирует ответ 400 Bad Request"
       ],
       "correctIndex": 3,
       "rationales": [
-        "Неверно: ConstraintViolationException возникает при method validation, а не при @RequestBody.",
-        "Неверно: бросается специализированное MethodArgumentNotValidException, а не IllegalArgumentException.",
-        "Неверно: ошибки валидации не приводят к null-ответу.",
-        "Верно: при непринятом BindingResult Spring MVC бросает MethodArgumentNotValidException, формируя 400 Bad Request (в Spring 6 — ProblemDetail)."
+        "Неверно: для обычной объектной валидации @RequestBody используется MethodArgumentNotValidException; 500 также не является правильным статусом входной ошибки.",
+        "Неверно: MVC использует специализированное исключение и не вызывает метод с невалидным аргументом.",
+        "Неверно: проверка происходит после десериализации аргумента, до вызова метода контроллера.",
+        "Верно: при отсутствии соседнего BindingResult резолвер выбрасывает MethodArgumentNotValidException, а стандартная обработка даёт 400; форму тела можно настроить через ProblemDetail."
       ],
-      "explanation": "Если контроллер не принимает BindingResult, Spring MVC сам выбрасывает MethodArgumentNotValidException, которую ловит @ControllerAdvice или стандартный резолвер, формируя 400 Bad Request; в Spring 6 ответ оформляется как ProblemDetail.",
-      "sourceQuote": "формируя 400 Bad Request"
+      "explanation": "Для обычного @Valid @RequestBody без соседнего BindingResult Spring MVC выбрасывает MethodArgumentNotValidException. Исключение реализует контракт ErrorResponse, а стандартная обработка формирует 400; приложение может унифицировать тело через @RestControllerAdvice и ProblemDetail.",
+      "sourceQuote": "стандартная MVC-обработка формирует 400"
     },
     {
       "id": "t013-mcq-05",
       "type": "mcq",
-      "concept": "точки исполнения валидации и их исключения",
+      "concept": "границы исполнения валидации и типы ошибок",
       "difficulty": "medium",
       "questionType": "comparison",
-      "question": "Валидация @RequestBody и method validation (@Validated на классе сервиса) кидают разные исключения. Какие именно?",
+      "question": "Почему нельзя свести все ошибки Bean Validation в Spring к одному типу исключения?",
       "options": [
-        "@RequestBody → ConstraintViolationException, method validation → MethodArgumentNotValidException",
-        "@RequestBody+@Valid → MethodArgumentNotValidException (MVC-резолвер); method validation (@Validated на сервисе) → ConstraintViolationException (AOP)",
-        "Оба случая кидают MethodArgumentNotValidException",
-        "Оба случая кидают ConstraintViolationException"
+        "Тип зависит только от выбранной реализации Validator, а точка выполнения проверки не влияет",
+        "MVC body, MVC method validation, сервисный AOP и JPA flush выполняют проверку в разных механизмах",
+        "Все нарушения сначала становятся MethodArgumentNotValidException, а затем всегда оборачиваются в 500",
+        "Все нарушения сначала становятся ConstraintViolationException и отличаются только HTTP-статусом"
       ],
       "correctIndex": 1,
       "rationales": [
-        "Неверно: исключения перепутаны местами.",
-        "Верно: @RequestBody+@Valid даёт MethodArgumentNotValidException через MVC-резолвер, а method validation через AOP даёт ConstraintViolationException.",
-        "Неверно: method validation кидает ConstraintViolationException, а не MethodArgumentNotValidException.",
-        "Неверно: @RequestBody-валидация кидает MethodArgumentNotValidException, а не ConstraintViolationException."
+        "Неверно: одна реализация Validator может вызываться разными инфраструктурными механизмами с разными контрактами ошибок.",
+        "Верно: @Valid @RequestBody обычно даёт MethodArgumentNotValidException, встроенная MVC method validation — HandlerMethodValidationException, сервисный AOP и entity validation обычно дают ConstraintViolationException.",
+        "Неверно: MethodArgumentNotValidException относится к связыванию и проверке объектного аргумента MVC, а не ко всем границам.",
+        "Неверно: MVC имеет собственные исключения, а корректный статус зависит от места и смысла нарушения."
       ],
-      "explanation": "@RequestBody + @Valid проверяется через HandlerMethodArgumentResolver → MethodArgumentNotValidException; method validation (@Validated на классе сервиса) — это AOP: MethodValidationInterceptor оборачивает бин прокси, и нарушение даёт ConstraintViolationException.",
-      "sourceQuote": "MethodValidationInterceptor оборачивает бин прокси и проверяет аргументы/возврат метода"
+      "explanation": "Тип ошибки определяется границей выполнения: объектный аргумент MVC обычно приводит к MethodArgumentNotValidException; встроенная method validation контроллеров Spring MVC 6.1+ — к HandlerMethodValidationException; AOP method validation сервиса и проверка сущности при flush обычно дают ConstraintViolationException.",
+      "sourceQuote": "Тип ошибки определяется границей, на которой выполняется валидация"
     },
     {
       "id": "t013-mcq-06",
@@ -135,32 +135,32 @@
       "questionType": "antipattern",
       "question": "Ограничения вложенного объекта DTO не проверяются валидатором. В чём причина?",
       "options": [
-        "На поле, содержащем вложенный объект, не поставили @Valid — без него Bean Validation не спускается во вложенные объекты",
-        "Не подключён Hibernate Validator",
-        "Нужен @Validated на классе контроллера",
-        "Вложенные объекты валидировать нельзя в принципе"
+        "На поле с вложенным объектом нет @Valid, поэтому каскадная проверка не запускается",
+        "На классе вложенного DTO нет @Validated с той же группой, что у контроллера",
+        "Вложенный объект десериализуется после вызова Validator и потому ещё не существует",
+        "Hibernate Validator поддерживает вложенность только у @Entity во время JPA flush"
       ],
       "correctIndex": 0,
       "rationales": [
         "Верно: вложенный объект проверяется, только если на поле, которое его содержит, стоит @Valid.",
-        "Неверно: причина не в отсутствии реализации валидатора.",
-        "Неверно: @Validated на контроллере не включает каскад по вложенным полям.",
-        "Неверно: вложенные объекты валидируются при наличии @Valid на поле."
+        "Неверно: @Validated на классе вложенного DTO не заменяет @Valid на содержащем его поле.",
+        "Неверно: Validator вызывается после десериализации всего объектного графа запроса.",
+        "Неверно: каскадная проверка DTO поддерживается независимо от JPA и включается @Valid."
       ],
       "explanation": "Каскадная валидация работает только если на поле с вложенным объектом стоит @Valid — без этой аннотации Bean Validation не спускается во вложенные объекты, и их ограничения не проверяются.",
-      "sourceQuote": "Вложенный объект проверяется, только если на поле, которое его содержит, стоит @Valid"
+      "sourceQuote": "Каскадная проверка запускается только при @Valid на вложенном значении."
     },
     {
       "id": "t013-mcq-07",
       "type": "mcq",
       "concept": "эталонная реализация Hibernate Validator",
       "difficulty": "easy",
-      "questionType": "negative",
+      "questionType": "definition",
       "question": "Что является эталонной реализацией Bean Validation?",
       "options": [
         "Hibernate ORM",
         "Библиотека Jackson",
-        "Hibernate Validator (не путать с Hibernate ORM — это разные проекты)",
+        "Hibernate Validator",
         "Spring Data JPA"
       ],
       "correctIndex": 2,
@@ -178,48 +178,48 @@
       "type": "open",
       "concept": "механика @RequestBody + @Valid (MethodArgumentNotValidException)",
       "difficulty": "medium",
-      "questionType": "explain",
-      "question": "Как работает валидация @RequestBody + @Valid внутри Spring MVC?",
+      "questionType": "scenario",
+      "question": "POST /orders принимает OrderRequest с вложенным AddressRequest. Поле city пустое, но запрос проходит и заказ сохраняется. Проведите диагностику всей цепочки от JSON до ответа API.",
       "keyPoints": [
-        "@Valid — точка расширения HandlerMethodArgumentResolver; после десериализации JSON резолвер вызывает Validator (Hibernate Validator)",
-        "каждое нарушенное ограничение превращается в FieldError, все ошибки собираются в BindingResult",
-        "если контроллер не принимает BindingResult, Spring MVC сам выбрасывает MethodArgumentNotValidException",
-        "исключение ловит @ControllerAdvice или стандартный резолвер, формируя 400 Bad Request (в Spring 6 — ProblemDetail)"
+        "проверить @Valid на параметре @RequestBody и @Valid на поле address; одного ограничения @NotBlank на AddressRequest.city недостаточно без каскада",
+        "объяснить порядок: десериализация JSON → вызов Validator → ConstraintViolation/FieldError → BindingResult",
+        "если BindingResult не принят рядом с аргументом, ожидать MethodArgumentNotValidException до вызова контроллера",
+        "предложить контракт 400 ProblemDetail с безопасным путём поля address.city и тест MockMvc на отрицательный сценарий"
       ],
-      "modelAnswer": "@Valid/@Validated — не магия, а точка расширения HandlerMethodArgumentResolver. При разборе аргумента @RequestBody резолвер видит @Valid и после десериализации JSON вызывает Validator (реализация — Hibernate Validator) на полученном объекте. Каждое нарушенное ограничение превращается в FieldError, а все ошибки собираются в BindingResult. Если контроллер не принимает BindingResult следующим параметром, Spring MVC сам выбрасывает MethodArgumentNotValidException, которую ловит @ControllerAdvice или стандартный резолвер, формируя 400 Bad Request. В Spring 6 такой ответ по умолчанию оформляется как ProblemDetail.",
-      "sourceQuote": "формируя 400 Bad Request"
+      "modelAnswer": "Сначала проверяют, что параметр контроллера объявлен как @Valid @RequestBody OrderRequest. Затем важен каскад: поле address внутри OrderRequest тоже должно быть помечено @Valid, иначе Hibernate Validator не спустится к @NotBlank на city. После десериализации MVC вызывает Validator, нарушения превращаются в FieldError и попадают в BindingResult. Если BindingResult не стоит следующим параметром метода, контроллер не вызывается — возникает MethodArgumentNotValidException. @RestControllerAdvice должен вернуть 400 ProblemDetail со стабильным кодом и указанием address.city без внутренних деталей. Отрицательный MockMvc-тест должен доказать, что сервис сохранения не был вызван.",
+      "sourceQuote": "Каскадная проверка запускается только при @Valid на вложенном значении."
     },
     {
       "id": "t013-open-02",
       "type": "open",
-      "concept": "точки исполнения валидации и их исключения",
+      "concept": "границы исполнения валидации и типы ошибок",
       "difficulty": "hard",
-      "questionType": "compare",
-      "question": "Валидация фактически исполняется в разных точках. Опишите три точки и какие исключения каждая кидает.",
+      "questionType": "design",
+      "question": "Один API получает ошибки из @RequestBody, ограничений параметров контроллера, @Validated-сервиса и JPA flush. Спроектируйте единый контракт ошибок, не смешивая эти границы.",
       "keyPoints": [
-        "@RequestBody + @Valid — проверка через HandlerMethodArgumentResolver, ошибка → MethodArgumentNotValidException",
-        "method validation (@Validated на классе сервиса) — AOP: MethodValidationInterceptor оборачивает бин прокси, ошибка → ConstraintViolationException",
-        "валидация @Entity срабатывает автоматически при flush (интеграция Hibernate Validator с Hibernate ORM) — последний рубеж перед записью",
-        "обработка только одного вида исключений оставляет часть ошибок неотловленной и даёт 500 вместо 400"
+        "разделить MethodArgumentNotValidException, HandlerMethodValidationException и ConstraintViolationException по источнику и структуре пути",
+        "входные нарушения отображать в 400; бизнес-конфликты не маскировать под Bean Validation и возвращать подходящий 409/422 по контракту",
+        "ошибку entity validation при flush считать последним защитным рубежом и не полагаться на неё как на основной UX входа",
+        "унифицировать ProblemDetail: type/code, status, detail, violations, traceId; не раскрывать классы и внутренние сообщения"
       ],
-      "modelAnswer": "Валидация описывается декларативно, но исполняется в разных точках, и каждая кидает своё исключение. @RequestBody + @Valid проверяется через HandlerMethodArgumentResolver, и при нарушении возникает MethodArgumentNotValidException, из которой формируется 400. Method validation — @Validated на классе сервиса — это уже AOP: MethodValidationInterceptor оборачивает бин прокси и проверяет аргументы/возврат метода, а ошибка здесь — ConstraintViolationException, которую нужно обрабатывать отдельным @ExceptionHandler. Валидация на уровне сущности (@Entity с аннотациями Bean Validation) срабатывает автоматически при flush через интеграцию Hibernate Validator с Hibernate ORM — это последний рубеж перед записью в БД. Смешивание источников опасно: обработка только одного вида исключений оставляет часть ошибок неотловленной и приводит к 500 вместо 400.",
-      "sourceQuote": "MethodValidationInterceptor оборачивает бин прокси и проверяет аргументы/возврат метода"
+      "modelAnswer": "Обработчики должны учитывать границу проверки. MethodArgumentNotValidException содержит ошибки связывания объектного аргумента; HandlerMethodValidationException представляет нарушения ограничений параметров метода MVC; ConstraintViolationException возникает, например, у AOP method validation сервиса и при проверке сущности. Входные нарушения нормализуются в ProblemDetail 400 с массивом violations и безопасными путями полей. Бизнес-конфликт моделируют отдельным исключением и статусом контракта, а не аннотацией @NotNull. Проверка entity при flush остаётся последней защитой инварианта и может происходить слишком поздно для удобного ответа. Во всех ответах сохраняют стабильные type/code и traceId, но не имена Java-классов и не внутренние сообщения.",
+      "sourceQuote": "валидация выполняется на нескольких инфраструктурных границах"
     },
     {
       "id": "t013-open-03",
       "type": "open",
-      "concept": "@Valid vs @Validated и группы",
-      "difficulty": "medium",
+      "concept": "роли @Valid и @Validated, группы и каскад",
+      "difficulty": "hard",
       "questionType": "design",
-      "question": "Когда и как применять группы валидации и каскадную валидацию?",
+      "question": "Для create и update предлагают один DTO с группами OnCreate/OnUpdate. Сравните это решение с отдельными DTO и определите границу применимости групп.",
       "keyPoints": [
-        "группы нужны, когда один DTO требует разных правил в разных сценариях (id обязателен при обновлении, но не при создании)",
-        "ограничения помечают интерфейсами-маркерами (@NotNull(groups = OnUpdate.class)), а на входе указывают группу через @Validated(OnUpdate.class)",
-        "обычный @Valid группы не поддерживает — поэтому @Validated используют там, где нужна выборочная проверка",
-        "каскадная валидация: вложенный объект проверяется только при @Valid на содержащем его поле"
+        "группы уместны при близкой форме данных и небольшом числе различающихся ограничений; выбранную группу передают через @Validated",
+        "отдельные DTO предпочтительнее, когда сценарии имеют разные поля/семантику и группы превращают класс в матрицу условий",
+        "каскад и группы — разные механизмы: @Valid включает вложенную проверку, а преобразование групп при каскаде требует явной настройки",
+        "межполевые и бизнес-правила требуют class-level ConstraintValidator или проверки сервиса, а не набора несвязанных полевых аннотаций"
       ],
-      "modelAnswer": "Группы валидации нужны, когда один и тот же DTO требует разных правил в разных сценариях — например, id обязателен при обновлении, но не при создании. Для этого ограничения помечают интерфейсами-маркерами (@NotNull(groups = OnUpdate.class)), а на входе указывают нужную группу через @Validated(OnUpdate.class); обычный @Valid группы не поддерживает, поэтому @Validated применяют там, где нужна выборочная проверка. Каскадная валидация проверяет вложенный объект только если на поле, которое его содержит, стоит @Valid — без этой аннотации Bean Validation не спускается во вложенные объекты.",
-      "sourceQuote": "Обычный @Valid группы не поддерживает"
+      "modelAnswer": "Группы разумны, когда create и update используют почти одинаковую форму, а различаются несколькими ограничениями: их маркируют OnCreate/OnUpdate и выбирают через @Validated. Если поля и смысл сценариев расходятся, отдельные CreateOrderRequest и UpdateOrderRequest делают контракт понятнее и не заставляют читать матрицу groups на каждом поле. @Valid отвечает за каскад к вложенному объекту, а группы — за выбор набора ограничений; это не один механизм, и при необходимости преобразования группы для вложенного типа его задают явно. Правила вроде start < end оформляют class-level ConstraintValidator, а проверки, требующие БД или внешнего сервиса, оставляют бизнес-слою.",
+      "sourceQuote": "группы не должны превращать DTO в матрицу сценариев"
     }
   ]
 }
