@@ -6,4 +6,12 @@ describe('TopicRepository с реальными данными', () => {
     expect(topicRepository.topics.find((topic) => topic.key === 'algos:6')?.topicTitle).toContain('неустойчивой сортировки');
   });
   it('не содержит диагностических ошибок', () => expect(topicRepository.errors).toEqual([]));
+  it('загружает СТАНКИН как четыре экзаменационных блока', () => {
+    const stankin = topicRepository.topics.filter((topic) => topic.category === 'stankin');
+    const questions = stankin.flatMap((topic) => topic.questions);
+    expect(stankin).toHaveLength(4);
+    expect(questions).toHaveLength(120);
+    expect(questions.filter((question) => question.type === 'mcq')).toHaveLength(96);
+    expect(questions.filter((question) => question.type === 'open')).toHaveLength(24);
+  });
 });

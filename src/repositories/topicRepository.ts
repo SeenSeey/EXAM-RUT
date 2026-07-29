@@ -15,7 +15,8 @@ const categoryNames: Record<string, string> = {
   'mai-networks': 'МАИ · Компьютерные сети и телекоммуникации',
   'mai-security': 'МАИ · Информационная безопасность',
   'mai-databases': 'МАИ · Базы данных',
-  'mai-probability': 'МАИ · Теория вероятностей и математическая статистика'
+  'mai-probability': 'МАИ · Теория вероятностей и математическая статистика',
+  stankin: 'СТАНКИН 09.04.01'
 };
 type JsonModule = { default: unknown };
 const modules = import.meta.glob<JsonModule>('../../tasks/*/topic-*.json', { eager: true });

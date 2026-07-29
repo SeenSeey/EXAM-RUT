@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { TRACKS } from './tracks';
 import { balancedShuffle, buildQueue, filterPool, resolveQueueSize, seededRandom } from './sessionEngine';
 import { mcq, open, topic } from '../test/fixtures';
-const topics = [topic('algos:1', [mcq('m1'), mcq('m2'), open('o1'), open('o2')]), topic('algos:2', [mcq('m3'), open('o3')]), { ...topic('mai-discrete:1', [mcq('mm1'), open('mo1')]), category: 'mai-discrete' }];
+const topics = [topic('algos:1', [mcq('m1'), mcq('m2'), open('o1'), open('o2')]), topic('algos:2', [mcq('m3'), open('o3')]), { ...topic('mai-discrete:1', [mcq('mm1'), open('mo1')]), category: 'mai-discrete' }, { ...topic('stankin:1', [mcq('sm1'), open('so1')]), category: 'stankin' }];
 describe('движок сессии', () => {
   it('фильтрует вопросы по типу', () => expect(filterPool(topics, TRACKS[2]).every((x) => x.question.type === 'mcq')).toBe(true));
   it('фильтрует по выбранной теме', () => expect(filterPool(topics, TRACKS[1], 'algos:2')).toHaveLength(2));
@@ -13,6 +13,12 @@ describe('движок сессии', () => {
     const pool = filterPool(topics, mai);
     expect(pool).toHaveLength(2);
     expect(pool.every((item) => item.topicKey.startsWith('mai-discrete:'))).toBe(true);
+  });
+  it('ограничивает трек СТАНКИН его четырьмя блоками', () => {
+    const stankin = TRACKS.find((track) => track.id === 'stankin-090401')!;
+    const pool = filterPool(topics, stankin);
+    expect(pool).toHaveLength(2);
+    expect(pool.every((item) => item.topicKey.startsWith('stankin:'))).toBe(true);
   });
   it('не повторяет вопросы до исчерпания пула', () => { const queue = buildQueue(filterPool(topics, TRACKS[0]), TRACKS[0], 'all', seededRandom(1)); expect(new Set(queue).size).toBe(queue.length); });
   it('ограничивает размер', () => expect(buildQueue(filterPool(topics, TRACKS[0]), TRACKS[0], 2, seededRandom(2))).toHaveLength(2));
