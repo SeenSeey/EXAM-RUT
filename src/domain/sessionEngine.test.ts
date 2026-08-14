@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { TRACKS } from './tracks';
 import { balancedShuffle, buildQueue, filterPool, resolveQueueSize, seededRandom } from './sessionEngine';
 import { mcq, open, topic } from '../test/fixtures';
-const topics = [topic('algos:1', [mcq('m1'), mcq('m2'), open('o1'), open('o2')]), topic('algos:2', [mcq('m3'), open('o3')]), { ...topic('mai-discrete:1', [mcq('mm1'), open('mo1')]), category: 'mai-discrete' }, { ...topic('stankin:1', [mcq('sm1'), open('so1')]), category: 'stankin' }];
+const topics = [topic('algos:1', [mcq('m1'), mcq('m2'), open('o1'), open('o2')]), topic('algos:2', [mcq('m3'), open('o3')]), { ...topic('mai-discrete:1', [mcq('mm1'), open('mo1')]), category: 'mai-discrete' }, { ...topic('stankin:1', [mcq('sm1'), open('so1')]), category: 'stankin' }, { ...topic('mephi:1', [mcq('em1'), open('eo1')]), category: 'mephi' }];
 describe('движок сессии', () => {
   it('фильтрует вопросы по типу', () => expect(filterPool(topics, TRACKS[2]).every((x) => x.question.type === 'mcq')).toBe(true));
   it('фильтрует по выбранной теме', () => expect(filterPool(topics, TRACKS[1], 'algos:2')).toHaveLength(2));
@@ -19,6 +19,21 @@ describe('движок сессии', () => {
     const pool = filterPool(topics, stankin);
     expect(pool).toHaveLength(2);
     expect(pool.every((item) => item.topicKey.startsWith('stankin:'))).toBe(true);
+  });
+  it('ограничивает трек МИФИ его экзаменационными блоками', () => {
+    const mephi = TRACKS.find((track) => track.id === 'mephi')!;
+    const pool = filterPool(topics, mephi);
+    expect(pool).toHaveLength(2);
+    expect(pool.every((item) => item.topicKey.startsWith('mephi:'))).toBe(true);
+  });
+  it('сохраняет равные доли тестов и открытых заданий в треке МИФИ', () => {
+    const mephi = TRACKS.find((track) => track.id === 'mephi')!;
+    const mephiTopic = { ...topic('mephi:2', [...Array.from({ length: 80 }, (_, index) => mcq(`em${index + 10}`)), ...Array.from({ length: 80 }, (_, index) => open(`eo${index + 10}`))]), category: 'mephi' };
+    const pool = filterPool([mephiTopic], mephi);
+    expect(resolveQueueSize(pool, mephi, 'all')).toBe(160);
+    const queue = buildQueue(pool, mephi, 10, seededRandom(13));
+    expect(queue.filter((key) => key.includes(':em')).length).toBe(5);
+    expect(queue.filter((key) => key.includes(':eo')).length).toBe(5);
   });
   it('не повторяет вопросы до исчерпания пула', () => { const queue = buildQueue(filterPool(topics, TRACKS[0]), TRACKS[0], 'all', seededRandom(1)); expect(new Set(queue).size).toBe(queue.length); });
   it('ограничивает размер', () => expect(buildQueue(filterPool(topics, TRACKS[0]), TRACKS[0], 2, seededRandom(2))).toHaveLength(2));

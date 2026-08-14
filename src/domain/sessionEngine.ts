@@ -35,7 +35,7 @@ export function buildQueue(pool: readonly QuestionWithKey[], track: TrackDefinit
   if (track.allowedQuestionTypes.length < 2) return shuffle(pool, random).slice(0, count).map((item) => item.key);
   const mcq = shuffle(pool.filter((item) => item.question.type === 'mcq'), random);
   const open = shuffle(pool.filter((item) => item.question.type === 'open'), random);
-  const desiredMcq = Math.round(count * .7);
+  const desiredMcq = Math.round(count * (track.mcqRatio ?? .7));
   const selectedMcq = mcq.slice(0, Math.min(desiredMcq, mcq.length));
   const selectedOpen = open.slice(0, Math.min(count - selectedMcq.length, open.length));
   let missing = count - selectedMcq.length - selectedOpen.length;
@@ -50,7 +50,9 @@ export function resolveQueueSize(pool: readonly QuestionWithKey[], track: TrackD
   if (track.allowedQuestionTypes.length < 2 || limit < 10) return limit;
   const mcqCount = pool.filter((item) => item.question.type === 'mcq').length;
   const openCount = pool.length - mcqCount;
-  const completeBlocks = Math.min(Math.floor(limit / 10), Math.floor(mcqCount / 7), Math.floor(openCount / 3));
+  const mcqPerBlock = Math.round(10 * (track.mcqRatio ?? .7));
+  const openPerBlock = 10 - mcqPerBlock;
+  const completeBlocks = Math.min(Math.floor(limit / 10), Math.floor(mcqCount / mcqPerBlock), Math.floor(openCount / openPerBlock));
   return completeBlocks > 0 ? completeBlocks * 10 : 0;
 }
 

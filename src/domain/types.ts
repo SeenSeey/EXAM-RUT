@@ -20,7 +20,7 @@ export interface QuestionRef { key: string; topicKey: string; questionId: string
 
 export interface TrackDefinition {
   id: string; title: string; shortTitle: string; description: string; allowedQuestionTypes: QuestionKind[];
-  topicMode: TopicMode; icon: string; categories?: string[];
+  topicMode: TopicMode; icon: string; categories?: string[]; mcqRatio?: number;
 }
 export interface McqAnswer { kind: 'mcq'; selectedIndex: number; correct: boolean; answeredAt: string }
 export interface OpenAnswer { kind: 'open'; text: string; skipped: boolean; rating?: OpenRating; answeredAt: string }

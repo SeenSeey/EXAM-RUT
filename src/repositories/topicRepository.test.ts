@@ -14,4 +14,13 @@ describe('TopicRepository с реальными данными', () => {
     expect(questions.filter((question) => question.type === 'mcq')).toHaveLength(96);
     expect(questions.filter((question) => question.type === 'open')).toHaveLength(24);
   });
+  it('загружает все 40 тем МИФИ с двумя заданиями каждого типа', () => {
+    const mephi = topicRepository.topics.filter((topic) => topic.category === 'mephi');
+    const questions = mephi.flatMap((topic) => topic.questions);
+    expect(mephi).toHaveLength(2);
+    expect(new Set(questions.map((question) => question.concept))).toHaveLength(40);
+    expect(questions).toHaveLength(160);
+    expect(questions.filter((question) => question.type === 'mcq')).toHaveLength(80);
+    expect(questions.filter((question) => question.type === 'open')).toHaveLength(80);
+  });
 });
